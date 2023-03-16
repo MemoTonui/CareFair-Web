@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center m-20">
+  <div class="flex justify-center items-center m-5">
     <div>
       <img src="/src/assets/PhoneScreen.svg" class="w-full h-full" />
     </div>
