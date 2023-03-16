@@ -6,7 +6,7 @@
         background-position: 50%;
 
         background-image: url('https://i.ibb.co/LdJYdXX/alexander-dummer-UH-xs-Fiz-Tk-unsplash-1.png');
-        height: 600px;
+        height: 700px;
       "
     >
       <div
