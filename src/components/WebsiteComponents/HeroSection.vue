@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="relative overflow-hidden bg-no-repeat bg-cover"
+      class="relative overflow-hidden bg-no-repeat bg-cover items-center justify-center justify-self-center mx-auto"
       style="
         background-position: 50%;
 
@@ -16,7 +16,7 @@
         <div class="flex items-center h-full">
           <div class="text-white px-6 md:px-12">
             <div class="mb-12">
-              <h1 class="text-xl md:text-2xl xl:text-4xl mb-3 font-bold">
+              <h1 class="text-xl md:text-2xl xl:text-4xl mb-3 font-bold leading-loose">
                 Experience Compassionate <br /><span class="my-4">
                   and professional care for your</span
                 >
@@ -24,22 +24,24 @@
               </h1>
               <p>Get a Professional Now!</p>
             </div>
-            <a
-              class="inline-block px-5 py-3 mr-1.5 border-2 border-primary bg-primary text-white font-semibold text-sm leading-snug uppercase rounded-full shadow-md hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color="light"
-              href="#!"
-              role="button"
-              >Get a Caregiver</a
-            >
-            <a
-              class="inline-block sm:mt-3 px-5 py-3 border-2 border-pink bg-pink text-white font-semibold text-sm leading-snug uppercase rounded-full focus:outline-none focus:ring-0 transition hover:bg-opacity-5 duration-150 ease-in-out"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color="light"
-              href="#!"
-              role="button"
-              >Become a Caregiver</a
-            >
+            <div class="flex gap-7">
+              <a
+                class="px-5 py-3 border-2 border-primary bg-primary text-white font-semibold text-sm uppercase rounded-full shadow-md hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+                href="#!"
+                role="button"
+                >Get a Caregiver</a
+              >
+              <a
+                class="px-5 py-3 border-2 border-pink bg-pink text-white font-semibold text-sm uppercase rounded-full focus:outline-none focus:ring-0 hover:bg-opacity-5"
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+                href="#!"
+                role="button"
+                >Become a Caregiver</a
+              >
+            </div>
           </div>
         </div>
       </div>
