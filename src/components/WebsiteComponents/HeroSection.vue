@@ -26,7 +26,7 @@
             </div>
             <div class="flex gap-7">
               <a
-                class="px-5 py-3 border-2 border-primary bg-primary text-white font-semibold text-sm uppercase rounded-full shadow-md hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+                class="px-5 py-3 border-2 border-primary bg-primary text-white font-semibold text-sm sm:text-xs uppercase rounded-full shadow-md hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
                 href="#!"
@@ -34,7 +34,7 @@
                 >Get a Caregiver</a
               >
               <a
-                class="px-5 py-3 border-2 border-pink bg-pink text-white font-semibold text-sm uppercase rounded-full focus:outline-none focus:ring-0 hover:bg-opacity-5"
+                class="px-5 py-3 border-2 border-pink bg-pink text-white font-semibold text-sm uppercase sm:text-xs rounded-full focus:outline-none focus:ring-0 hover:bg-opacity-5"
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
                 href="#!"
