@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center my-16">
-    <div class="grid grid-cols-3 gap-10 m-5">
+    <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-10 m-5">
       <div>
         <div
           class="max-w-sm p-6 bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
@@ -9,25 +9,19 @@
 
           <a href="#">
             <h5
-              :class="textColor"
               class="mb-2 text-md text-primary font-semibold uppercase text-gray-900 dark:text-white"
             >
               Child Care
             </h5>
           </a>
           <p class="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400">
-            "Professional nannies are magical humans with a unique set of skills and the
-            power to swoop in and make children and parents feel at ease.",
+            Professional nannies are magical humans with a unique set of skills and the
+            power to swoop in and make children and parents feel at ease.
           </p>
-          <a
-            href="#"
-            :class="textColor"
-            class="inline-flex text-primary items-center hover:underline"
-          >
+          <a href="#" class="inline-flex text-primary items-center hover:underline">
             Learn More
             <svg
               class="w-5 h-5 ml-2 text-primary"
-              :class="textColor"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +45,6 @@
 
           <a href="#">
             <h5
-              :class="textColor"
               class="mb-2 text-md text-pink font-semibold uppercase text-gray-900 dark:text-white"
             >
               Pet Care
@@ -61,15 +54,10 @@
             A pet care giver is someone who is responsible for the well-being and daily
             care of pets, such as dogs, cats, and other domestic animals.
           </p>
-          <a
-            href="#"
-            :class="textColor"
-            class="inline-flex text-pink items-center hover:underline"
-          >
+          <a href="#" class="inline-flex text-pink items-center hover:underline">
             Learn More
             <svg
               class="w-5 h-5 ml-2 text-pink"
-              :class="textColor"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +81,6 @@
 
           <a href="#">
             <h5
-              :class="textColor"
               class="mb-2 text-md text-orange font-semibold uppercase text-gray-900 dark:text-white"
             >
               Senior Care
@@ -103,15 +90,10 @@
             Professional nannies are magical humans with a unique set of skills and the
             power to swoop in and make children and parents feel at ease.
           </p>
-          <a
-            href="#"
-            :class="textColor"
-            class="inline-flex text-orange items-center hover:underline"
-          >
+          <a href="#" class="inline-flex text-orange items-center hover:underline">
             Learn More
             <svg
               class="w-5 h-5 ml-2 text-orange"
-              :class="textColor"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
