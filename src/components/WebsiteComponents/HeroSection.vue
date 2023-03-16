@@ -5,7 +5,7 @@
       class="container flex flex-col-reverse place-items-center  items-center justify-center px-6 mx-auto  space-y-0 md:space-y-0 md:flex-row"
     >
       <!-- Left item -->
-      <div class="flex flex-col justify-center  space-y-12 md:w-1/2 ">
+      <div class="flex flex-col justify-center space-y-12 md:w-1/2 ">
         <h1 class="max-w-md text-4xl font-bold text-black  text-center md:text-5xl md:text-left ">
           Experience Compassionate and professional care for your loved ones.         </h1>
         <p class="max-w-md text-black md:text-left">
