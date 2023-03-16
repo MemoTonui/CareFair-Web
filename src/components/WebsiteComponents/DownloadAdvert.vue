@@ -1,8 +1,8 @@
 <template>
   <div
-    class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 justify-center items-center m-5"
+    class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 place-items-center justify-center items-center m-5"
   >
-    <div class="items-center justify-center">
+    <div class="items-center justify-center justify-self-center mx-auto">
       <img src="/src/assets/PhoneScreen.svg" class="max-w-full h-auto" />
     </div>
     <div class="m-5">

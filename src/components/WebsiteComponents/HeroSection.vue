@@ -4,7 +4,8 @@
       class="relative overflow-hidden bg-no-repeat bg-cover"
       style="
         background-position: 50%;
-        background-image: url('/src/assets/bg.png');
+
+        background-image: url('https://i.ibb.co/LdJYdXX/alexander-dummer-UH-xs-Fiz-Tk-unsplash-1.png');
         height: 600px;
       "
     >

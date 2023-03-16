@@ -3,7 +3,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5">
       <div>
         <div
-          class="max-w-sm p-6 bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:translate-y-3 hover:translate-x-3 hover:border-2 hover:border-primary"
+          class="max-w-sm p-6 bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:border-2 hover:border-primary"
         >
           <img class="w-16 h-16" src="/src/assets/child.gif" />
 
@@ -39,7 +39,7 @@
 
       <div>
         <div
-          class="max-w-sm p-6 bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:translate-y-3 hover:translate-x-3 hover:border-2 hover:border-pink"
+          class="max-w-sm p-6 bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:border-2 hover:border-pink"
         >
           <img class="w-16 h-16" src="/src/assets/pet.gif" />
 
@@ -75,7 +75,7 @@
 
       <div>
         <div
-          class="max-w-sm p-6 bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:translate-y-3 hover:translate-x-3 hover:border-2 hover:border-orange"
+          class="max-w-sm p-6 bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:border-2 hover:border-orange"
         >
           <img class="w-16 h-16" src="/src/assets/senior.gif" />
 
