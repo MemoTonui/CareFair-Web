@@ -18,11 +18,12 @@
           Available for Android and iOS
         </p>
         <div
-          class="items-center justify-center flex gap-6 space-y-4 sm:flex sm:space-y-0 sm:space-x-4"
+          class="items-center justify-center cursor-pointer flex gap-6 space-y-4 sm:flex sm:space-y-0 sm:space-x-4"
         >
           <div>
             <a
-              href="#"
+            @click="redirectToAppStore"
+            
               class="w-full sm:w-auto bg-primary focus:ring-4 focus:outline-none hover:border-primary hover:bg-white hover:border-2 hover:text-primary focus:ring-gray-300 text-white rounded-sm inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
             >
               <svg
@@ -48,7 +49,7 @@
           </div>
           <div>
             <a
-              href="#"
+            @click="redirectToPlayStore"
               class="w-full sm:w-auto bg-secondary focus:ring-4 hover:border-secondary hover:border-2 hover:bg-white hover:text-secondary focus:outline-none focus:ring-gray-300 text-white rounded-sm inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
             >
               <img src="/src/assets/PlayStore.svg" class="w-7 h-7" />
@@ -65,7 +66,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    redirectToPlayStore() {
+      window.location.href = 'https://play.google.com/store/apps/details?id=com.carefair.carefair';
+    },
+    redirectToAppStore() {
+      window.location.href = 'https://apps.apple.com/us/app/carefair-find-caregivers/id6444377086';
+    }
+  }
+};
 </script>
 
 <style scoped>
