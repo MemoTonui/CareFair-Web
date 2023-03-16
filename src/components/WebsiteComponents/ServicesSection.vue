@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center my-16">
-    <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-10 m-5">
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5">
       <div>
         <div
           class="max-w-sm p-6 bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
