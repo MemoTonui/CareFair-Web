@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="max-w-sm p-6">
     <figure class="max-w-screen-md mx-auto">
       <svg
         aria-hidden="true"
