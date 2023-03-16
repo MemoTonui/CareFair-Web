@@ -9,12 +9,12 @@
       <div
         class="w-full p-4 text-center bg-white sm:p-8 dark:bg-gray-800 dark:border-gray-700"
       >
-        <h5 class="m-1 text-2xl font-bold text-black dark:text-white">
+        <h5 class="m-1 text-4xl font-bold text-black md:text-3xl dark:text-white">
           Get connected to some help <br />
           from anywhere using our <br />
           mobile app
         </h5>
-        <p class="mb-5 text-base text-black sm:text-lg dark:text-gray-400">
+        <p class="my-5 text-base text-black sm:text-lg dark:text-gray-400">
           Available for Android and iOS
         </p>
         <div
@@ -23,7 +23,7 @@
           <div>
             <a
               href="#"
-              class="w-full sm:w-auto sm:mt-3 bg-primary focus:ring-4 focus:outline-none hover:border-primary hover:bg-white hover:border-2 hover:text-primary focus:ring-gray-300 text-white rounded-sm inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+              class="w-full sm:w-auto bg-primary focus:ring-4 focus:outline-none hover:border-primary hover:bg-white hover:border-2 hover:text-primary focus:ring-gray-300 text-white rounded-sm inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
             >
               <svg
                 class="mr-3 w-7 h-7"
@@ -68,4 +68,7 @@
 export default {};
 </script>
 
-<style></style>
+<style scoped>
+h5{
+  font-family: 'Gentium Book Plus', serif;}
+</style>

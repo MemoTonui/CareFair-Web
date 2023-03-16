@@ -1,49 +1,33 @@
 <template>
-  <div>
+  <div id="hero" class="">
+    <!-- Flex Container -->
     <div
-      class="relative overflow-hidden bg-no-repeat bg-cover items-center justify-center justify-self-center mx-auto"
-      style="
-        background-position: 50%;
-
-        background-image: url('https://i.ibb.co/LdJYdXX/alexander-dummer-UH-xs-Fiz-Tk-unsplash-1.png');
-        height: 700px;
-      "
+      class="container flex flex-col-reverse place-items-center  items-center justify-center px-6 mx-auto  space-y-0 md:space-y-0 md:flex-row"
     >
-      <div
-        class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed"
-        style="background-color: rgba(0, 0, 0, 0.25)"
-      >
-        <div class="flex items-center h-full">
-          <div class="text-white px-6 md:px-12">
-            <div class="mb-12">
-              <h1 class="text-xl md:text-2xl xl:text-4xl mb-3 font-bold leading-loose">
-                Experience Compassionate <br /><span class="my-4">
-                  and professional care for your</span
-                >
-                <br /><span> loved ones. </span>
-              </h1>
-              <p>Get a Professional Now!</p>
-            </div>
-            <div class="flex gap-7">
-              <a
-                class="px-5 py-3 border-2 border-primary bg-primary text-white font-semibold text-sm sm:text-xs uppercase rounded-full shadow-md hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-                href="#!"
-                role="button"
-                >Get a Caregiver</a
-              >
-              <a
-                class="px-5 py-3 border-2 border-pink bg-pink text-white font-semibold text-sm uppercase sm:text-xs rounded-full focus:outline-none focus:ring-0 hover:bg-opacity-5"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-                href="#!"
-                role="button"
-                >Become a Caregiver</a
-              >
-            </div>
-          </div>
+      <!-- Left item -->
+      <div class="flex flex-col justify-center items-center  space-y-12 md:w-1/2 ">
+        <h1 class="max-w-md text-4xl font-bold text-black  text-center md:text-5xl md:text-left ">
+          Experience Compassionate and professional care for your loved ones.         </h1>
+        <p class="max-w-md text-black md:text-left">
+          Take the first step towards providing your loved one with compassionate and professional care.
+         
+        </p>
+        <div class="flex justify-center md:justify-start uppercase gap-6">
+          <a
+            href="#"
+            class="p-3 px-6 pt-2 text-white bg-primary rounded-full baseline hover:border-2 hover:text-primary hover:bg-white"
+            >Get a Caregiver</a
+          >
+          <a
+            href="#"
+            class="p-3 px-6 pt-2 text-white bg-pink rounded-full baseline hover:border-2 hover:text-pink hover:bg-white"
+            >Become a Caregiver</a
+          >
         </div>
+      </div>
+      <!-- Image -->
+      <div class="md:w-1/2 ">
+        <img src="/src/assets/bgImage.png" alt="" />
       </div>
     </div>
   </div>
@@ -60,4 +44,7 @@ export default {
 };
 </script>
 
-<style></style>
+<style >
+h1{
+  font-family: 'Gentium Book Plus', serif;}
+</style>

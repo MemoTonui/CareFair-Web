@@ -1,7 +1,7 @@
 <template>
   <div class="mt-24">
     <footer class="bg-secondary dark:bg-gray-900 text-white px-10">
-      <div class="grid grid-cols-3 gap-8 px-6 py-8 md:grid-cols-3">
+      <div class="grid grid-cols-3 gap-8 px-6 py-8 md:grid-cols-3 ">
         <div>
           <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-gray-400">
             Company

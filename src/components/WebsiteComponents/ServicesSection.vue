@@ -122,3 +122,7 @@ export default {
   },
 };
 </script>
+<style scoped>
+h5{
+  font-family: 'Gentium Book Plus', serif;}
+</style>

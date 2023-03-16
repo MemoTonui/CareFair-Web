@@ -5,7 +5,7 @@
         Testimonials
       </h2>
 
-      <h2 class="font-semibold m-5 text-center text-2xl">
+      <h2 class="font-semibold m-5 text-center text-4xl md:text-3xl">
         What our Clients say about us
       </h2>
     </div>
@@ -47,3 +47,7 @@ export default {
   },
 };
 </script>
+<style scoped>
+h2{
+  font-family: 'Gentium Book Plus', serif;}
+</style>
