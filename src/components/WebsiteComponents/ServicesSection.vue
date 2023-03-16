@@ -1,24 +1,131 @@
 <template>
   <div class="flex justify-center my-16">
     <div class="grid grid-cols-3 gap-10 m-5">
-      <Cards
-        :textColor="services[0].textColor"
-        :serviceName="services[0].serviceName"
-        :serviceDescription="services[0].serviceDescription"
-        serviceImage="/src/assets/child.gif"
-      />
-      <Cards
-        :textColor="services[1].textColor"
-        :serviceName="services[1].serviceName"
-        :serviceDescription="services[1].serviceDescription"
-        serviceImage="/src/assets/pet.gif"
-      />
-      <Cards
-        :textColor="services[2].textColor"
-        :serviceName="services[2].serviceName"
-        :serviceDescription="services[2].serviceDescription"
-        serviceImage="/src/assets/senior.gif"
-      />
+      <div>
+        <div
+          class="max-w-sm p-6 bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <img class="w-16 h-16" src="/src/assets/child.gif" />
+
+          <a href="#">
+            <h5
+              :class="textColor"
+              class="mb-2 text-md text-primary font-semibold uppercase text-gray-900 dark:text-white"
+            >
+              Child Care
+            </h5>
+          </a>
+          <p class="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400">
+            "Professional nannies are magical humans with a unique set of skills and the
+            power to swoop in and make children and parents feel at ease.",
+          </p>
+          <a
+            href="#"
+            :class="textColor"
+            class="inline-flex text-primary items-center hover:underline"
+          >
+            Learn More
+            <svg
+              class="w-5 h-5 ml-2 text-primary"
+              :class="textColor"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+              ></path>
+              <path
+                d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div
+          class="max-w-sm p-6 bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <img class="w-16 h-16" src="/src/assets/pet.gif" />
+
+          <a href="#">
+            <h5
+              :class="textColor"
+              class="mb-2 text-md text-pink font-semibold uppercase text-gray-900 dark:text-white"
+            >
+              Pet Care
+            </h5>
+          </a>
+          <p class="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400">
+            A pet care giver is someone who is responsible for the well-being and daily
+            care of pets, such as dogs, cats, and other domestic animals.
+          </p>
+          <a
+            href="#"
+            :class="textColor"
+            class="inline-flex text-pink items-center hover:underline"
+          >
+            Learn More
+            <svg
+              class="w-5 h-5 ml-2 text-pink"
+              :class="textColor"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+              ></path>
+              <path
+                d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div
+          class="max-w-sm p-6 bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+        >
+          <img class="w-16 h-16" src="/src/assets/senior.gif" />
+
+          <a href="#">
+            <h5
+              :class="textColor"
+              class="mb-2 text-md text-orange font-semibold uppercase text-gray-900 dark:text-white"
+            >
+              Senior Care
+            </h5>
+          </a>
+          <p class="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400">
+            Professional nannies are magical humans with a unique set of skills and the
+            power to swoop in and make children and parents feel at ease.
+          </p>
+          <a
+            href="#"
+            :class="textColor"
+            class="inline-flex text-orange items-center hover:underline"
+          >
+            Learn More
+            <svg
+              class="w-5 h-5 ml-2 text-orange"
+              :class="textColor"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+              ></path>
+              <path
+                d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -29,28 +136,7 @@ export default {
     Cards,
   },
   data() {
-    return {
-      services: [
-        {
-          serviceName: "Child Care",
-          serviceDescription:
-            "Professional nannies are magical humans with a unique set of skills and the power to swoop in and make children and parents feel at ease.",
-          textColor: "text-primary",
-        },
-        {
-          serviceName: "Pet Care",
-          serviceDescription:
-            "A pet care giver is someone who is responsible for the well-being and daily care of pets, such as dogs, cats, and other domestic animals.",
-          textColor: "text-pink",
-        },
-        {
-          serviceName: "Senior Care",
-          serviceDescription:
-            "Professional nannies are magical humans with a unique set of skills and the power to swoop in and make children and parents feel at ease.",
-          textColor: "text-orange",
-        },
-      ],
-    };
+    return {};
   },
 };
 </script>
