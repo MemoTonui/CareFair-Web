@@ -15,7 +15,7 @@
         <div class="flex items-center h-full">
           <div class="text-white px-6 md:px-12">
             <div class="mb-12">
-              <h1 class="text-xl md:text-2xl xl:text-4xl mb-3 font-bold tracking-wide">
+              <h1 class="text-xl md:text-2xl xl:text-4xl mb-3 font-bold">
                 Experience Compassionate <br /><span class="my-4">
                   and professional care for your</span
                 >
@@ -24,7 +24,7 @@
               <p>Get a Professional Now!</p>
             </div>
             <a
-              class="inline-block px-7 py-3 tracking-wider mr-1.5 border-2 border-primary bg-primary text-white font-semibold text-sm leading-snug uppercase rounded-full shadow-md hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+              class="inline-block px-7 py-3 mr-1.5 border-2 border-primary bg-primary text-white font-semibold text-sm leading-snug uppercase rounded-full shadow-md hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
               data-mdb-ripple="true"
               data-mdb-ripple-color="light"
               href="#!"
@@ -32,7 +32,7 @@
               >Get a Caregiver</a
             >
             <a
-              class="inline-block px-7 py-3 tracking-wider border-2 border-pink bg-pink text-white font-semibold text-sm leading-snug uppercase rounded-full focus:outline-none focus:ring-0 transition hover:bg-opacity-5 duration-150 ease-in-out"
+              class="inline-block px-7 py-3 border-2 border-pink bg-pink text-white font-semibold text-sm leading-snug uppercase rounded-full focus:outline-none focus:ring-0 transition hover:bg-opacity-5 duration-150 ease-in-out"
               data-mdb-ripple="true"
               data-mdb-ripple-color="light"
               href="#!"

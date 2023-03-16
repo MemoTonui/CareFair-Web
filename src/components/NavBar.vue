@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="bg-slate-50">
+    <div class="bg-white">
       <nav
-        class="container px-3 py-3 mx-auto md:flex md:justify-between cursor-pointer md:items-center"
+        class="container px-3 py-1 mx-auto md:flex md:justify-between cursor-pointer md:items-center"
       >
         <div class="flex items-center justify-between">
           <router-link
