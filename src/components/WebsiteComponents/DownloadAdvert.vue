@@ -7,12 +7,12 @@
       <div
         class="w-full p-4 text-center bg-white sm:p-8 dark:bg-gray-800 dark:border-gray-700"
       >
-        <h5 class="m-5 text-2xl font-bold text-gray-900 dark:text-white">
+        <h5 class="m-5 text-2xl font-bold text-black  dark:text-white">
           Get connected to some help <br />
           from anywhere using our <br />
           mobile app
         </h5>
-        <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
+        <p class="mb-5 text-base text-black sm:text-lg dark:text-gray-400">
           Available for Android and iOS
         </p>
         <div

@@ -14,7 +14,7 @@
         />
       </svg>
       <blockquote>
-        <p class="text-sm dark:text-white">
+        <p class="text-sm text-black dark:text-white">
           {{ testimonial }}
         </p>
       </blockquote>
