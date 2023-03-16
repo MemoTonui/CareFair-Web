@@ -15,12 +15,12 @@
         <div class="flex justify-center md:justify-start uppercase gap-6">
           <a
             href="#"
-            class="p-3 px-6 pt-2 text-white bg-primary rounded-full baseline hover:border-2 hover:text-primary hover:bg-white"
+            class="p-3 px-6 pt-2 text-white text-sm bg-primary rounded-full baseline hover:border-2 hover:text-primary hover:bg-white"
             >Get a Caregiver</a
           >
           <a
             href="#"
-            class="p-3 px-6 pt-2 text-white bg-pink rounded-full baseline hover:border-2 hover:text-pink hover:bg-white"
+            class="p-3 px-6 pt-2 text-white text-sm bg-pink rounded-full baseline hover:border-2 hover:text-pink hover:bg-white"
             >Become a Caregiver</a
           >
         </div>
