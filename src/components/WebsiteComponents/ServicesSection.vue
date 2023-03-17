@@ -15,8 +15,9 @@
             </h5>
           </a>
           <p class="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400">
-            Professional nannies are magical humans with a unique set of skills and the
-            power to swoop in and make children and parents feel at ease.
+            Child care is quality care and supervision provided to children in a safe and
+            nurturing environment. Child care providers promote children's development
+            through fun and age-appropriate activities, while ensuring their safety
           </p>
           <a href="#" class="inline-flex text-primary items-center hover:underline">
             Learn More
@@ -51,8 +52,10 @@
             </h5>
           </a>
           <p class="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400">
-            A pet care giver is someone who is responsible for the well-being and daily
-            care of pets, such as dogs, cats, and other domestic animals.
+            Pet care is the ultimate service to keep your furry friends healthy, happy,
+            and loved. From grooming to medical care, pet care providers offer
+            personalized assistance to ensure your pet's well-being and strengthen your
+            bond.
           </p>
           <a href="#" class="inline-flex text-pink items-center hover:underline">
             Learn More
@@ -87,8 +90,9 @@
             </h5>
           </a>
           <p class="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400">
-            Professional nannies are magical humans with a unique set of skills and the
-            power to swoop in and make children and parents feel at ease.
+            Senior care is professional assistance and emotional support provided to
+            elderly individuals to help with daily tasks, medical needs, and maintain
+            their independence and dignity as they age.
           </p>
           <a href="#" class="inline-flex text-orange items-center hover:underline">
             Learn More
@@ -123,6 +127,7 @@ export default {
 };
 </script>
 <style scoped>
-h5{
-  font-family: 'Gentium Book Plus', serif;}
+h5 {
+  font-family: "Gentium Book Plus", serif;
+}
 </style>
