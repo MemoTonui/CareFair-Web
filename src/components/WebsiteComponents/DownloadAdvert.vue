@@ -5,7 +5,7 @@
     <div class="items-center justify-center justify-self-center mx-auto">
       <img src="/src/assets/PhoneScreen.svg" class="max-w-full h-auto" />
     </div>
-    <div class="m-5">
+    <div class="">
       <div
         class="w-full p-4 text-center bg-white sm:p-8 dark:bg-gray-800 dark:border-gray-700"
       >
@@ -22,8 +22,7 @@
         >
           <div>
             <a
-            @click="redirectToAppStore"
-            
+              @click="redirectToAppStore"
               class="w-full sm:w-auto bg-primary focus:ring-4 focus:outline-none hover:border-primary hover:bg-white hover:border-2 hover:text-primary focus:ring-gray-300 text-white rounded-sm inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
             >
               <svg
@@ -49,10 +48,10 @@
           </div>
           <div>
             <a
-            @click="redirectToPlayStore"
+              @click="redirectToPlayStore"
               class="w-full sm:w-auto bg-secondary focus:ring-4 hover:border-secondary hover:border-2 hover:bg-white hover:text-secondary focus:outline-none focus:ring-gray-300 text-white rounded-sm inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
             >
-              <img src="/src/assets/PlayStore.svg" class="w-7 h-7" />
+              <img src="/src/assets/PlayStore.svg" class="mr-3 w-7 h-7" />
               <div class="text-left">
                 <div class="mb-1 text-xs">Get in on</div>
                 <div class="-mt-1 font-sans text-sm font-semibold">Google Play</div>
@@ -69,16 +68,19 @@
 export default {
   methods: {
     redirectToPlayStore() {
-      window.location.href = 'https://play.google.com/store/apps/details?id=com.carefair.carefair';
+      window.location.href =
+        "https://play.google.com/store/apps/details?id=com.carefair.carefair";
     },
     redirectToAppStore() {
-      window.location.href = 'https://apps.apple.com/us/app/carefair-find-caregivers/id6444377086';
-    }
-  }
+      window.location.href =
+        "https://apps.apple.com/us/app/carefair-find-caregivers/id6444377086";
+    },
+  },
 };
 </script>
 
 <style scoped>
-h5{
-  font-family: 'Gentium Book Plus', serif;}
+h5 {
+  font-family: "Gentium Book Plus", serif;
+}
 </style>
