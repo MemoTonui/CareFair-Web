@@ -29,18 +29,18 @@ export default {
       testimonials: [
         {
           testimonial:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ",
+            "I cannot say enough good things about Carefair! The app is incredibly user-friendly and allowed me to find a caregiver for my aging parents quickly and easily.The caregiver we found through the app is amazing - she is kind, patient, and highly skilled. The app also makes it easy to communicate with her and stay informed about my parents care.I highly recommend Carefair to anyone in need of a reliable and compassionate caregiver.",
+          name: "Kristen Harrison",
+        },
+        {
+          testimonial:
+            "I am so impressed with Carefair! The app is incredibly efficient and streamlined, making it easy to find a qualified caregiver for my disabled sister. The apps background checks and user reviews gave me peace of mind knowing that we were working with a highly vetted and experienced caregiver. I also love the apps messaging feature, which allows us to communicate with the caregiver quickly and easily. Carefair is a lifesaver and I highly recommend it to anyone in need of caregiving services.",
           name: "John Doe",
         },
         {
           testimonial:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ",
-          name: "John Doe",
-        },
-        {
-          testimonial:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ",
-          name: "John Doe",
+            "I have been using Carefair for a few months now and I am so grateful for this amazing app. It has made finding and working with a caregiver for my elderly mother incredibly easy and stress-free. The caregiver we found through the app is highly skilled and compassionate, and my mother adores her. The app's scheduling and messaging features have been a huge help in keeping everyone on the same page and ensuring that my mother receives the care she needs. I highly recommend Carefair to anyone in need of caregiving services - it's truly a game-changer!",
+          name: "Jane Doe",
         },
       ],
     };
@@ -48,6 +48,7 @@ export default {
 };
 </script>
 <style scoped>
-h2{
-  font-family: 'Gentium Book Plus', serif;}
+h2 {
+  font-family: "Gentium Book Plus", serif;
+}
 </style>
