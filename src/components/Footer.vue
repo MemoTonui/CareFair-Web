@@ -66,12 +66,13 @@
           >© 2023 <a>Copyright Care Fair™</a>. All Rights Reserved.
         </span>
         <div class="flex mt-4 space-x-6 sm:justify-center md:mt-0">
-          <a @click="redirectToInstagram" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
-            <img src="/src/assets/instagram.svg" class="w-8 h-8" />
-          </a>
           <a @click="redirectToLinkedIn" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
             <img src="/src/assets/linkedIn.svg" class="w-8 h-8" />
           </a>
+          <a @click="redirectToInstagram" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+            <img src="/src/assets/instagram.svg" class="w-8 h-8" />
+          </a>
+        
           
         </div>
       </div>
