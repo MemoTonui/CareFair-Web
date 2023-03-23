@@ -29,17 +29,17 @@ export default {
       testimonials: [
         {
           testimonial:
-            "I cannot say enough good things about Carefair! The app is incredibly user-friendly and allowed me to find a caregiver for my aging parents quickly and easily.The caregiver we found through the app is amazing - she is kind, patient, and highly skilled. The app also makes it easy to communicate with her and stay informed about my parents care.I highly recommend Carefair to anyone in need of a reliable and compassionate caregiver.",
+            "I am a single parent and before now, it has been such a struggle trying to joggle work and taking care of my kids at the same time. However, since I came across care Fair, they have connected me to one of the most professional, compassionate care givers that meets my children's needs so well. I will recommend them to every parent out there! Honestly the best I have worked with so far",
           name: "Kristen Harrison",
         },
         {
           testimonial:
-            "I am so impressed with Carefair! The app is incredibly efficient and streamlined, making it easy to find a qualified caregiver for my disabled sister. The apps background checks and user reviews gave me peace of mind knowing that we were working with a highly vetted and experienced caregiver. I also love the apps messaging feature, which allows us to communicate with the caregiver quickly and easily. Carefair is a lifesaver and I highly recommend it to anyone in need of caregiving services.",
+            "As a caregiver, getting connected to clients in my area has not been easy due to so many factors, payment plan being the major reason. This changed when I signed up at the care fair as the pay is highly competitive and equal to the responsibilities I have. I do not regret signing up and it has been an amazing experience so far!",
           name: "John Doe",
         },
         {
           testimonial:
-            "I have been using Carefair for a few months now and I am so grateful for this amazing app. It has made finding and working with a caregiver for my elderly mother incredibly easy and stress-free. The caregiver we found through the app is highly skilled and compassionate, and my mother adores her. The app's scheduling and messaging features have been a huge help in keeping everyone on the same page and ensuring that my mother receives the care she needs. I highly recommend Carefair to anyone in need of caregiving services - it's truly a game-changer!",
+            "I have two lovely pet dogs- coco and moon that I absolutely love so much but sometimes I cannot be there for them, and this has bothered me so much. I needed to find someone who understood pets and how to care for them in my absence which is why I am so grateful to the care fair for connecting me to an amazing pet care giver who takes very good care of my babies in my absence. Totally worth it folks!”",
           name: "Jane Doe",
         },
       ],

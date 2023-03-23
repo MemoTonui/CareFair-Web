@@ -7,7 +7,7 @@
     </div>
     <div class="">
       <div
-        class="w-full p-4 text-center bg-white sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+        class="w-full p-1 text-center bg-white sm:p-4 dark:bg-gray-800 dark:border-gray-700"
       >
         <h5 class="m-1 text-4xl font-bold text-black md:text-3xl dark:text-white">
           Get connected to some help <br />
@@ -41,7 +41,7 @@
                 ></path>
               </svg>
               <div class="text-left">
-                <div class="mb-1 text-xs">Download on the</div>
+                <div class="mb-1 text-xs">Get it on</div>
                 <div class="-mt-1 text-sm font-semibold">Mac App Store</div>
               </div>
             </a>
@@ -51,7 +51,7 @@
               @click="redirectToPlayStore"
               class="w-full sm:w-auto bg-secondary focus:ring-4 hover:border-secondary hover:border-2 hover:bg-white hover:text-secondary focus:outline-none focus:ring-gray-300 text-white rounded-sm inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
             >
-              <img src="/src/assets/PlayStore.svg" class="mr-3 w-7 h-7" />
+              <img src="/src/assets/PlayStore.svg" class="w-7 h-7" />
               <div class="text-left">
                 <div class="mb-1 text-xs">Get in on</div>
                 <div class="-mt-1 font-sans text-sm font-semibold">Google Play</div>

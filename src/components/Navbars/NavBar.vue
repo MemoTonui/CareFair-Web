@@ -33,23 +33,25 @@
           class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0"
         >
           <li class="text-sm font-bold text-gray-800 hover:text-primary hover:underline">
-            <img src="/src/assets/search.svg" />
+            <span class="material-icons-outlined"> search </span>
           </li>
           <li class="text-sm font-bold text-gray-800 hover:text-primary hover:underline">
-            <img src="/src/assets/help.svg" />
+            <span class="material-icons-outlined"> help_outline </span>
           </li>
           <li class="text-sm font-bold text-gray-800 hover:text-primary hover:underline">
-            Login
+            <router-link :to="{ name: 'LogIn' }"> Login </router-link>
           </li>
           <li class="text-sm font-bold text-gray-800 hover:text-blue-400">
-            <a
-              class="inline-block px-5 py-2 tracking-wider mr-1.5 border-2 border-primary bg-primary text-white font-semibold text-sm hover:text-primary leading-snug rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color="light"
-              href="#!"
-              role="button"
-              >Sign Up</a
-            >
+            <router-link :to="{ name: 'SignUp' }">
+              <a
+                class="inline-block px-5 py-2 tracking-wider mr-1.5 border-2 border-primary bg-primary text-white font-semibold text-sm hover:text-primary leading-snug rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+                href="#!"
+                role="button"
+                >Sign Up</a
+              >
+            </router-link>
           </li>
         </ul>
       </nav>
