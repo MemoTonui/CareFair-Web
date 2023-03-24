@@ -9,7 +9,7 @@
             to="/"
             class="text-xl font-bold text-gray-800 md:text-2xl hover:text-blue-400"
           >
-            <img class="w-16 h-16" :src="logo" />
+            <img class="w-32 h-20" :src="logo" />
           </router-link>
           <!-- Mobile menu button -->
           <div @click="showMenu = !showMenu" class="flex md:hidden">

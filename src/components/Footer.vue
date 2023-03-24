@@ -1,7 +1,7 @@
 <template>
   <div class="mt-24">
     <footer class="bg-secondary dark:bg-gray-900 text-white text-sm px-5">
-      <div class="grid grid-cols-3 gap-8 px-6 py-8 md:grid-cols-3">
+      <div class="grid grid-cols-3 gap-8 px-6 py-8 md:grid-cols-6">
         <div>
           <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-gray-400">
             Company
@@ -58,14 +58,22 @@
             </li>
           </ul>
         </div>
+        <div class="col-span-2"></div>
       </div>
       <div
         class="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between"
       >
-        <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center"
-          >© 2023 <a>Copyright Care Fair™</a>. All Rights Reserved.
-        </span>
-        <div class="flex mt-4 space-x-6 sm:justify-center md:mt-0">
+        <div></div>
+        <div class="flex justify-center items-center">
+          <span
+            class="text-sm text-center text-gray-500 dark:text-gray-300 sm:text-center"
+            >© 2023 <a>Copyright Care Fair™</a>. All Rights Reserved.
+          </span>
+        </div>
+
+        <div
+          class="flex justify-center items-center mt-4 space-x-6 sm:justify-center md:mt-0"
+        >
           <a
             @click="redirectToLinkedIn"
             class="text-gray-400 hover:text-gray-900 dark:hover:text-white"
