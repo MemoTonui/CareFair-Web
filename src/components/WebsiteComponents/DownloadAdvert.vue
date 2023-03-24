@@ -18,7 +18,7 @@
           Available for Android and iOS
         </p>
         <div
-          class="items-center justify-center cursor-pointer flex gap-6 space-y-4 sm:flex sm:space-y-0 sm:space-x-4"
+          class="items-center justify-center cursor-pointer flex gap-4 sm:flex sm:space-y-0 sm:space-x-4"
         >
           <div>
             <a
@@ -46,12 +46,12 @@
               </div>
             </a>
           </div>
-          <div>
+          <div class="">
             <a
               @click="redirectToPlayStore"
               class="w-full sm:w-auto bg-secondary focus:ring-4 hover:border-secondary hover:border-2 hover:bg-white hover:text-secondary focus:outline-none focus:ring-gray-300 text-white rounded-sm inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
             >
-              <img src="/src/assets/PlayStore.svg" class="w-7 h-7" />
+              <img src="/src/assets/PlayStore.svg" class="mr-3 w-7 h-7" />
               <div class="text-left">
                 <div class="mb-1 text-xs">Get in on</div>
                 <div class="-mt-1 font-sans text-sm font-semibold">Google Play</div>
