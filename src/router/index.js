@@ -5,9 +5,10 @@ import SignUp from "/src/views/Auth/SignUp.vue";
 import LogIn from "/src/views/Auth/LogIn.vue";
 import ForgotPassword from "/src/views/Auth/ForgotPassword.vue";
 import ResetPassword from "/src/views/Auth/ResetPassword.vue";
+import PasswordResetSuccess from "/src/views/Auth/PasswordResetSuccess.vue";
 import OTP from "/src/views/Auth/OTP.vue";
-
-
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 
 const routes= [
@@ -27,10 +28,15 @@ const routes= [
     component:LogIn
   },
   {
-    path:'/ForgotPassword',
-    name:'ForgotPassword',
-    component:ForgotPassword
-  },
+path: "/ForgotPassword",
+  name: "ForgotPassword",
+  component: ForgotPassword,
+},{
+path: "/PasswordResetSuccess",
+  name: "PasswordResetSuccess",
+  component: PasswordResetSuccess,
+},
+
   {
     path:'/OTP',
     name:'OTP',

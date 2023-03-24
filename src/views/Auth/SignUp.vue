@@ -141,7 +141,6 @@ import { mapActions, mapState, mapGetters } from "vuex";
 
 import TextBox from "/src/components/TextBox.vue";
 import Password from "/src/components/Password.vue";
-
 import CheckBox from "/src/components/CheckBox.vue";
 import ActionButton from "/src/components/ActionButton.vue";
 import logo from "/src/assets/logo.svg";
@@ -164,6 +163,7 @@ export default {
       password: "",
       password_confirmation: "",
       value: "No",
+      loading: false,
       showAlert: false,
       typeOfAlert: "Info",
       alertTitle: "Alert",
@@ -203,11 +203,15 @@ export default {
     handleSignup() {
       const requiredEmail = this.email;
       const requiredPassword = this.password;
+      this.loading = true;
       if (requiredEmail.length <= 0) {
+        this.loading = false;
         alert("Please enter an Email");
       } else if (requiredPassword.length <= 0) {
+        this.loading = false;
         alert("Please enter a Password");
       } else if (requiredPassword.length < 8) {
+        this.loading = false;
         alert("Your Password is too short");
       } else {
         firebase
@@ -218,9 +222,13 @@ export default {
             this.firebaseUid = data.user.uid;
             console.log("Email" + data.user.uid);
             this.createUserAccount;
+            this.loading = false;
+
             router.replace({ name: "LogIn" }); // redirect to the login page
           })
           .catch((error) => {
+            this.loading = false;
+
             console.log(error.code);
             alert(error.message);
           });

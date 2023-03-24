@@ -120,6 +120,7 @@ export default {
       alertTitle: "Alert",
       alertMessage: "",
       alertBulkMessage: "",
+      loading: false,
     };
   },
   computed: {
@@ -150,18 +151,20 @@ export default {
     handleSignIn() {
       const requiredEmail = this.email;
       const requiredPassword = this.password;
+      this.loading = true;
       firebase
         .auth()
         .signInWithEmailAndPassword(requiredEmail, requiredPassword) // THIS LINE CHANGED
         .then((data) => {
           console.log("Successfully logged in!");
           localStorage.setItem("isLoggedIn", true);
-
+          this.loading = false;
           router.replace({ name: "MainWebPage" });
         })
         .catch((error) => {
           switch (error.code) {
             case "auth/invalid-email":
+              this.loading = false;
               this.alertTitle = "Invalid email";
               this.typeOfAlert = "Danger";
               this.alertMessage = error.code;
@@ -169,6 +172,8 @@ export default {
               setTimeout(() => (this.showAlert = false), 5000);
               break;
             case "auth/user-not-found":
+              this.loading = false;
+
               this.alertTitle = "No account with that email was found";
               this.typeOfAlert = "Danger";
               this.alertMessage = error.code;
@@ -176,6 +181,8 @@ export default {
               setTimeout(() => (this.showAlert = false), 5000);
               break;
             case "auth/wrong-password":
+              this.loading = false;
+
               this.alertTitle = "Incorrect Password";
               this.typeOfAlert = "Danger";
               this.alertMessage = error.code;
@@ -183,6 +190,8 @@ export default {
               setTimeout(() => (this.showAlert = false), 5000);
               break;
             default:
+              this.loading = false;
+
               this.alertTitle = "Email or password was incorrect";
               this.typeOfAlert = "Danger";
               this.alertMessage = error.code;

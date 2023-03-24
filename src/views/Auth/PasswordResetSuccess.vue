@@ -47,35 +47,27 @@
     <div class="flex justify-center items-center flex-wrap h-full g-6 text-black">
       <div class="xl:ml-20 xl:w-6/12 lg:w-6/12 md:w-8/12 mb-12 md:mb-0 justify-center">
         <div class="md:p-12 md:mx-2">
-          <div class="block bg-white shadow-lg rounded-lg py-10 md:py-10 md:px-10 px-3">
-            <div class="">
+          <div
+            class="block bg-white text-center shadow-lg rounded-lg py-10 md:py-10 md:px-10 px-3"
+          >
+            <div>
+              <div class="flex justify-center items-center">
+                <img src="/src/assets/padlock.png" class="my-5" />
+              </div>
               <h4 class="text-2xl font-bold text-black md:text-3xl mt-1 mb-4 pb-1">
-                Forgot Password ?
+                Password Reset !
               </h4>
 
-              <h5 class="text-sm">No worries! We’ll send you reset instructions</h5>
+              <h5 class="text-sm my-5 mx-4">
+                Please visit your email and use the link to reset the password
+              </h5>
             </div>
-            <form class="grid justify-center my-10">
-              <div class="mb-2">
-                <TextBox
-                  v-model="email"
-                  type="email"
-                  placeholder="janedoe@gmail.com"
-                  label="Email"
-                />
-              </div>
-              <div class="pt-1 mb-5 mt-2 pb-1">
-                <ActionButton text="Reset Password" @click.prevent="sendEmail" />
-              </div>
-              <!--router-link :to="{ name: 'OTP' }">
-                
-              </!--router-link-->
-              <router-link :to="{ name: 'LogIn' }">
-                <p class="text-xs text-center mb-12">
-                  <span class="text-primary underline">Back to Login</span>
-                </p>
-              </router-link>
-            </form>
+
+            <router-link :to="{ name: 'LogIn' }">
+              <p class="text-xs text-center mb-12">
+                <span class="text-primary underline">Back to Login</span>
+              </p>
+            </router-link>
           </div>
         </div>
       </div>
@@ -88,7 +80,6 @@ import TextBox from "/src/components/TextBox.vue";
 import Password from "/src/components/Password.vue";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import router from "/src/router";
 import CheckBox from "/src/components/CheckBox.vue";
 import ActionButton from "/src/components/ActionButton.vue";
 import logo from "/src/assets/logo.svg";
@@ -109,39 +100,27 @@ export default {
       alertTitle: "Alert",
       alertMessage: "",
       alertBulkMessage: "",
-      loading: false,
     };
   },
   methods: {
     sendEmail() {
       if (!this.email) {
         this.alertTitle = "Invalid Email Address";
-        this.typeOfAlert = "Warning";
+        this.typeOfAlert = "Danger";
         this.alertMessage = "Please type in a valid email address.";
         this.showAlert = true;
         setTimeout(() => (this.showAlert = false), 5000);
         return;
       }
-      this.loading = true;
       this.error = null;
       this.emailSending = true;
-
       firebase
         .auth()
         .sendPasswordResetEmail(this.email)
         .then(() => {
-          this.loading = false;
           this.emailSending = false;
-          console.log("DOOOONEE");
-          this.alertTitle = "Password Reset Link ";
-          this.typeOfAlert = "Success";
-          this.alertMessage = "Password Reset link has been sent";
-          this.showAlert = true;
-          setTimeout(() => (this.showAlert = false), 5000);
-          router.replace({ name: "PasswordResetSuccess" });
         })
         .catch((error) => {
-          this.loading = false;
           this.emailSending = false;
           this.error = error.message;
           this.alertTitle = error.message;

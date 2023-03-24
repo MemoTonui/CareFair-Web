@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="isLoggedIn == true">
+    <div v-if="this.isLoggedIn">
       <LoggedInNavbar />
     </div>
     <div v-else>
@@ -18,7 +18,6 @@
 <script>
 import NavBar from "/src/components/Navbars/NavBar.vue";
 import LoggedInNavbar from "/src/components/Navbars/LoggedInNavbar.vue";
-
 import Footer from "/src/components/Footer.vue";
 import HeroSection from "/src/components/WebsiteComponents/HeroSection.vue";
 import ServicesSection from "/src/components/WebsiteComponents/ServicesSection.vue";
@@ -43,6 +42,10 @@ export default {
     };
   },
   mounted() {
+    this.isLoggedIn = localStorage.getItem("isLoggedIn");
+    console.log("is Logged In ", this.isLoggedIn);
+  },
+  updated() {
     this.isLoggedIn = localStorage.getItem("isLoggedIn");
   },
 };
