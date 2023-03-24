@@ -118,6 +118,7 @@
 
                 <div>
                   <button
+                    @click.prevent="handleGoogleSignIn"
                     type="submit"
                     class="w-full bg-white border-solid border-3 border-border py-2 flex justify-center items-center text-xs font-medium text rounded-sm cursor-pointer text-black hover:border-2 hover:bg-white hover:text-primary focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
@@ -249,6 +250,32 @@ export default {
         firebaseUid: this.firebaseUid,
         acceptedTermsOfUse: this.acceptedTermsOfUse,
       });
+    },
+    handleGoogleSignIn() {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      this.loading = true;
+
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          this.loading = false;
+          localStorage.setItem("isLoggedIn", true);
+          let token = result.credential.accessToken;
+          let user = result.user;
+          console.log(token); // Token
+          console.log(user); // User that was authenticated
+          router.push({ name: "MainWebPage" });
+        })
+        .catch((err) => {
+          this.loading = false;
+          this.alertTitle = "Error";
+          this.typeOfAlert = "Danger";
+          this.alertMessage = err;
+          this.showAlert = true;
+          setTimeout(() => (this.showAlert = false), 5000);
+          console.log(err); // This will give you all the information needed to further debug any errors
+        });
     },
   },
 };

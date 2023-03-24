@@ -32,13 +32,13 @@
           :class="showMenu ? 'flex' : 'hidden'"
           class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0"
         >
-          <li class="text-sm font-bold text-gray-800 hover:text-primary hover:underline">
+          <li class="text-sm font-bold text-black hover:text-primary hover:underline">
             <span class="material-icons-outlined"> search </span>
           </li>
-          <li class="text-sm font-bold text-gray-800 hover:text-primary hover:underline">
+          <li class="text-sm font-bold text-black hover:text-primary hover:underline">
             <span class="material-icons-outlined"> help_outline </span>
           </li>
-          <li class="text-sm font-bold text-gray-800 hover:text-primary hover:underline">
+          <li class="text-sm font-bold text-black hover:text-primary hover:underline">
             <router-link :to="{ name: 'LogIn' }"> Login </router-link>
           </li>
           <li class="text-sm font-bold text-gray-800 hover:text-blue-400">
