@@ -49,7 +49,7 @@
         <div class="md:p-12 md:mx-2">
           <div class="block bg-white shadow-lg rounded-lg py-10 md:py-10 md:px-10 px-3">
             <div class="">
-              <h4 class="text-3xl font-semibold mt-1 pb-1">Set New Password</h4>
+              <h4 class="text-3xl font-semibold mt-1 pb-1">Set New Password!</h4>
               <p class="text-sm my-1">Set a new password here!</p>
             </div>
             <form class="grid justify-center mt-10">
