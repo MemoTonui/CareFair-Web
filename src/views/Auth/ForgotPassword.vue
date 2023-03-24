@@ -55,7 +55,7 @@
 
               <h5 class="text-sm">No worries! We’ll send you reset instructions</h5>
             </div>
-            <form class="grid justify-center my-10">
+            <form class="grid my-10">
               <div class="mb-2">
                 <TextBox
                   v-model="email"
