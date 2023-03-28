@@ -43,7 +43,9 @@
             <span class="material-icons-outlined"> search </span>
           </li>
           <li class="text-sm font-bold text-black hover:text-primary hover:underline">
-            <span class="material-icons-outlined"> help_outline </span>
+            <router-link :to="{ name: 'FAQs' }">
+              <span class="material-icons-outlined"> help_outline </span>
+            </router-link>
           </li>
           <li
             @click="logout"
@@ -52,7 +54,7 @@
             <span class="material-icons-outlined">power_settings_new </span>
           </li>
           <li class="text-sm font-bold text-gray-800 hover:text-blue-400">
-            <VueAvatar username="Simple User" />
+            <VueAvatar :username="this.displayName" />
           </li>
         </ul>
       </nav>
@@ -74,6 +76,8 @@ export default {
     return {
       showMenu: false,
       logo: logo,
+      displayName: "Jane Doe ",
+      character: "",
     };
   },
   methods: {
@@ -82,15 +86,21 @@ export default {
       localStorage.setItem("isLoggedIn", false);
       router.push({ name: "LogIn" });
     },
+    getAuthState() {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          console.log("My User", user.email.charAt(0));
+          this.character = user.email.charAt(0);
+          console.log(this.character.toUpperCase());
+          this.displayName = this.character.toUpperCase();
+        } else {
+          console.log("No User");
+        }
+      });
+    },
   },
   mounted() {
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        console.log("My User", user);
-      } else {
-        console.log("No User");
-      }
-    });
+    this.getAuthState();
   },
 };
 </script>

@@ -36,7 +36,9 @@
             <span class="material-icons-outlined"> search </span>
           </li>
           <li class="text-sm font-bold text-black hover:text-primary hover:underline">
-            <span class="material-icons-outlined"> help_outline </span>
+            <router-link :to="{ name: 'FAQs' }">
+              <span class="material-icons-outlined"> help_outline </span>
+            </router-link>
           </li>
           <li class="text-sm font-bold text-black hover:text-primary hover:underline">
             <router-link :to="{ name: 'LogIn' }"> Login </router-link>

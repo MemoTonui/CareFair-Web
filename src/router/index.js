@@ -6,7 +6,7 @@ import LogIn from "/src/views/Auth/LogIn.vue";
 import ForgotPassword from "/src/views/Auth/ForgotPassword.vue";
 import ResetPassword from "/src/views/Auth/ResetPassword.vue";
 import PasswordResetSuccess from "/src/views/Auth/PasswordResetSuccess.vue";
-import OTP from "/src/views/Auth/OTP.vue";
+import FAQ from "/src/views/FAQ.vue";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
@@ -38,9 +38,9 @@ path: "/PasswordResetSuccess",
 },
 
   {
-    path:'/OTP',
-    name:'OTP',
-    component:OTP
+    path:'/FAQs',
+    name:'FAQs',
+    component:FAQ
   },
   {
     path:'/ResetPassword',

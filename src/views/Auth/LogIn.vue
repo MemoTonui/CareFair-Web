@@ -59,7 +59,7 @@
 
               <h5 class="text-sm">Please fill in the details below to login</h5>
             </div>
-            <form class="grid my-10">
+            <form class="grid justify-center items-center my-10">
               <div class="mb-2">
                 <TextBox
                   v-model="email"

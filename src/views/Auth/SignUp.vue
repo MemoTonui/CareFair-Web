@@ -61,7 +61,7 @@
                 Please fill in the form below to create your account
               </h5>
             </div>
-            <form class="grid my-10">
+            <form class="grid justify-center items-center my-10">
               <div class="mb-2">
                 <TextBox
                   v-model="firstName"
