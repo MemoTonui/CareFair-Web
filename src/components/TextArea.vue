@@ -1,15 +1,17 @@
 <template>
-  <label class="block my-3 text-xs font-medium text-black dark:text-gray-400">{{
-    label
-  }}</label>
-  <textarea
-    :disabled="disabled"
-    rows="3"
-    class="block p-2.5 w-80 text-xs text-black rounded-sm border border-border focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    :placeholder="placeholder"
-    :value="modelValue"
-    @input="handleInput"
-  ></textarea>
+  <div>
+    <label class="block my-3 text-xs font-medium text-black dark:text-gray-400">{{
+      label
+    }}</label>
+    <textarea
+      :disabled="disabled"
+      rows="3"
+      class="block p-2.5 w-80 text-xs text-black rounded-sm border border-border focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      :placeholder="placeholder"
+      :value="modelValue"
+      @input="handleInput"
+    ></textarea>
+  </div>
 </template>
 
 <script>
