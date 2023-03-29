@@ -30,7 +30,7 @@
       </div>
       <!-- Image -->
       <div class="md:w-1/2">
-        <img src="/src/assets/bgImage.png" alt="" />
+        <img src="/src/assets/bgImage.svg" alt="" />
       </div>
     </div>
   </div>
