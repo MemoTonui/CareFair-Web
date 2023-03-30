@@ -95,8 +95,19 @@
                   label="Email"
                 />
               </div>
-
-              <CheckBox label="Accept terms and conditions to continue" :value="value" />
+              <div class="flex gap-0">
+                <CheckBox
+                  label="Accept terms and conditions to continue"
+                  :value="value"
+                />
+                <div class="my-0.5">
+                  <router-link :to="{ name: 'TermsAndConditions' }">
+                    <span class="text-xs underline hover:text-primary cursor-pointer"
+                      >Read Terms And Condition</span
+                    >
+                  </router-link>
+                </div>
+              </div>
               <div class="pt-1 mb-5 mt-2 pb-1">
                 <ActionButton text="Create Account" @click.prevent="createUserAccount" />
               </div>

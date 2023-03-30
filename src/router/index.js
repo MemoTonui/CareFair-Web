@@ -8,6 +8,7 @@ import ResetPassword from "/src/views/Auth/ResetPassword.vue";
 import PasswordResetSuccess from "/src/views/Auth/PasswordResetSuccess.vue";
 import AccountSetup from "/src/views/AccountSetup.vue";
 import FAQ from "/src/views/FAQ.vue";
+import TermsAndConditions from "/src/views/TermsAndConditions.vue";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
@@ -47,6 +48,11 @@ path: "/PasswordResetSuccess",
     path:'/FAQs',
     name:'FAQs',
     component:FAQ
+  },
+  {
+    path:'/TermsAndConditions',
+    name:'TermsAndConditions',
+    component:TermsAndConditions
   },
   {
     path:'/ResetPassword',

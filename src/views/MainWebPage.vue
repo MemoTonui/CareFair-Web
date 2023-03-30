@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="isLoggedIn === true">
+    <div v-if="isLoggedIn === 'true'">
       <LoggedInNavbar />
     </div>
     <div v-else>
