@@ -35,10 +35,14 @@
               <a href="#" class="hover:underline">Licensing</a>
             </li>
             <li class="mb-4">
-              <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+              <router-link :to="{ name: 'TermsAndConditions' }">
+                <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+              </router-link>
             </li>
             <li class="mb-4">
-              <a href="#" class="hover:underline">Support</a>
+              <router-link :to="{ name: 'FAQs' }">
+                <a href="#" class="hover:underline">Support</a>
+              </router-link>
             </li>
           </ul>
         </div>
