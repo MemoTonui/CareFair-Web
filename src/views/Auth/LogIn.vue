@@ -46,7 +46,7 @@
     </transition>
     <div class="flex justify-center items-center flex-wrap h-full g-6 text-black">
       <div
-        class="xl:ml-20 xl:w-6/12 lg:w-6/12 md:w-8/12 sm:w-4/12 mb-12 md:mb-0 justify-center"
+        class="xl:ml-20 xl:w-6/12 lg:w-6/12 md:w-8/12 sm:w-4/12 mb-12 md:mb-0 flex items-center justify-center"
       >
         <div class="md:p-12 md:mx-2">
           <div
@@ -99,6 +99,18 @@
                     <span class="inline-flex gap-0 justify-center items-center"
                       ><img src="/src/assets/google.svg" class="w-6 h-6" />Sign In with
                       Google</span
+                    >
+                  </button>
+                </div>
+                <div class="my-4">
+                  <button
+                    @click.prevent="handleFacebookLogin"
+                    type="submit"
+                    class="w-full bg-white border-solid border-3 border-border py-2 flex justify-center items-center text-xs font-medium text rounded-sm cursor-pointer text-black hover:border-2 hover:bg-white hover:text-primary focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    <span class="inline-flex gap-0 justify-center items-center"
+                      ><img src="/src/assets/facebook.svg" class="w-6 h-6" />Sign Up with
+                      Facebook</span
                     >
                   </button>
                 </div>
@@ -246,6 +258,35 @@ export default {
           this.showAlert = true;
           setTimeout(() => (this.showAlert = false), 5000);
           console.log(err); // This will give you all the information needed to further debug any errors
+        });
+    },
+    handleFacebookLogin(path, data) {
+      // Create an instance of the Facebook provider object:
+      var provider = new firebase.auth.FacebookAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          /** @type {firebase.auth.OAuthCredential} */
+          var credential = result.credential;
+          // This gives you a Facebook Access Token. You can use it toaccess the Facebook API.
+          var token = credential.accessToken;
+          // The signed-in user info, it will give you all basic info of logged-in user
+          var user = result.user;
+          localStorage.setItem("isLoggedIn", true);
+          console.log(user);
+          console.log(token); // Token
+          router.push({ name: "MainWebPage" });
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          this.loading = false;
+          this.alertTitle = "Error";
+          this.typeOfAlert = "Danger";
+          this.alertMessage = error.credential + " " + error.message;
+          this.showAlert = true;
+          setTimeout(() => (this.showAlert = false), 5000);
+          console.log(error.code);
         });
     },
   },

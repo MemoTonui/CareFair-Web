@@ -57,7 +57,7 @@ export default{
         .then(function (response) {
           console.log("Create A new USER", response.data);
           commit(CREATE_USER_SUCCESS, response.data);
-          //router.replace({ name: "OTP", params: { email: payload.email } });
+          router.replace({ name: "LogIn" });
         })
         .catch(function (error) {
           console.log(error);

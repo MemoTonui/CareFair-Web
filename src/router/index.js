@@ -6,6 +6,7 @@ import LogIn from "/src/views/Auth/LogIn.vue";
 import ForgotPassword from "/src/views/Auth/ForgotPassword.vue";
 import ResetPassword from "/src/views/Auth/ResetPassword.vue";
 import PasswordResetSuccess from "/src/views/Auth/PasswordResetSuccess.vue";
+import AccountSetup from "/src/views/AccountSetup.vue";
 import FAQ from "/src/views/FAQ.vue";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
@@ -26,6 +27,11 @@ const routes= [
     path:'/Login',
     name:'LogIn',
     component:LogIn
+  },
+  {
+    path:'/AccountSetup',
+    name:'AccountSetup',
+    component:AccountSetup
   },
   {
 path: "/ForgotPassword",

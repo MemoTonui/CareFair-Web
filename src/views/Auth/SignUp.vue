@@ -46,7 +46,7 @@
     </transition>
     <div class="flex justify-center items-center flex-wrap h-full g-6 text-black">
       <div
-        class="xl:ml-20 xl:w-6/12 lg:w-6/12 md:w-8/12 sm:w-4/12 mb-12 md:mb-0 justify-center"
+        class="xl:ml-20 xl:w-6/12 lg:w-6/12 md:w-8/12 sm:w-4/12 mb-12 md:mb-0 flex justify-center items-center"
       >
         <div class="md:p-12 md:mx-2">
           <div
@@ -62,31 +62,6 @@
               </h5>
             </div>
             <form class="grid justify-center items-center my-10">
-              <div class="mb-2">
-                <TextBox
-                  v-model="firstName"
-                  type="text"
-                  placeholder="Jane "
-                  label="First Name"
-                />
-              </div>
-              <div class="mb-2">
-                <TextBox
-                  v-model="lastName"
-                  type="text"
-                  placeholder="Doe"
-                  label="Last Name"
-                />
-              </div>
-              <div class="mb-2">
-                <TextBox
-                  v-model="phone_number"
-                  type="tel"
-                  placeholder="7XX XXX XXX"
-                  label="Phone"
-                />
-              </div>
-
               <div class="mb-2">
                 <TextBox
                   v-model="email"
@@ -106,9 +81,8 @@
                   label="Confirm Password"
                 />
               </div>
-              <CheckBox label="Accept terms and conditions to continue" :value="value" />
               <div class="pt-1 mb-5 mt-2 pb-1">
-                <ActionButton text="Create Account" @click.prevent="handleSignup" />
+                <ActionButton text="Sign Up" @click.prevent="handleSignup" />
               </div>
               <router-link :to="{ name: 'LogIn' }">
                 <p class="text-xs mb-12 text-center">
@@ -119,18 +93,31 @@
 
               <div>
                 <p class="text-center text-black mb-6">OR</p>
-
-                <div>
-                  <button
-                    @click.prevent="handleGoogleSignIn"
-                    type="submit"
-                    class="w-full bg-white border-solid border-3 border-border py-2 flex justify-center items-center text-xs font-medium text rounded-sm cursor-pointer text-black hover:border-2 hover:bg-white hover:text-primary focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    <span class="inline-flex gap-0 justify-center items-center"
-                      ><img src="/src/assets/google.svg" class="w-6 h-6" />Sign Up with
-                      Google</span
+                <div class="">
+                  <div class="my-4">
+                    <button
+                      @click.prevent="handleGoogleSignIn"
+                      type="submit"
+                      class="w-full bg-white border-border border-solid py-2 flex justify-around items-center text-xs font-medium text rounded-sm cursor-pointer text-black hover:border-2 hover:bg-white hover:text-primary focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
-                  </button>
+                      <span class="inline-flex gap-0 justify-center items-center"
+                        ><img src="/src/assets/google.svg" class="w-6 h-6" />Sign Up with
+                        Google</span
+                      >
+                    </button>
+                  </div>
+                  <div class="my-4">
+                    <button
+                      @click.prevent="handleFacebookLogin"
+                      type="submit"
+                      class="w-full bg-white border-solid border-3 border-border py-2 flex justify-center items-center text-xs font-medium text rounded-sm cursor-pointer text-black hover:border-2 hover:bg-white hover:text-primary focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      <span class="inline-flex gap-0 justify-center items-center"
+                        ><img src="/src/assets/facebook.svg" class="w-6 h-6" />Sign Up
+                        with Facebook</span
+                      >
+                    </button>
+                  </div>
                 </div>
               </div>
             </form>
@@ -161,10 +148,9 @@ export default {
   data() {
     return {
       logo: logo,
-      firstName: "",
-      lastName: "",
+
       email: "",
-      phone_number: "",
+
       password: "",
       password_confirmation: "",
       value: "No",
@@ -226,10 +212,10 @@ export default {
             console.log("Successfully registered!" + data);
             this.firebaseUid = data.user.uid;
             console.log("Email" + data.user.uid);
-            this.createUserAccount;
+            localStorage.setItem("firebaseUid", this.firebaseUid);
             this.loading = false;
 
-            router.replace({ name: "LogIn" }); // redirect to the login page
+            router.replace({ name: "AccountSetup" }); // redirect to the account setup page
           })
           .catch((error) => {
             this.loading = false;
@@ -239,22 +225,7 @@ export default {
           });
       }
     },
-    createUserAccount() {
-      if ((this.value = "Yes")) {
-        this.acceptedTermsOfUse = true;
-      }
-      console.log("Firebase" + this.firebaseUid);
-      this.createUser({
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-        phone_number: this.phone_number,
-        password: this.password,
-        password_confirmation: this.password_confirmation,
-        firebaseUid: this.firebaseUid,
-        acceptedTermsOfUse: this.acceptedTermsOfUse,
-      });
-    },
+
     handleGoogleSignIn() {
       let provider = new firebase.auth.GoogleAuthProvider();
       this.loading = true;
@@ -279,6 +250,35 @@ export default {
           this.showAlert = true;
           setTimeout(() => (this.showAlert = false), 5000);
           console.log(err); // This will give you all the information needed to further debug any errors
+        });
+    },
+    handleFacebookLogin(path, data) {
+      // Create an instance of the Facebook provider object:
+      var provider = new firebase.auth.FacebookAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          /** @type {firebase.auth.OAuthCredential} */
+          var credential = result.credential;
+          // This gives you a Facebook Access Token. You can use it toaccess the Facebook API.
+          var token = credential.accessToken;
+          // The signed-in user info, it will give you all basic info of logged-in user
+          var user = result.user;
+          localStorage.setItem("isLoggedIn", true);
+          console.log(user);
+          console.log(token); // Token
+          router.push({ name: "MainWebPage" });
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          this.loading = false;
+          this.alertTitle = "Error";
+          this.typeOfAlert = "Danger";
+          this.alertMessage = error.credential + " " + error.message;
+          this.showAlert = true;
+          setTimeout(() => (this.showAlert = false), 5000);
+          console.log(error.code);
         });
     },
   },
