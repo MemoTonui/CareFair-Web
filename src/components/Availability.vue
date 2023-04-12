@@ -1,147 +1,67 @@
 <template>
-  <div class="bg-white cursor-pointer">
-    <div class="flex items-center justify-center">
-      <!-- Component Start -->
-      <form class="flex gap-10 w-full">
-        <div class="flex">
-          <input
-            v-model="availability"
-            class="hidden"
-            id="sunday"
-            type="checkbox"
-            name="checkbox"
-            v-bind:value="'sunday'"
-          />
-          <label
-            class="flex flex-col sm:p-1 border-2 border-border cursor-pointer"
-            for="sunday"
-          >
-            <span class="sm:text-xs font-bold">S</span>
-          </label>
-        </div>
-        <div class="flex">
-          <input
-            v-model="availability"
-            class="hidden"
-            id="monday"
-            type="checkbox"
-            name="checkbox"
-            v-bind:value="'monday'"
-          />
-          <label
-            class="flex flex-col sm:p-1 border-2 border-border cursor-pointer"
-            for="monday"
-          >
-            <span class="sm:text-xs font-bold">M</span>
-          </label>
-        </div>
-        <div class="flex">
-          <input
-            v-model="availability"
-            class="hidden"
-            id="tuesday"
-            type="checkbox"
-            name="checkbox"
-            v-bind:value="'tuesday'"
-          />
-          <label
-            class="flex flex-col border-2 sm:p-1 border-border cursor-pointer"
-            for="tuesday"
-          >
-            <span class="sm:text-xs font-bold">T</span>
-          </label>
-        </div>
-        <div class="flex">
-          <input
-            v-model="availability"
-            class="hidden"
-            id="wednesday"
-            type="checkbox"
-            name="checkbox"
-            v-bind:value="'wednesday'"
-          />
-          <label
-            class="flex flex-col border-2 sm:p-1 border-border cursor-pointer"
-            for="wednesday"
-          >
-            <span class="sm:text-xs font-bold">W</span>
-          </label>
-        </div>
-        <div class="flex">
-          <input
-            v-model="availability"
-            class="hidden"
-            id="thursday"
-            type="checkbox"
-            name="checkbox"
-            v-bind:value="'thursday'"
-          />
-          <label
-            class="flex flex-col border-2 sm:p-1 border-border cursor-pointer"
-            for="thursday"
-          >
-            <span class="sm:text-xs font-bold">T</span>
-          </label>
-        </div>
-        <div class="flex">
-          <input
-            v-model="availability"
-            class="hidden"
-            id="friday"
-            type="checkbox"
-            name="checkbox"
-            v-bind:value="'friday'"
-          />
-          <label
-            class="flex flex-col border-2 sm:p-1 border-border cursor-pointer"
-            for="friday"
-          >
-            <span class="sm:text-xs font-bold">F</span>
-          </label>
-        </div>
-        <div class="flex">
-          <input
-            v-model="availability"
-            class="hidden"
-            id="saturday"
-            type="checkbox"
-            name="checkbox"
-            v-bind:value="'saturday'"
-          />
-          <label
-            class="flex flex-col sm:p-1 border-2 border-border cursor-pointer"
-            for="saturday"
-          >
-            <span class="sm:text-xs font-bold">S</span>
-          </label>
-        </div>
-      </form>
-      <!-- Component End  -->
-    </div>
+  <div class="flex flex-row items-start">
+    <label for="dropDown" class="form-label text-md inline-block mb-2 text-gray-700">{{
+      label
+    }}</label>
+    <CheckBox
+      v-for="option in options"
+      :disabled="disabled"
+      :checked="value.includes(option.value)"
+      @update:checked="check(option.value, $event)"
+      :fieldId="option.label"
+      :label="option.label"
+      :key="option"
+    />
   </div>
 </template>
 
 <script>
-import ActionButton from "./ActionButton.vue";
-import router from "/src/router";
+import Checkbox from "./HiddenCheckBox.vue";
 
 export default {
-  name: "Availability",
-  components: { ActionButton },
-  data() {
+  emits: ["update:value"],
+  props: {
+    value: {
+      type: Array,
+      required: true,
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    label: {
+      type: String,
+      required: true,
+    },
+    options: {
+      type: Array,
+      required: true,
+      validator: (value) => {
+        const hasNameKey = value.every((option) => Object.keys(option).includes("label"));
+        const hasIdKey = value.every((option) => Object.keys(option).includes("value"));
+        return hasNameKey && hasIdKey;
+      },
+    },
+  },
+  setup(props, context) {
+    const check = (optionId, checked) => {
+      let updatedValue = [...props.value];
+      if (checked) {
+        updatedValue.push(optionId);
+      } else {
+        updatedValue.splice(updatedValue.indexOf(optionId), 1);
+      }
+      context.emit("update:value", updatedValue);
+    };
+
     return {
-      availability: " ",
+      check,
     };
   },
-  methods: {},
+  components: {
+    CheckBox: Checkbox,
+  },
 };
 </script>
-
-<style scoped>
-input:checked + label {
-  background-color: #0093b8;
-  border-color: #0093b8;
-  color: white;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-</style>
+<style scoped></style>

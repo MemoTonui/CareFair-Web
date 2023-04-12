@@ -161,7 +161,11 @@
           <p class="font-semibold my-2">Availability</p>
           <p class="text-xs my-2">Check the days that you are available.</p>
           <div class="my-2">
-            <Availability />
+            <Availability
+              :options="daysOfTheWeek"
+              v-model:value="selectedDays"
+              class="py-3"
+            />
           </div>
         </div>
 
@@ -225,6 +229,16 @@ export default {
       availableBeforeAndAfterSchool: false,
       nannyShare: false,
       specialNeeds: false,
+      selectedDays: [],
+      daysOfTheWeek: [
+        { label: "S", value: "Sunday" },
+        { label: "M", value: "Monday" },
+        { label: "T", value: "Tuesday" },
+        { label: "W", value: "Wednesday" },
+        { label: "T", value: "Thursday" },
+        { label: "F", value: "Friday" },
+        { label: "S", value: "Saturday" },
+      ],
       moreOptions: [
         { label: "Can provide educational  assistance", value: "canHelpInEducation" },
         { label: "Sitter owns a car", value: "ownsCar" },
@@ -273,6 +287,7 @@ export default {
         shortCaption: this.caption,
         canHelpInEducation: this.canHelpInEducation,
         ownsCar: this.ownsCar,
+        availableDays: this.selectedDays,
         availableAllDay: this.availableAllDay,
         availableBeforeAndAfterSchool: this.availableBeforeAndAfterSchool,
         // nannyShare: this.nannyShare,
