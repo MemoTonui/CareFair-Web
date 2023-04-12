@@ -171,6 +171,7 @@ export default {
   },
   data() {
     return {
+      isLoggedIn: false,
       terms: [
         {
           title: "",
@@ -186,6 +187,13 @@ export default {
         { title: "", content: "" },
       ],
     };
+  },
+  mounted() {
+    this.isLoggedIn = localStorage.getItem("isLoggedIn");
+    console.log("is Logged In ", this.isLoggedIn);
+  },
+  updated() {
+    this.isLoggedIn = localStorage.getItem("isLoggedIn");
   },
 };
 </script>

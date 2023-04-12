@@ -5,6 +5,7 @@ import store from './store'
 import 'material-icons/iconfont/material-icons.css';
 import firebase from "firebase/compat/app";
 import './assets/tailwind.css'
+import vueCountryRegionSelect from 'vue3-country-region-select'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
@@ -37,4 +38,5 @@ app.use( VueAxios,axios)
 
 app.use(router)
 app.use(store)
+app.use(vueCountryRegionSelect)
 app.mount('#app')

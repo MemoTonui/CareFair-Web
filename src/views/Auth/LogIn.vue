@@ -134,7 +134,7 @@ import CheckBox from "/src/components/CheckBox.vue";
 import ActionButton from "/src/components/ActionButton.vue";
 import logo from "/src/assets/logo.svg";
 import Alert from "/src/components/Alert.vue";
-import Loader from "/src/components/Loader.vue";
+import Loader from "/src/components/loaders/Loader.vue";
 
 export default {
   name: "SignIn",
@@ -181,6 +181,12 @@ export default {
     },
   },
   methods: {
+    ...mapActions(["createToken"]),
+
+    createUserToken(uid) {
+      this.createToken({ id: uid });
+    },
+
     handleSignIn() {
       const requiredEmail = this.email;
       const requiredPassword = this.password;
@@ -189,9 +195,17 @@ export default {
         .auth()
         .signInWithEmailAndPassword(requiredEmail, requiredPassword) // THIS LINE CHANGED
         .then((data) => {
-          console.log("Successfully logged in!");
+          console.log("Successfully logged in!", data.user.uid);
+          this.createUserToken(data.user.uid);
+          localStorage.setItem("firebase", data.user.uid);
           localStorage.setItem("isLoggedIn", true);
+
           this.loading = false;
+          this.alertTitle = "Auth Action Success";
+          this.typeOfAlert = "Success";
+          this.alertMessage = "User is successfully Logged In";
+          this.showAlert = true;
+          setTimeout(() => (this.showAlert = false), 5000);
           router.replace({ name: "MainWebPage" });
         })
         .catch((error) => {
@@ -244,6 +258,7 @@ export default {
         .then((result) => {
           this.loading = false;
           localStorage.setItem("isLoggedIn", true);
+          this.createUserToken(data.user.uid);
           let token = result.credential.accessToken;
           let user = result.user;
           console.log(token); // Token
@@ -274,6 +289,8 @@ export default {
           // The signed-in user info, it will give you all basic info of logged-in user
           var user = result.user;
           localStorage.setItem("isLoggedIn", true);
+          this.createUserToken(data.user.uid);
+
           console.log(user);
           console.log(token); // Token
           router.push({ name: "MainWebPage" });

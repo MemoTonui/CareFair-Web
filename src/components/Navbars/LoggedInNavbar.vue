@@ -2,7 +2,7 @@
   <div>
     <div class="bg-white">
       <nav
-        class="container px-14 py-1 mx-auto md:flex md:justify-between cursor-pointer md:items-center"
+        class="px-10 py-1 mx-auto md:flex md:justify-between cursor-pointer md:items-center"
       >
         <div class="flex items-center justify-between">
           <router-link
@@ -32,7 +32,7 @@
           :class="showMenu ? 'flex' : 'hidden'"
           class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0"
         >
-          <li>
+          <li class="text-sm font-bold text-black hover:text-primary hover:underline">
             <router-link :to="{ name: 'MainWebPage' }">
               <span class="material-icons-outlined"> home </span>
             </router-link>
@@ -59,8 +59,25 @@
             <VueAvatar :username="this.displayName" />
           </li>
         </ul>
+        <!---Loader-->
+        <transition name="fade" mode="out-in">
+          <div v-if="showAlert" class="relative h-0 w-9/12 mx-auto top-8 drop-shadow-xl">
+            <div class="sticky inset-x-0 top-0">
+              <Alert
+                @click="closeAlert"
+                :typeOfAlert="typeOfAlert"
+                :message="alertMessage"
+                :bulkMessage="alertBulkMessage"
+                :head="alertTitle"
+              />
+            </div>
+          </div>
+        </transition>
+        <Loader v-if="isLoading" />
       </nav>
     </div>
+
+    <!-- Right elements -->
   </div>
 </template>
 <script>
@@ -71,9 +88,10 @@ import "@webzlodimir/vue-avatar/dist/style.css";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import router from "/src/router";
+import Loader from "/src/components/loaders/Loader.vue";
+import Alert from "/src/components/Alert.vue";
 
 export default {
-  components: { SearchBox, VueAvatar },
   data() {
     return {
       showMenu: false,
@@ -82,10 +100,12 @@ export default {
       character: "",
     };
   },
+  components: { Loader, Alert, SearchBox, VueAvatar },
   methods: {
     logout() {
       firebase.auth().signOut();
-      localStorage.setItem("isLoggedIn", false);
+      //localStorage.setItem("isLoggedIn", false);
+      localStorage.clear();
       router.push({ name: "LogIn" });
     },
     getAuthState() {

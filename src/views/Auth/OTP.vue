@@ -96,7 +96,7 @@
 import ActionButton from "/src/components/ActionButton.vue";
 import OtpInput from "vue3-otp-input";
 import Alert from "/src/components/Alert.vue";
-import Loader from "/src/components/Loader.vue";
+import Loader from "/src/components/loaders/Loader.vue";
 import logo from "/src/assets/logo.svg";
 
 export default {

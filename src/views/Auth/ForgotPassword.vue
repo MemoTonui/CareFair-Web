@@ -93,7 +93,7 @@ import CheckBox from "/src/components/CheckBox.vue";
 import ActionButton from "/src/components/ActionButton.vue";
 import logo from "/src/assets/logo.svg";
 import Alert from "/src/components/Alert.vue";
-import Loader from "/src/components/Loader.vue";
+import Loader from "/src/components/loaders/Loader.vue";
 
 export default {
   name: "ForgotPassword",

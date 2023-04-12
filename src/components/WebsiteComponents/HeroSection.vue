@@ -5,7 +5,7 @@
       class="container flex flex-col-reverse place-items-center items-center justify-center px-6 mx-auto space-y-0 py-10 md:space-y-0 md:flex-row"
     >
       <!-- Left item -->
-      <div class="flex flex-col justify-center space-y-12 px-10 py-10 md:w-1/2">
+      <div class="flex flex-col justify-center space-y-12 px-10 py-10 lg:w-1/2">
         <h1
           class="max-w-md text-4xl font-bold text-black text-center md:text-5xl md:text-left"
         >
@@ -16,20 +16,24 @@
           professional care.
         </p>
         <div class="flex justify-center md:justify-start uppercase gap-6">
-          <a
+          <button
             href="#"
-            class="p-3 px-6 pt-2 text-white text-sm bg-primary rounded-full baseline hover:border-2 hover:text-primary hover:bg-white"
-            >Get a Caregiver</a
+            class="p-3 px-6 pt-2 text-white uppercase text-sm bg-primary rounded-full baseline hover:border-2 hover:text-primary hover:bg-white"
           >
-          <a
-            href="#"
-            class="p-3 px-6 pt-2 text-white text-sm bg-pink rounded-full baseline hover:border-2 hover:text-pink hover:bg-white"
-            >Become a Caregiver</a
-          >
+            Get a Caregiver
+          </button>
+          <router-link :to="{ name: 'SwitchAccount' }">
+            <button
+              href="#"
+              class="p-3 px-6 pt-2 uppercase text-white text-sm bg-pink rounded-full baseline hover:border-2 hover:text-pink hover:bg-white"
+            >
+              Become a Caregiver
+            </button>
+          </router-link>
         </div>
       </div>
       <!-- Image -->
-      <div class="md:w-1/2">
+      <div class="lg:w-1/2">
         <img src="/src/assets/bgImage.svg" alt="" />
       </div>
     </div>
@@ -47,7 +51,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 h1 {
   font-family: "Gentium Book Plus", serif;
 }
