@@ -2,14 +2,24 @@
   <div id="hero" class="">
     <!-- Flex Container -->
     <div
-      class="container flex flex-col-reverse place-items-center items-center justify-center px-6 mx-auto space-y-0 py-10 md:space-y-0 md:flex-row"
+      class="container flex flex-col-reverse place-items-center items-center justify-center gap-10 px-6 mx-auto space-y-0 py-5 md:space-y-0 md:flex-row"
     >
       <!-- Left item -->
-      <div class="flex flex-col justify-center space-y-12 px-10 py-10 lg:w-1/2">
+      <div class="flex flex-col justify-center space-y-12 px-2 py-10">
+        <div>
+          <div
+            class="md:inline-flex hidden items-center justify-center bg-primary bg-opacity-20 rounded-full gap-2 px-3 py-2 text-primary"
+          >
+            <span class="material-icons-outlined"> verified </span>
+            <p>Get a caregiver today!</p>
+          </div>
+        </div>
         <h1
-          class="max-w-md text-4xl font-bold text-black text-center md:text-5xl md:text-left"
+          class="max-w-xl text-4xl font-bold text-black text-center md:text-5xl md:text-left w-full"
         >
-          Experience Compassionate and professional care for your loved ones.
+          Experience <span class="text-primary h1">Compassionate</span> and
+          <span class="text-primary h1">Professional </span>
+          care for your loved ones.
         </h1>
         <p class="max-w-md text-black md:text-left">
           Take the first step towards providing your loved one with compassionate and
@@ -33,8 +43,8 @@
         </div>
       </div>
       <!-- Image -->
-      <div class="lg:w-1/2">
-        <img src="/src/assets/bgImage.svg" alt="" />
+      <div class="flex justify-center items-center md:w-1/2">
+        <img src="/src/assets/bgWithReviews3.svg" class="" alt="" />
       </div>
     </div>
   </div>
@@ -52,7 +62,8 @@ export default {
 </script>
 
 <style scoped>
-h1 {
+h1,
+.h1 {
   font-family: "Gentium Book Plus", serif;
 }
 </style>

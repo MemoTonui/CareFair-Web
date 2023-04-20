@@ -2,7 +2,7 @@
   <div>
     <div
       v-if="typeOfAlert == 'Info'"
-      class="flex flex-col p-4 mb-4 border-t-4 border-light-green text-sm text-light-green bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+      class="flex flex-col p-4 mb-4 border-t-4 border-light-green bg-light-green bg-opacity-20 text-sm text-light-green bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
       role="alert"
     >
       <div>
@@ -40,7 +40,7 @@
 
     <div
       v-if="typeOfAlert == 'Danger'"
-      class="flex flex-col p-4 mb-4 border-t-4 border-dark-pink text-sm text-dark-pink bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+      class="flex flex-col p-4 mb-4 border-t-4 border-dark-pink text-sm bg-opacity-20 bg-dark-pink text-dark-pink bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
       role="alert"
     >
       <div class="flex gap-5">
@@ -77,7 +77,7 @@
     </div>
     <div
       v-if="typeOfAlert == 'Success'"
-      class="flex flex-col p-4 mb-4 text-sm border-t-4 border-light-green text-light-green bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+      class="flex flex-col p-4 mb-4 text-sm border-t-4 border-light-green text-light-green bg-opacity-20 bg-light-green rounded-lg dark:bg-green-200 dark:text-green-800"
       role="alert"
     >
       <div class="flex gap-5">
@@ -116,7 +116,7 @@
     </div>
     <div
       v-if="typeOfAlert == 'Warning'"
-      class="flex flex-col p-4 mb-4 text-sm border-t-4 border-orange text-orange bg-yellow-100 rounded-lg dark:bg-yellow-200 dark:text-yellow-800"
+      class="flex flex-col p-4 mb-4 text-sm border-t-4 border-orange text-orange bg-orange bg-opacity-20 rounded-lg dark:bg-yellow-200 dark:text-yellow-800"
       role="alert"
     >
       <div>

@@ -1,7 +1,5 @@
 <template>
-  <div class="text-black">
-    <router-view />
-  </div>
+  <div>Open Jobs</div>
 </template>
 
 <script>

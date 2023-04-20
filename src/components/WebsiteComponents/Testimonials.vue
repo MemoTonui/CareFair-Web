@@ -1,11 +1,11 @@
 <template>
-  <div class="my-16">
+  <div class="py-5 bg">
     <div>
       <h2 class="font-bold text-secondary text-sm uppercase text-center my-5">
         Testimonials
       </h2>
 
-      <h2 class="font-semibold m-5 text-center text-4xl md:text-3xl">
+      <h2 class="font-semibold m-5 text-center text-4xl md:text-4xl">
         What our Clients say about us
       </h2>
     </div>
@@ -35,12 +35,12 @@ export default {
         {
           testimonial:
             "As a caregiver, getting connected to clients in my area has not been easy due to so many factors, payment plan being the major reason. This changed when I signed up at the care fair as the pay is highly competitive and equal to the responsibilities I have. I do not regret signing up and it has been an amazing experience so far!",
-          name: "John Doe",
+          name: "Joanna Martins",
         },
         {
           testimonial:
             "I have two lovely pet dogs- coco and moon that I absolutely love so much but sometimes I cannot be there for them, and this has bothered me so much. I needed to find someone who understood pets and how to care for them in my absence which is why I am so grateful to the care fair for connecting me to an amazing pet care giver who takes very good care of my babies in my absence. Totally worth it folks!”",
-          name: "Jane Doe",
+          name: "Jake Walt",
         },
       ],
     };

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg">
     <div v-if="isLoggedIn === 'true'">
       <LoggedInNavbar />
     </div>
@@ -298,8 +298,8 @@ export default {
   },
   components: {
     NavBar,
-    Footer,
     LoggedInNavbar,
+    Footer,
     ActionButton,
     TextBox,
     TextArea,

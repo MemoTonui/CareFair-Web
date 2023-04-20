@@ -92,6 +92,7 @@
 
 <script>
 import { mapActions, mapState, mapGetters } from "vuex";
+import router from "/src/router";
 import ActionButton from "../../components/ActionButton.vue";
 import AccountCard from "/src/components/AccountCard.vue";
 export default {
@@ -107,6 +108,7 @@ export default {
       this.editUserProfile({
         role: this.role,
       });
+      router.push({ name: "CareType" });
       console.log(this.role);
     },
   },

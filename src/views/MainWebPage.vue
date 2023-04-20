@@ -1,17 +1,22 @@
 <template>
   <div>
-    <div v-if="isLoggedIn === 'true'">
-      <LoggedInNavbar />
-    </div>
-    <div v-else>
-      <NavBar />
-    </div>
+    <div class="bg-[url('src/assets/confettiBg.svg')] bg-center">
+      <div v-if="isLoggedIn === 'true'">
+        <LoggedInNavbar />
+      </div>
+      <div v-else>
+        <NavBar />
+      </div>
 
-    <HeroSection />
-    <ServicesSection />
-    <Testimonials />
-    <DownloadAdvert />
-    <Footer />
+      <HeroSection />
+
+      <ServicesSection />
+
+      <Testimonials />
+      <DownloadAdvert />
+
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -29,12 +34,12 @@ import router from "/src/router";
 export default {
   components: {
     NavBar,
+    LoggedInNavbar,
     Footer,
     HeroSection,
     ServicesSection,
     Testimonials,
     DownloadAdvert,
-    LoggedInNavbar,
   },
   data() {
     return {
@@ -50,5 +55,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

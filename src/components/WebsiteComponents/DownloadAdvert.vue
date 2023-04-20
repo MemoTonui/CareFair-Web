@@ -1,15 +1,13 @@
 <template>
   <div
-    class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 place-items-center justify-center items-center m-5"
+    class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 justify-end items-center m-5"
   >
-    <div class=" flex items-center justify-center justify-self-center mx-auto">
+    <div class="flex justify-center items-center mx-auto">
       <img src="/src/assets/PhoneScreen.svg" class="max-w-full h-auto" />
     </div>
     <div class="">
-      <div
-        class="w-full p-1 text-center bg-white sm:p-4 dark:bg-gray-800 dark:border-gray-700"
-      >
-        <h5 class="m-1 text-4xl font-bold text-black md:text-3xl dark:text-white">
+      <div class="w-full p-1 text-center sm:p-4 dark:bg-gray-800 dark:border-gray-700">
+        <h5 class="m-1 text-4xl font-bold text-black md:text-4xl dark:text-white">
           Get connected to some help <br />
           from anywhere using our <br />
           mobile app

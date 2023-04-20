@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center my-16">
+  <div class="flex justify-center py-10">
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 m-5">
       <div>
         <div

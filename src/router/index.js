@@ -31,6 +31,10 @@ const SwitchAccount = () =>
   import("/src/views/CaregiverPages/SeniorCareSkillSet.vue");
   const PetCareSkillSet = () =>
   import("/src/views/CaregiverPages/PetCareSkillSet.vue");
+  const CaregiverProfile = () =>
+  import("/src/views/CaregiverPages/CaregiverProfile.vue");
+  const Jobs = () =>
+  import("/src/views/CaregiverPages/Jobs.vue");
 
 
 const routes= [
@@ -78,6 +82,16 @@ const routes= [
       path: "/CaregiverAccountSetupProcess",
       name: "CaregiverAccountSetupProcess",
       component: CaregiverAccountSetupProcess,
+    },
+    {
+      path: "/CaregiverProfile",
+      name: "CaregiverProfile",
+      component: CaregiverProfile,
+    },
+    {
+      path: "/Jobs",
+      name: "Jobs",
+      component: Jobs,
     },
   ],
 },

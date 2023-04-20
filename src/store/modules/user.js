@@ -18,11 +18,27 @@ export const GET_USER_BY_FIREBASE ="GET_USER_BY_FIREBASE";
 export const GET_USER_BY_FIREBASE_SUCCESS ="GET_USER_BY_FIREBASE_SUCCESS";
 export const GET_USER_BY_FIREBASE_FAIL ="GET_USER_BY_FIREBASE_FAIL";
 
+export const ADD_WORK_EXPERIENCE_REQUEST ="ADD_WORK_EXPERIENCE_REQUEST";
+export const ADD_WORK_EXPERIENCE_SUCCESS ="ADD_WORK_EXPERIENCE_SUCCESS";
+export const ADD_WORK_EXPERIENCE_FAIL ="ADD_WORK_EXPERIENCE_FAIL";
+
+export const REMOVE_WORK_EXPERIENCE_REQUEST ="REMOVE_WORK_EXPERIENCE_REQUEST";
+export const REMOVE_WORK_EXPERIENCE_SUCCESS ="REMOVE_WORK_EXPERIENCE_SUCCESS";
+export const REMOVE_WORK_EXPERIENCE_FAIL ="REMOVE_WORK_EXPERIENCE_FAIL";
+
+export const ADD_EDUCATION_REQUEST ="ADD_EDUCATION_REQUEST";
+export const ADD_EDUCATION_SUCCESS ="ADD_EDUCATION_SUCCESS";
+export const ADD_EDUCATION_FAIL ="ADD_EDUCATION_FAIL";
+
+export const REMOVE_EDUCATION_REQUEST ="REMOVE_EDUCATION_REQUEST";
+export const REMOVE_EDUCATION_SUCCESS ="REMOVE_EDUCATION_SUCCESS";
+export const REMOVE_EDUCATION_FAIL ="REMOVE_EDUCATION_FAIL";
+
 
 
 export default{
   state:()=>({
-    loading: false,
+  loading: false,
   success: "",
   error: "",
   userInfo: [],
@@ -45,7 +61,7 @@ export default{
     [CREATE_USER_SUCCESS](state, payload) {
       state.loading = false;
       state.userInfo = payload;
-      state.success = payload.message;
+      state.success = payload.status;
     },
     [CREATE_USER_FAIL](state, error) {
       state.loading = false;
@@ -60,7 +76,7 @@ export default{
     [CREATE_TOKEN_SUCCESS](state, payload) {
       state.loading = false;
       state.userInfo = payload;
-      state.success = payload.message;
+      state.success = payload.status;
     },
     [CREATE_TOKEN_FAIL](state, error) {
       state.loading = false;
@@ -75,7 +91,7 @@ export default{
     [UPDATE_USER_PROFILE_SUCCESS](state, payload) {
       state.loading = false;
       state.userInfo = payload;
-      state.success = payload.message;
+      state.success = payload.status;
     },
     [UPDATE_USER_PROFILE_FAIL](state, error) {
       state.loading = false;
@@ -90,12 +106,74 @@ export default{
     [GET_USER_BY_FIREBASE_SUCCESS](state, payload) {
       state.loading = false;
       state.userInfo = payload;
-      state.success = payload.message;
+      state.success = payload.status;
     },
     [GET_USER_BY_FIREBASE_FAIL](state, error) {
       state.loading = false;
       state.error = error;
     },
+
+    /** ADD WORK EXPERIENCE*/
+    [ADD_WORK_EXPERIENCE_REQUEST](state) {
+      state.loading = true;
+      state.error = "";
+    },
+    [ADD_WORK_EXPERIENCE_SUCCESS](state, payload) {
+      state.loading = false;
+      state.userInfo = payload;
+      state.success = payload.status;
+    },
+    [ADD_WORK_EXPERIENCE_FAIL](state, error) {
+      state.loading = false;
+      state.error = error;
+    },
+
+    /** REMOVE WORK EXPERIENCE*/
+    [REMOVE_WORK_EXPERIENCE_REQUEST](state) {
+      state.loading = true;
+      state.error = "";
+    },
+    [REMOVE_WORK_EXPERIENCE_SUCCESS](state, payload) {
+      state.loading = false;
+      state.userInfo = payload;
+      state.success = payload.status;
+    },
+    [REMOVE_WORK_EXPERIENCE_FAIL](state, error) {
+      state.loading = false;
+      state.error = error;
+    },
+
+      /** ADD EDUCATION*/
+      [ADD_EDUCATION_REQUEST](state) {
+        state.loading = true;
+        state.error = "";
+      },
+      [ADD_EDUCATION_SUCCESS](state, payload) {
+        state.loading = false;
+        state.userInfo = payload;
+        state.success = payload.status;
+      },
+      [ADD_EDUCATION_FAIL](state, error) {
+        state.loading = false;
+        state.error = error;
+      },
+      
+
+     /** REMOVE EDUCATION*/
+     [REMOVE_EDUCATION_REQUEST](state) {
+      state.loading = true;
+      state.error = "";
+    },
+    [REMOVE_EDUCATION_SUCCESS](state, payload) {
+      state.loading = false;
+      state.userInfo = payload;
+      state.success = payload.status;
+    },
+    [REMOVE_EDUCATION_FAIL](state, error) {
+      state.loading = false;
+      state.error = error;
+    },
+    
   },
   actions :{
 
@@ -152,9 +230,7 @@ export default{
           commit(CREATE_USER_FAIL, error.response.data);
         });
     },
-
-
- //Update User Profile
+//Get User User Profile
  async getUserByFirebase({ commit }, payload) {
   commit(GET_USER_BY_FIREBASE);
   var userId = localStorage.getItem("firebase");
@@ -174,6 +250,7 @@ export default{
   axios(config)
     .then(function (response) {
       console.log("Get user By Firebase", response.data.message._id);
+      console.log(response.data)
       commit(GET_USER_BY_FIREBASE_SUCCESS, response.data.message);
       localStorage.setItem("id",response.data.message._id);
     })
@@ -223,11 +300,120 @@ export default{
            
             router.replace({ name: "LogIn" });
           } else {
-            commit(EDIT_CURRENT_USER_FAIL, error.response.data);
+            commit(UPDATE_USER_PROFILE_FAIL, error.response.data);
           }
         });
     },
 
+
+     //Add User Work Experience
+     async addWorkExperience({ commit }, payload) {
+      commit(ADD_WORK_EXPERIENCE_REQUEST);
+      var userId = localStorage.getItem("id");
+  
+      var config = {
+        method: "put",
+        url: `${baseUrl}users/addWork/${userId}`,
+        headers: {
+          "Content-Type": "application/json",
+          "x-requested-with": "XMLHttpRequest",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        data: payload,
+      };
+      console.log("add work experience", config);
+  
+      axios(config)
+        .then(function (response) {
+          console.log("work experience", response);
+          commit(ADD_WORK_EXPERIENCE_SUCCESS, response.data.message);
+        })
+        .catch(function (error) {
+          console.log(error);
+          if (
+            error.response.status == 401 ||
+            error.response.data.message == "Unauthenticated."
+          ) {
+           
+            router.replace({ name: "LogIn" });
+          } else {
+            commit(ADD_WORK_EXPERIENCE_FAIL, error.response.data);
+          }
+        });
+    },
+
+    //Remove User Work Experience
+    async removeWorkExperience({ commit }, payload) {
+      commit(REMOVE_WORK_EXPERIENCE_REQUEST);
+      var userId = localStorage.getItem("id");
+  
+      var config = {
+        method: "put",
+        url: `${baseUrl}users/addWork/${userId}`,
+        headers: {
+          "Content-Type": "application/json",
+          "x-requested-with": "XMLHttpRequest",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        data: payload,
+      };
+      console.log("remove work experience", config);
+  
+      axios(config)
+        .then(function (response) {
+          console.log("work experience", response);
+          commit(REMOVE_WORK_EXPERIENCE_SUCCESS, response.data.message);
+        })
+        .catch(function (error) {
+          console.log(error);
+          if (
+            error.response.status == 401 ||
+            error.response.data.message == "Unauthenticated."
+          ) { 
+           
+            router.replace({ name: "LogIn" });
+          } else {
+            commit(REMOVE_WORK_EXPERIENCE_FAIL, error.response.data);
+          }
+        });
+    },
+
+
+    //Add User Education
+    async addEducation({ commit }, payload) {
+      commit(ADD_EDUCATION_REQUEST);
+      var userId = localStorage.getItem("id");
+  
+      var config = {
+        method: "put",
+        url: `${baseUrl}users/addEducation/${userId}`,
+        headers: {
+          "Content-Type": "application/json",
+          "x-requested-with": "XMLHttpRequest",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        data: payload,
+      };
+      console.log("add education", config);
+  
+      axios(config)
+        .then(function (response) {
+          console.log("education", response);
+          commit(ADD_EDUCATION_SUCCESS, response.data.message);
+        })
+        .catch(function (error) {
+          console.log(error);
+          if (
+            error.response.status == 401 ||
+            error.response.data.message == "Unauthenticated."
+          ) {
+           
+            router.replace({ name: "LogIn" });
+          } else {
+            commit(ADD_EDUCATION_FAIL, error.response.data);
+          }
+        });
+    },
     
   },
 }

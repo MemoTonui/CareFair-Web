@@ -5,10 +5,7 @@
         class="px-10 py-1 mx-auto md:flex md:justify-between cursor-pointer md:items-center"
       >
         <div class="flex items-center justify-between">
-          <router-link
-            to="/"
-            class="text-xl font-bold text-gray-800 md:text-2xl hover:text-blue-400"
-          >
+          <router-link to="/" class="text-4xl md:text-4xl">
             <img class="w-32 h-20" :src="logo" />
           </router-link>
           <!-- Mobile menu button -->
@@ -56,7 +53,65 @@
             <span class="material-icons-outlined">power_settings_new </span>
           </li>
           <li class="text-sm font-bold text-gray-800 hover:text-blue-400">
-            <VueAvatar :username="this.displayName" />
+            <router-link :to="{ name: 'CaregiverProfile' }"
+              ><VueAvatar :username="this.displayName"
+            /></router-link>
+          </li>
+          <li>
+            <div>
+              <div class="relative">
+                <!-- Dropdown toggle button -->
+                <button
+                  @click="show = !show"
+                  class="flex items-center p-2 text-indigo-100 bg-indigo-600 rounded-md"
+                >
+                  <svg
+                    class="w-5 h-5 text-indigo-100 dark:text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+
+                <!-- Dropdown menu -->
+                <div
+                  v-show="show"
+                  class="absolute right-0 py-2 mt-2 bg-indigo-500 rounded-md shadow-xl w-44"
+                >
+                  <router-link
+                    :to="{ name: 'Jobs' }"
+                    class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
+                  >
+                    Jobs
+                  </router-link>
+
+                  <router-link
+                    to="/"
+                    class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
+                  >
+                    Interviews
+                  </router-link>
+                  <router-link
+                    to="/"
+                    class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
+                  >
+                    Payment
+                  </router-link>
+                  <router-link
+                    to="/"
+                    class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
+                  >
+                    Settings
+                  </router-link>
+                </div>
+              </div>
+            </div>
           </li>
         </ul>
         <!---Loader-->
@@ -73,7 +128,7 @@
             </div>
           </div>
         </transition>
-        <Loader v-if="isLoading" />
+        <Loader v-if="loading" />
       </nav>
     </div>
 
@@ -81,6 +136,7 @@
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from "vuex";
 import logo from "/src/assets/logo.svg";
 import SearchBox from "/src/components/SearchBox.vue";
 import VueAvatar from "@webzlodimir/vue-avatar";
@@ -95,12 +151,21 @@ export default {
   data() {
     return {
       showMenu: false,
+      show: false,
       logo: logo,
       displayName: "Jane Doe ",
       character: "",
+      showAlert: false,
+      typeOfAlert: "Info",
+      alertTitle: "Alert",
+      alertMessage: "",
+      alertBulkMessage: "",
     };
   },
   components: { Loader, Alert, SearchBox, VueAvatar },
+  computed: {
+    ...mapGetters(["loading", "success", "error"]),
+  },
   methods: {
     logout() {
       firebase.auth().signOut();
@@ -120,9 +185,85 @@ export default {
         }
       });
     },
+    closeAlert() {
+      this.showAlert = false;
+    },
   },
   mounted() {
     this.getAuthState();
   },
+  watch: {
+    success: function (val) {
+      if (val) {
+        this.alertTitle = "Success";
+        this.typeOfAlert = "Success";
+        this.alertMessage = val;
+        this.showAlert = true;
+        setTimeout(() => (this.showAlert = false), 5000);
+      }
+    },
+    error: function (val) {
+      if (val) {
+        this.alertTitle = "Error";
+        this.typeOfAlert = "Danger";
+        this.alertMessage = val;
+        this.showAlert = true;
+        setTimeout(() => (this.showAlert = false), 5000);
+      }
+    },
+  },
 };
 </script>
+
+<style scoped>
+/* Enter Classes */
+.fade-enter-from {
+  opacity: 0;
+  transform: translateY(-60px);
+}
+.fade-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-enter-active {
+  transition: all 0.5s ease;
+}
+
+/* Leave classes */
+.fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-60px);
+}
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
+img {
+  width: 60px;
+}
+.toggle {
+  cursor: pointer;
+}
+.close {
+  background: white;
+  border: 0;
+  cursor: pointer;
+  margin: 5px;
+}
+.right-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0; /* initially */
+  overflow: hidden;
+  height: 100vh;
+  padding-left: 0; /* initially */
+  border-left: 1px solid whitesmoke;
+  background: white;
+  z-index: 200;
+  transition: all 0.2s;
+}
+</style>

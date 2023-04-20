@@ -1,5 +1,7 @@
 <template>
-  <div class="max-w-sm p-6">
+  <div
+    class="max-w-sm p-6 bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+  >
     <figure class="max-w-screen-md mx-auto">
       <svg
         aria-hidden="true"

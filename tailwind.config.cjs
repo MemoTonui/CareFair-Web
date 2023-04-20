@@ -31,7 +31,7 @@ module.exports = {
         'maroon': '#7A0049',
         'dark-pink': '#BA095B',
         'white':"#FFF",
-        'black':'#343538',
+        'black':'#001220',
         'border':'#E0E0E0'
       },
       boxShadow: {
