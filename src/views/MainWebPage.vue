@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-[url('src/assets/confettiBg.svg')] bg-center">
+    <div class="bg">
       <div v-if="isLoggedIn === 'true'">
         <LoggedInNavbar />
       </div>
@@ -55,3 +55,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.bg {
+  background-image: url("/src/assets/confettiBg.svg");
+  background-position: center;
+}
+</style>
