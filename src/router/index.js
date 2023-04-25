@@ -35,6 +35,12 @@ const SwitchAccount = () =>
   import("/src/views/CaregiverPages/CaregiverProfile.vue");
   const Jobs = () =>
   import("/src/views/CaregiverPages/Jobs.vue");
+  const Interviews = () =>
+  import("/src/views/CaregiverPages/Interviews.vue");
+  const Settings = () =>
+  import("/src/views/CaregiverPages/Settings.vue");
+  const Payments = () =>
+  import("/src/views/CaregiverPages/Payments.vue");
 
 
 const routes= [
@@ -92,6 +98,21 @@ const routes= [
       path: "/Jobs",
       name: "Jobs",
       component: Jobs,
+    },
+    {
+      path: "/Interviews",
+      name: "Interviews",
+      component: Interviews,
+    },
+    {
+      path: "/Payments",
+      name: "Payments",
+      component: Payments,
+    },
+    {
+      path: "/Settings",
+      name: "Settings",
+      component: Settings,
     },
   ],
 },

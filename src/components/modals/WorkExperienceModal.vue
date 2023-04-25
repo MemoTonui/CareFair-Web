@@ -153,8 +153,8 @@ export default {
   methods: {
     ...mapActions(["addWorkExperience"]),
     handleCreateWorkExperience() {
-      const formattedStartDate = moment(this.start_date).format("YYYYMMDD");
-      const formattedEndDate = moment(this.end_date).format("YYYYMMDD");
+      const formattedStartDate = new Date().valueOf(this.start_date);
+      const formattedEndDate = new Date().valueOf(this.end_date);
 
       this.addWorkExperience({
         title: this.title,
@@ -171,14 +171,16 @@ export default {
       this.closeModal();
     },
     handleEditWorkExperience() {
+      const formattedStartDate = new Date().valueOf(this.start_date);
+      const formattedEndDate = new Date().valueOf(this.end_date);
       this.editUserProfile({
         previousWorkExperience: [
           {
             title: this.title,
             company: this.company_name,
             location: this.location,
-            startDate: this.start_date,
-            endDate: this.end_date,
+            startDate: formattedStartDate,
+            endDate: formattedEndDate,
           },
         ],
       });

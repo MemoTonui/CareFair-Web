@@ -1,122 +1,124 @@
 <template>
   <div>
     <div class="bg-white">
-      <nav
-        class="px-10 py-1 mx-auto md:flex md:justify-between cursor-pointer md:items-center"
-      >
-        <div class="flex items-center justify-between">
-          <router-link to="/" class="text-4xl md:text-4xl">
-            <img class="w-32 h-20" :src="logo" />
-          </router-link>
-          <!-- Mobile menu button -->
-          <div @click="showMenu = !showMenu" class="flex md:hidden">
-            <button
-              type="button"
-              class="text-gray-800 hover:text-gray-400 focus:outline-none focus:text-gray-400"
-            >
-              <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
-                <path
-                  fill-rule="evenodd"
-                  d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-                ></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-        <ul
-          :class="showMenu ? 'flex' : 'hidden'"
-          class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0"
+      <nav class="py-1">
+        <div
+          class="px-10 mx-auto md:flex md:justify-between cursor-pointer md:items-center"
         >
-          <li class="text-sm font-bold text-black hover:text-primary hover:underline">
-            <router-link :to="{ name: 'MainWebPage' }">
-              <span class="material-icons-outlined"> home </span>
+          <div class="flex items-center justify-between">
+            <router-link to="/" class="text-4xl md:text-4xl">
+              <img class="w-32 h-20" :src="logo" />
             </router-link>
-          </li>
-          <li class="text-sm font-bold text-black hover:text-primary hover:underline">
-            <span class="material-icons-outlined"> notifications </span>
-          </li>
+            <!-- Mobile menu button -->
+            <div @click="showMenu = !showMenu" class="flex md:hidden">
+              <button
+                type="button"
+                class="text-gray-800 hover:text-gray-400 focus:outline-none focus:text-gray-400"
+              >
+                <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
 
-          <li class="text-sm font-bold text-black hover:text-primary hover:underline">
-            <span class="material-icons-outlined"> search </span>
-          </li>
-          <li class="text-sm font-bold text-black hover:text-primary hover:underline">
-            <router-link :to="{ name: 'FAQs' }">
-              <span class="material-icons-outlined"> help_outline </span>
-            </router-link>
-          </li>
-          <li
-            @click="logout"
-            class="text-sm font-bold text-black hover:text-primary hover:underline"
+          <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+          <ul
+            :class="showMenu ? 'flex' : 'hidden'"
+            class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0"
           >
-            <span class="material-icons-outlined">power_settings_new </span>
-          </li>
-          <li class="text-sm font-bold text-gray-800 hover:text-blue-400">
-            <router-link :to="{ name: 'CaregiverProfile' }"
-              ><VueAvatar :username="this.displayName"
-            /></router-link>
-          </li>
-          <li>
-            <div>
-              <div class="relative">
-                <!-- Dropdown toggle button -->
-                <button
-                  @click="show = !show"
-                  class="flex items-center p-2 text-indigo-100 bg-indigo-600 rounded-md"
-                >
-                  <svg
-                    class="w-5 h-5 text-indigo-100 dark:text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </button>
+            <li class="text-sm font-bold text-black hover:text-primary hover:underline">
+              <router-link :to="{ name: 'MainWebPage' }">
+                <span class="material-icons-outlined"> home </span>
+              </router-link>
+            </li>
+            <li class="text-sm font-bold text-black hover:text-primary hover:underline">
+              <span class="material-icons-outlined"> notifications </span>
+            </li>
 
-                <!-- Dropdown menu -->
-                <div
-                  v-show="show"
-                  class="absolute right-0 py-2 mt-2 bg-indigo-500 rounded-md shadow-xl w-44"
-                >
-                  <router-link
-                    :to="{ name: 'Jobs' }"
-                    class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
+            <li class="text-sm font-bold text-black hover:text-primary hover:underline">
+              <span class="material-icons-outlined"> search </span>
+            </li>
+            <li class="text-sm font-bold text-black hover:text-primary hover:underline">
+              <router-link :to="{ name: 'FAQs' }">
+                <span class="material-icons-outlined"> help_outline </span>
+              </router-link>
+            </li>
+            <li
+              @click="logout"
+              class="text-sm font-bold text-black hover:text-primary hover:underline"
+            >
+              <span class="material-icons-outlined">power_settings_new </span>
+            </li>
+            <li class="text-sm font-bold text-gray-800 hover:text-blue-400">
+              <router-link :to="{ name: 'CaregiverProfile' }"
+                ><VueAvatar :username="this.displayName"
+              /></router-link>
+            </li>
+            <li>
+              <div>
+                <div class="relative">
+                  <!-- Dropdown toggle button -->
+                  <button
+                    @click="show = !show"
+                    class="flex items-center p-2 text-indigo-100 bg-indigo-600 rounded-md"
                   >
-                    Jobs
-                  </router-link>
+                    <svg
+                      class="w-5 h-5 text-indigo-100 dark:text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
 
-                  <router-link
-                    to="/"
-                    class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
+                  <!-- Dropdown menu -->
+                  <div
+                    v-show="show"
+                    class="absolute right-0 py-2 mt-2 bg-indigo-500 rounded-md shadow-xl w-44"
                   >
-                    Interviews
-                  </router-link>
-                  <router-link
-                    to="/"
-                    class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
-                  >
-                    Payment
-                  </router-link>
-                  <router-link
-                    to="/"
-                    class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
-                  >
-                    Settings
-                  </router-link>
+                    <router-link
+                      :to="{ name: 'Jobs' }"
+                      class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
+                    >
+                      Jobs
+                    </router-link>
+
+                    <router-link
+                      :to="{ name: 'Interviews' }"
+                      class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
+                    >
+                      Interviews
+                    </router-link>
+                    <router-link
+                      :to="{ name: 'Payments' }"
+                      class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
+                    >
+                      Payment
+                    </router-link>
+                    <router-link
+                      :to="{ name: 'Settings' }"
+                      class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
+                    >
+                      Settings
+                    </router-link>
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
         <!---Loader-->
         <transition name="fade" mode="out-in">
-          <div v-if="showAlert" class="relative h-0 w-9/12 mx-auto top-8 drop-shadow-xl">
+          <div v-if="showAlert" class="relative h-0 w-9/12 mx-auto drop-shadow-xl">
             <div class="sticky inset-x-0 top-0">
               <Alert
                 @click="closeAlert"
@@ -128,7 +130,7 @@
             </div>
           </div>
         </transition>
-        <Loader v-if="loading" />
+        <Loader v-if="loading || loadingJobs" />
       </nav>
     </div>
 
@@ -164,7 +166,14 @@ export default {
   },
   components: { Loader, Alert, SearchBox, VueAvatar },
   computed: {
-    ...mapGetters(["loading", "success", "error"]),
+    ...mapGetters([
+      "loading",
+      "success",
+      "error",
+      "loadingJobs",
+      "successJobs",
+      "errorJobs",
+    ]),
   },
   methods: {
     logout() {
@@ -203,6 +212,24 @@ export default {
       }
     },
     error: function (val) {
+      if (val) {
+        this.alertTitle = "Error";
+        this.typeOfAlert = "Danger";
+        this.alertMessage = val;
+        this.showAlert = true;
+        setTimeout(() => (this.showAlert = false), 5000);
+      }
+    },
+    successJobs: function (val) {
+      if (val) {
+        this.alertTitle = "Success";
+        this.typeOfAlert = "Success";
+        this.alertMessage = val;
+        this.showAlert = true;
+        setTimeout(() => (this.showAlert = false), 5000);
+      }
+    },
+    errorJobs: function (val) {
       if (val) {
         this.alertTitle = "Error";
         this.typeOfAlert = "Danger";

@@ -59,5 +59,6 @@ export default {
 .bg {
   background-image: url("/src/assets/confettiBg.svg");
   background-position: center;
+  background-repeat: repeat;
 }
 </style>

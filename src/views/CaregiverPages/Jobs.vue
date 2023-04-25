@@ -28,38 +28,36 @@
           :img_url="currentBalance.icon"
         />
       </div>
-      <div class="my-12">
-        <div
-          class="text-sm font-medium text-center mt-12 text-gray-600 dark:text-gray-400 dark:border-gray-700"
-        >
-          <ul
-            class="flex h-full p-0 m-2 list-none cursor-pointer border-b border-border border-b-3"
+      <div class="my-14">
+        <div class="my-14 bg-white p-6 shadow-md rounded-md">
+          <div
+            class="text-sm font-medium text-center text-gray-600 dark:text-gray-400 dark:border-gray-700"
           >
-            <li
-              v-for="menuItem in menuItems"
-              :key="menuItem"
-              @click="activeTab = menuItem"
-              :class="['tab_btn', { selected: activeTab === menuItem }]"
-              class="h-full first:ml-0 w-full block p-2 max-w-sm"
+            <ul
+              class="flex h-full p-0 m-2 list-none cursor-pointer border-b border-border border-b-3"
             >
-              {{ menuItem }}
-            </li>
-          </ul>
+              <li
+                v-for="menuItem in menuItems"
+                :key="menuItem"
+                @click="activeTab = menuItem"
+                :class="['tab_btn', { selected: activeTab === menuItem }]"
+                class="h-full first:ml-0 w-full block p-2 max-w-sm"
+              >
+                {{ menuItem }}
+              </li>
+            </ul>
+          </div>
+          <keep-alive>
+            <component :is="activeTab" />
+          </keep-alive>
         </div>
-        <keep-alive>
-          <component
-            :is="activeTab"
-            :selectGroups="selectGroups"
-            :selectRoleProfiles="selectRoleProfiles"
-          />
-        </keep-alive>
       </div>
     </div>
   </main>
 </template>
 
 <script>
-import DashboardCards from "../../components/DashboardCards.vue";
+import DashboardCards from "../../components/cards/DashboardCards.vue";
 import CompletedJobs from "../../components/menuItems/CompletedJobs.vue";
 import InProgress from "../../components/menuItems/InProgress.vue";
 import JobOffers from "../../components/menuItems/JobOffers.vue";

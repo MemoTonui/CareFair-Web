@@ -145,11 +145,13 @@ export default {
   methods: {
     ...mapActions(["addEducation"]),
     handleCreateEducation() {
+      const formattedStartDate = new Date().valueOf(this.start_date);
+      const formattedEndDate = new Date().valueOf(this.end_date);
       this.addEducation({
         school: this.name,
         degree: this.degree,
-        startDate: this.start_date,
-        endDate: this.end_date,
+        startDate: formattedStartDate,
+        endDate: formattedEndDate,
       });
       this.name = "";
       this.degree = "";
@@ -158,13 +160,15 @@ export default {
       this.closeModal();
     },
     handleEditEducation() {
+      const formattedStartDate = new Date().valueOf(this.start_date);
+      const formattedEndDate = new Date().valueOf(this.end_date);
       this.editUserProfile({
         education: [
           {
             school: this.name,
             degree: this.degree,
-            startDate: this.start_date,
-            endDate: this.end_date,
+            startDate: formattedStartDate,
+            endDate: formattedEndDate,
           },
         ],
       });

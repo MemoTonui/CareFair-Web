@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%" class="pt-16 fixed">
+  <div style="width: 100%" class="fixed">
     <LvProgressBar mode="indeterminate" color="#0093B8" />
   </div>
 </template>

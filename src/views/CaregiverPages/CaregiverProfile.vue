@@ -23,27 +23,27 @@
             {{ userInfo.about }}
           </p>
           <ul class="m-3 grid-cols-2 grid">
-            <li class="flex" v-if="userInfo.canHelpInEducation">
+            <li class="flex my-1" v-if="userInfo.canHelpInEducation">
               <span class="material-icons-outlined mr-1 text-sm"> check </span>
               <span>Can provide educational assistance</span>
             </li>
-            <li class="flex" v-if="userInfo.ownCar">
+            <li class="flex my-1" v-if="userInfo.ownCar">
               <span class="material-icons-outlined mr-1 text-sm"> check </span>
               <span>Sitter owns a car</span>
             </li>
-            <li class="flex" v-if="userInfo.availableAllDay">
+            <li class="flex my-1" v-if="userInfo.availableAllDay">
               <span class="material-icons-outlined mr-1 text-sm"> check </span>
               <span>Generally available mornings, afternoons, evenings, late-nights</span>
             </li>
-            <li class="flex" v-if="userInfo.availableBeforeAndAfterSchool">
+            <li class="flex my-1" v-if="userInfo.availableBeforeAndAfterSchool">
               <span class="material-icons-outlined mr-1 text-sm"> check </span>
               <span>Before and after school care availability</span>
             </li>
-            <li class="flex" v-if="userInfo.availableBeforeAndAfterSchool">
+            <li class="flex my-1" v-if="userInfo.availableBeforeAndAfterSchool">
               <span class="material-icons-outlined mr-1 text-sm"> check </span>
               <span>Before and after school care availability</span>
             </li>
-            <li class="flex" v-if="userInfo.specialNeeds">
+            <li class="flex my-1" v-if="userInfo.specialNeeds">
               <span class="material-icons-outlined mr-1 text-sm"> check </span>
               <span>You have experience with special needs individuals</span>
             </li>
@@ -192,13 +192,13 @@
 import { mapActions, mapGetters } from "vuex";
 import { ref, watch } from "vue";
 import moment from "moment";
-import ActivityCard from "../../components/ActivityCard.vue";
-import EventCard from "../../components/EventCard.vue";
-import ExperienceCard from "../../components/ExperienceCard.vue";
+import ActivityCard from "../../components/cards/ActivityCard.vue";
+import EventCard from "../../components/cards/EventCard.vue";
+import ExperienceCard from "../../components/cards/ExperienceCard.vue";
 import EducationModal from "../../components/modals/EducationModal.vue";
 import WorkExperienceModal from "../../components/modals/WorkExperienceModal.vue";
 import ProfileSummaryPage from "../../components/ProfileSummaryPage.vue";
-import ReviewsCard from "../../components/ReviewsCard.vue";
+import ReviewsCard from "../../components/cards/ReviewsCard.vue";
 export default {
   components: {
     ProfileSummaryPage,
@@ -239,12 +239,22 @@ export default {
   created() {
     this.getUserByFirebase();
   },
+  /*updated() {
+    this.getUserByFirebase();
+  },*/
   computed: {
     ...mapGetters(["userInfo"]),
   },
   methods: {
     ...mapActions(["getUserByFirebase"]),
   },
+  /* watch: {
+    userInfo: function (val) {
+      if (val) {
+        this.userInfo = this.getUserByFirebase();
+      }
+    },
+  },*/
   setup() {
     const showEducationModal = ref(false);
     const showWorkExperienceModal = ref(false);

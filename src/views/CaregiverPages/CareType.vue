@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import CareTypeCard from "../../components/CareTypeCard.vue";
+import CareTypeCard from "../../components/cards/CareTypeCard.vue";
 export default {
   components: { CareTypeCard },
 };

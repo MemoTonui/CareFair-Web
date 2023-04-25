@@ -32,7 +32,8 @@ module.exports = {
         'dark-pink': '#BA095B',
         'white':"#FFF",
         'black':'#001220',
-        'border':'#E0E0E0'
+        'border':'#E0E0E0',
+        'light':'#828282'
       },
       boxShadow: {
         blue: "0 0 3px #4285f4",

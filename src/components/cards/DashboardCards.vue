@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-md shadow-lg">
+  <div class="rounded-md shadow-md p-2">
     <div>
       <div class="flex justify-between">
         <div class="p-2">

@@ -1,14 +1,12 @@
 import { createStore } from 'vuex';
-import createUser from '../store/modules/user.js';
-import editUserProfile from '../store/modules/user.js'
-import getUserByFirebase from '../store/modules/user.js'
+import user from '../store/modules/user.js';
+import jobs from '../store/modules/jobs.js'
 
 
 const store = createStore({
   modules:{
-    createUser,
-    editUserProfile,
-    getUserByFirebase
+    user,
+    jobs,
   }
 })
 

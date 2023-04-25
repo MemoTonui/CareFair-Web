@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import Rating from "./Rating.vue";
+import Rating from "/src/components/Rating.vue";
 export default {
   components: { Rating },
   name: "ReviewsCard",

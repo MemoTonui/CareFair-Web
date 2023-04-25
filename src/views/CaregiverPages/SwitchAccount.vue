@@ -94,7 +94,7 @@
 import { mapActions, mapState, mapGetters } from "vuex";
 import router from "/src/router";
 import ActionButton from "../../components/ActionButton.vue";
-import AccountCard from "/src/components/AccountCard.vue";
+import AccountCard from "/src/components/cards/AccountCard.vue";
 export default {
   components: { AccountCard, ActionButton },
   data() {
