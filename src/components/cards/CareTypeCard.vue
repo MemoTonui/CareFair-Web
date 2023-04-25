@@ -67,7 +67,7 @@
         <div class="flex justify-between mt-5">
           <div></div>
           <div>
-            <ActionButton text="Start" @click.prevent="getCareType" />
+            <action-button text="Start" @click.prevent="getCareType" />
           </div>
         </div>
       </form>
@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import ActionButton from "./ActionButton.vue";
+import ActionButton from "../ActionButton.vue";
 import router from "/src/router";
 
 export default {
