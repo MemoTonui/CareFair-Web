@@ -5,7 +5,7 @@
         class="xl:ml-20 xl:w-8/12 lg:w-8/12 md:w-8/12 sm:w-12/12 mb-12 md:mb-0 justify-center items-center flex"
       >
         <div class="md:p-12 md:mx-2">
-          <div class="bg-white shadow-lg rounded-lg py-10 md:py-10 md:px-10 px-3 m-5">
+          <div class="bg-white shadow-md rounded-lg py-10 md:py-10 md:px-10 px-3 m-5">
             <div class="container m-auto">
               <div>
                 <h2 class="text-3xl font-bold text-black md:text-4xl mt-1 mb-4 pb-1">
@@ -35,11 +35,18 @@
                   </div>
                 </div>
               </div>
-              <div v-else class="text-5xl font-bold text-center shadow-lg p-10">
+              <div v-else class="text-xl font-semibold text-center p-10">
+                <div class="justify-center flex items-center">
+                  <img src="/src/assets/balloons.png" class="w-24" alt="Yaay" />
+                </div>
                 <span
-                  ><span class="text-green-500">Thank you for submitting the form.</span>
+                  ><span class="my-3 text-green-500"
+                    >Your details were successfully added !</span
+                  >
                   <br /><br />
-                  We will get back to you soon.</span
+                </span>
+                <a class="text-sm text-primary underline cursor-pointer"
+                  >Click here to view your profile</a
                 >
               </div>
             </div>

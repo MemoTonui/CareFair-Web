@@ -54,6 +54,7 @@ export default{
     errorJobs: (state) => state.errorJobs,
     successJobs: (state) => state.successJobs,
     jobs: (state) => state.jobs,
+    jobOffers: (state) => state.jobOffers,
     jobDetails : (state) => state.jobDetails,
     jobOfferDetails : (state) => state.jobOfferDetails,
     jobInProgress:(state) => state.jobInProgress,

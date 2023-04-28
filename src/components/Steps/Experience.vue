@@ -190,8 +190,17 @@ export default {
       years: 0,
     };
   },
+  created() {
+    this.getUserByFirebase();
+    if (this.userInfo) {
+      this.years = this.userInfo.workExperience;
+    }
+  },
+  computed: {
+    ...mapGetters(["userInfo"]),
+  },
   methods: {
-    ...mapActions(["editUserProfile"]),
+    ...mapActions(["editUserProfile", "getUserByFirebase"]),
     changeUserProfileAccount() {
       this.editUserProfile({
         workExperience: this.years,

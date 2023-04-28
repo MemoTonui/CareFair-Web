@@ -87,8 +87,17 @@ export default {
       imageData: null,
     };
   },
+  created() {
+    this.getUserByFirebase();
+    if (this.userInfo) {
+      this.img1 = this.userInfo.profileImage;
+    }
+  },
+  computed: {
+    ...mapGetters(["userInfo"]),
+  },
   methods: {
-    ...mapActions(["editUserProfile"]),
+    ...mapActions(["editUserProfile", "getUserByFirebase"]),
 
     loaded() {
       this.isLoaded = true;

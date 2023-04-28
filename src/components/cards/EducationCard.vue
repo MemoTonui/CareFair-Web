@@ -19,7 +19,7 @@
       </div>
       <div class="text-sm">
         <span
-          @click="handleRemoveWorkExperience(id)"
+          @click="handleRemoveEducation(id)"
           class="material-icons-outlined bg-dark-pink bg-opacity-20 text-dark-pink rounded-full p-1 text-sm"
         >
           delete
@@ -33,7 +33,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "ExperienceCard",
+  name: "EducationCard",
   props: {
     img: {
       type: String,
@@ -61,11 +61,11 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["removeWorkExperience"]),
+    ...mapActions(["removeEducation"]),
 
-    handleRemoveWorkExperience(experienceId) {
-      this.removeWorkExperience({
-        previousWorkExperience: experienceId,
+    handleRemoveEducation(educationId) {
+      this.removeEducation({
+        education: educationId,
       });
     },
   },

@@ -3,10 +3,14 @@
     <div class="flex justify-between space-x-4 text-sm">
       <div>
         <div class="flex">
-          <img class="w-10 h-10 rounded-full mr-2" :src="img" alt="" />
+          <img
+            class="w-10 h-10 rounded-full mr-2"
+            :src="userIdInfo.profileImage"
+            alt=""
+          />
           <div class="space-y-1 font-semibold dark:text-white">
             <p>
-              {{ name }}
+              {{ userIdInfo.firstName }} {{ userIdInfo.lastName }}
               <time
                 datetime="2014-08-16 19:00"
                 class="block text-xs my-2 text-gray-500 dark:text-gray-400"
@@ -28,6 +32,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import Rating from "/src/components/Rating.vue";
 export default {
   components: { Rating },
@@ -52,6 +57,26 @@ export default {
     rating: {
       type: Number,
       required: true,
+    },
+    id: {
+      type: String,
+      required: true,
+    },
+  },
+
+  created() {
+    this.getUserDetails(this.id);
+  },
+
+  computed: {
+    ...mapGetters(["userIdInfo"]),
+  },
+  methods: {
+    ...mapActions(["getUserById"]),
+    getUserDetails(reviewerId) {
+      this.getUserById({
+        id: reviewerId,
+      });
     },
   },
 };

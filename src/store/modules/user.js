@@ -14,6 +14,10 @@ export const UPDATE_USER_PROFILE ="UPDATE_USER_PROFILE";
 export const UPDATE_USER_PROFILE_SUCCESS ="UPDATE_USER_PROFILE_SUCCESS";
 export const UPDATE_USER_PROFILE_FAIL ="UPDATE_USER_PROFILE_FAIL";
 
+export const GET_USER_BY_ID_REQUEST ="GET_USER_BY_ID_REQUEST";
+export const GET_USER_BY_ID_SUCCESS ="GET_USER_BY_ID_SUCCESS";
+export const GET_USER_BY_ID_FAIL ="GET_USER_BY_ID_FAIL";
+
 export const GET_USER_BY_FIREBASE ="GET_USER_BY_FIREBASE";
 export const GET_USER_BY_FIREBASE_SUCCESS ="GET_USER_BY_FIREBASE_SUCCESS";
 export const GET_USER_BY_FIREBASE_FAIL ="GET_USER_BY_FIREBASE_FAIL";
@@ -42,11 +46,13 @@ export default{
   success: "",
   error: "",
   userInfo: [],
+  userIdInfo: [],
   isLoggedIn:false
 
   }),
   getters:{
     userInfo: (state) => state.userInfo,
+    userIdInfo: (state) => state.userIdInfo,
   success: (state) => state.success,
   loading: (state) => state.loading,
   error: (state) => state.error,
@@ -97,6 +103,22 @@ export default{
       state.loading = false;
       state.error = error;
     },
+
+    /**GET USER BY ID */
+    [GET_USER_BY_ID_REQUEST](state) {
+      state.loading = true;
+      state.error = "";
+    },
+    [GET_USER_BY_ID_SUCCESS](state, payload) {
+      state.loading = false;
+      state.userIdInfo = payload;
+      state.success = payload.status;
+    },
+    [GET_USER_BY_ID_FAIL](state, error) {
+      state.loading = false;
+      state.error = error;
+    },
+
 
     /**GET USER BY FIREBASE ID */
     [GET_USER_BY_FIREBASE](state) {
@@ -268,9 +290,48 @@ export default{
 },
 
 
+//Get UserBy ID
+async getUserById({ commit }, payload) {
+  commit(GET_USER_BY_ID_REQUEST);
+  //var userId = localStorage.getItem("firebase");
+
+  var config = {
+    method: "get",
+    url: `${baseUrl}users/id/${payload.id}`,
+    headers: {
+      "Content-Type": "application/json",
+      "x-requested-with": "XMLHttpRequest",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+    data: payload,
+  };
+  console.log("Get user By ID", config);
+
+  axios(config)
+    .then(function (response) {
+      console.log("Get user By ID", response.data.message._id);
+      console.log(response.data)
+      commit(GET_USER_BY_ID_SUCCESS, response.data.message);
+      localStorage.setItem("id",response.data.message._id);
+    })
+    .catch(function (error) {
+      console.log(error);
+      if (
+        error.response.status == 401 ||
+        error.response.data.message == "Unauthenticated."
+      ) {
+        router.replace({ name: "LogIn" });
+      } else {
+        commit(GET_USER_BY_ID_FAIL, error.response.data);
+      }
+    });
+},
+
+
+
 
     //Update User Profile
-    async editUserProfile({ commit }, payload) {
+    async editUserProfile({ commit,dispatch }, payload) {
       commit(UPDATE_USER_PROFILE);
       var userId = localStorage.getItem("id");
   
@@ -290,6 +351,8 @@ export default{
         .then(function (response) {
           console.log("edit current user profile", response);
           commit(UPDATE_USER_PROFILE_SUCCESS, response.data.message);
+          dispatch("getUserByFirebase");
+
         })
         .catch(function (error) {
           console.log(error);
@@ -307,7 +370,7 @@ export default{
 
 
      //Add User Work Experience
-     async addWorkExperience({ commit }, payload) {
+     async addWorkExperience({ commit,dispatch }, payload) {
       commit(ADD_WORK_EXPERIENCE_REQUEST);
       var userId = localStorage.getItem("id");
   
@@ -327,6 +390,8 @@ export default{
         .then(function (response) {
           console.log("work experience", response);
           commit(ADD_WORK_EXPERIENCE_SUCCESS, response.data.message);
+          dispatch("getUserByFirebase");
+
         })
         .catch(function (error) {
           console.log(error);
@@ -343,13 +408,13 @@ export default{
     },
 
     //Remove User Work Experience
-    async removeWorkExperience({ commit }, payload) {
+    async removeWorkExperience({ commit,dispatch }, payload) {
       commit(REMOVE_WORK_EXPERIENCE_REQUEST);
       var userId = localStorage.getItem("id");
   
       var config = {
         method: "put",
-        url: `${baseUrl}users/addWork/${userId}`,
+        url: `${baseUrl}users/removeWork/${userId}`,
         headers: {
           "Content-Type": "application/json",
           "x-requested-with": "XMLHttpRequest",
@@ -363,6 +428,8 @@ export default{
         .then(function (response) {
           console.log("work experience", response);
           commit(REMOVE_WORK_EXPERIENCE_SUCCESS, response.data.message);
+          dispatch("getUserByFirebase");
+
         })
         .catch(function (error) {
           console.log(error);
@@ -380,7 +447,7 @@ export default{
 
 
     //Add User Education
-    async addEducation({ commit }, payload) {
+    async addEducation({ commit,dispatch }, payload) {
       commit(ADD_EDUCATION_REQUEST);
       var userId = localStorage.getItem("id");
   
@@ -400,6 +467,8 @@ export default{
         .then(function (response) {
           console.log("education", response);
           commit(ADD_EDUCATION_SUCCESS, response.data.message);
+          dispatch("getUserByFirebase");
+
         })
         .catch(function (error) {
           console.log(error);
@@ -414,6 +483,45 @@ export default{
           }
         });
     },
+
+    //Remove User Work Experience
+    async removeEducation({ commit,dispatch }, payload) {
+      commit(REMOVE_EDUCATION_REQUEST);
+      var userId = localStorage.getItem("id");
+  
+      var config = {
+        method: "put",
+        url: `${baseUrl}users/removeEducation/${userId}`,
+        headers: {
+          "Content-Type": "application/json",
+          "x-requested-with": "XMLHttpRequest",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        data: payload,
+      };
+      console.log("remove education", config);
+  
+      axios(config)
+        .then(function (response) {
+          console.log("education", response);
+          commit(REMOVE_EDUCATION_SUCCESS, response.data.message);
+          dispatch("getUserByFirebase");
+
+        })
+        .catch(function (error) {
+          console.log(error);
+          if (
+            error.response.status == 401 ||
+            error.response.data.message == "Unauthenticated."
+          ) { 
+           
+            router.replace({ name: "LogIn" });
+          } else {
+            commit(REMOVE_EDUCATION_FAIL, error.response.data);
+          }
+        });
+    },
+
     
   },
 }

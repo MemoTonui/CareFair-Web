@@ -46,22 +46,24 @@
           >
             calendar_today
           </span>
-          <span
+          <!--span
             class="bg-pink bg-opacity-20 rounded-full m-1 material-icons-outlined p-2 text-pink"
           >
             favorite_border
-          </span>
+          </!--span-->
         </div>
         <div class="my-3">
           <Rating :value="rating" />
         </div>
         <div class="my-3">
-          <button
-            href="#"
-            class="p-2 px-6 pt-2 text-white text-sm bg-pink rounded-full baseline hover:border-2 hover:text-pink hover:bg-white"
-          >
-            Edit Profile
-          </button>
+          <router-link :to="{ name: 'CaregiverAccountSetupProcess' }">
+            <button
+              href="#"
+              class="p-2 px-6 pt-2 text-white text-sm bg-pink rounded-full baseline hover:border-2 hover:text-pink hover:bg-white"
+            >
+              Edit Profile
+            </button>
+          </router-link>
         </div>
       </div>
     </div>

@@ -190,8 +190,17 @@ export default {
       rate: 0,
     };
   },
+  created() {
+    this.getUserByFirebase();
+    if (this.userInfo) {
+      this.rate = this.userInfo.chargePerHour;
+    }
+  },
+  computed: {
+    ...mapGetters(["userInfo"]),
+  },
   methods: {
-    ...mapActions(["editUserProfile"]),
+    ...mapActions(["editUserProfile", "getUserByFirebase"]),
     changeUserProfileAccount() {
       this.editUserProfile({
         chargePerHour: this.rate,

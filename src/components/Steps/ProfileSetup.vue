@@ -161,11 +161,11 @@
           <p class="font-semibold my-2">Availability</p>
           <p class="text-xs my-2">Check the days that you are available.</p>
           <div class="my-2">
-            <Availability
+            <!--Availability
               :options="daysOfTheWeek"
               v-model:value="selectedDays"
               class="py-3"
-            />
+            /-->
           </div>
         </div>
 
@@ -217,8 +217,6 @@ export default {
     TextArea,
     CheckBoxList,
     Availability,
-    caption: "",
-    bio: "",
   },
   data() {
     return {
@@ -230,6 +228,8 @@ export default {
       nannyShare: false,
       specialNeeds: false,
       selectedDays: [],
+      caption: "",
+      bio: "",
       daysOfTheWeek: [
         { label: "S", value: "Sunday" },
         { label: "M", value: "Monday" },
@@ -259,8 +259,24 @@ export default {
       ],
     };
   },
+  created() {
+    this.getUserByFirebase();
+    if (this.userInfo) {
+      this.bio = this.userInfo.about;
+      this.caption = this.userInfo.shortCaption;
+      this.canHelpInEducation = this.userInfo.canHelpInEducation;
+      this.ownsCar = this.userInfo.ownsCar;
+      this.selectedDays = this.userInfo.availableDays;
+      this.availableAllDay = this.userInfo.availableAllDay;
+      this.availableBeforeAndAfterSchool = this.userInfo.availableBeforeAndAfterSchool;
+      this.specialNeeds = this.userInfo.specialNeeds;
+    }
+  },
+  computed: {
+    ...mapGetters(["userInfo"]),
+  },
   methods: {
-    ...mapActions(["editUserProfile"]),
+    ...mapActions(["editUserProfile", "getUserByFirebase"]),
     changeUserProfileAccount() {
       this.selectedOptions.forEach((option) => {
         if (option == "canHelpInEducation") {

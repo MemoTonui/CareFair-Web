@@ -11,40 +11,8 @@
         <p>{{ jobDescription }}</p>
       </div>
     </div>
-    <div class="my-5">
-      <h5 class="my-1 font-semibold">Summary</h5>
-      <p class="my-1">Payment Summary</p>
-      <div class="mt-5">
-        <div class="border-b border-border flex justify-between my-2 p-2">
-          <div><p>Hourly Rate</p></div>
-          <div>
-            <p>{{ rate }}</p>
-          </div>
-        </div>
-        <div class="border-b border-border flex justify-between my-2 p-2">
-          <div><p>Market Place Fee</p></div>
-          <div>
-            <p>{{ marketPlaceRate }}</p>
-          </div>
-        </div>
-        <div class="border-b border-border flex justify-between my-2 p-2">
-          <div><p>Max Amount of Hours</p></div>
-          <div>
-            <p>{{ maxHours }}</p>
-          </div>
-        </div>
-        <div class="border-b border-border flex justify-between my-2 p-2">
-          <div><p>Estimated weekly total</p></div>
-          <div>
-            <p>{{ weeklyTotal }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <h5 class="font-semibold my-2">Contract Terms</h5>
-      <p>Please preview your contract terms before sending the offer</p>
 
+    <div>
       <div class="flex justify-between mt-5">
         <div></div>
         <div>

@@ -64,11 +64,12 @@
             <div v-else>
               <div v-for="review in userInfo.rating" :key="review.name" class="my-10">
                 <reviews-card
-                  :date="review.date"
+                  :date="new Date(review.date).toDateString()"
                   :img="review.img"
                   :name="review.name"
                   :rating="review.rating"
                   :review="review.feedback"
+                  :id="review.feedbackGiver"
                 />
               </div>
             </div>
@@ -90,7 +91,6 @@
             </div>
           </div>
           <div v-if="userInfo.previousWorkExperience">
-            {{ userInfo.previousWorkExperience }}
             <div v-if="userInfo.previousWorkExperience.length <= 0">
               <div
                 class="p-4 flex justify-center text-sm items-center bg-light-green bg-opacity-10 text-light-green"
@@ -105,8 +105,10 @@
               >
                 <experience-card
                   :title="experience.title"
-                  :description="experience.startDate"
-                  :description2="experience.location"
+                  :description="experience.location"
+                  :startDate="new Date(experience.startDate).toDateString()"
+                  :endDate="new Date(experience.endDate).toDateString()"
+                  :id="experience._id"
                 />
               </div>
             </div>
@@ -137,11 +139,13 @@
             </div>
             <div>
               <div v-for="ed in userInfo.education" :key="ed.title">
-                <experience-card
+                <education-card
                   :img="ed.img"
                   :title="ed.school"
                   :description="ed.degree"
-                  :description2="ed.startDate"
+                  :startDate="new Date(ed.startDate).toDateString()"
+                  :endDate="new Date(ed.endDate).toDateString()"
+                  :id="ed._id"
                 />
               </div>
             </div>
@@ -199,6 +203,7 @@ import EducationModal from "../../components/modals/EducationModal.vue";
 import WorkExperienceModal from "../../components/modals/WorkExperienceModal.vue";
 import ProfileSummaryPage from "../../components/ProfileSummaryPage.vue";
 import ReviewsCard from "../../components/cards/ReviewsCard.vue";
+import EducationCard from "../../components/cards/EducationCard.vue";
 export default {
   components: {
     ProfileSummaryPage,
@@ -208,9 +213,11 @@ export default {
     ActivityCard,
     EducationModal,
     WorkExperienceModal,
+    EducationCard,
   },
   data() {
     return {
+      generalRating: 0,
       activities: [
         {
           title: "Jane Doe’s Care Giver Event",

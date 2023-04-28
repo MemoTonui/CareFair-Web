@@ -231,8 +231,21 @@ export default {
       country: "",
     };
   },
+  created() {
+    this.getUserByFirebase();
+    if (this.userInfo) {
+      this.address = this.userInfo.permanentAddress;
+      this.country = this.userInfo.country;
+      this.state = this.userInfo.state;
+      this.city = this.userInfo.city;
+      this.zip_code = this.userInfo.zipCode;
+    }
+  },
+  computed: {
+    ...mapGetters(["userInfo"]),
+  },
   methods: {
-    ...mapActions(["editUserProfile"]),
+    ...mapActions(["editUserProfile", "getUserByFirebase"]),
     changeUserProfileAccount() {
       this.editUserProfile({
         permanentAddress: this.address,

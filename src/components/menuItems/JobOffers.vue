@@ -51,7 +51,7 @@ export default {
     this.getJobOffers();
   },
   computed: {
-    ...mapGetters(["jobOfferDetails"]),
+    ...mapGetters(["jobOffers", "jobOfferDetails"]),
   },
   methods: {
     ...mapActions(["getJobOffers", "getJobOfferById"]),

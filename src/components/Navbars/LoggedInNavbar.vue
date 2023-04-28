@@ -6,7 +6,10 @@
           class="px-10 mx-auto md:flex md:justify-between cursor-pointer md:items-center"
         >
           <div class="flex items-center justify-between">
-            <router-link to="/" class="text-4xl md:text-4xl">
+            <router-link
+              to="/"
+              class="text-xl font-bold text-gray-800 md:text-2xl hover:text-blue-400"
+            >
               <img class="w-32 h-20" :src="logo" />
             </router-link>
             <!-- Mobile menu button -->
@@ -53,10 +56,21 @@
             >
               <span class="material-icons-outlined">power_settings_new </span>
             </li>
-            <li class="text-sm font-bold text-gray-800 hover:text-blue-400">
-              <router-link :to="{ name: 'CaregiverProfile' }"
-                ><VueAvatar :username="this.displayName"
-              /></router-link>
+            <li class="">
+              <div v-if="userInfo.profileImage == ''">
+                <router-link :to="{ name: 'CaregiverProfile' }"
+                  ><VueAvatar :username="this.displayName"
+                /></router-link>
+              </div>
+              <div v-else class="w-8 h-8 flex">
+                <router-link :to="{ name: 'CaregiverProfile' }">
+                  <img
+                    class="rounded-full"
+                    :src="userInfo.profileImage"
+                    alt="Rounded avatar"
+                  />
+                </router-link>
+              </div>
             </li>
             <li>
               <div>
@@ -130,7 +144,7 @@
             </div>
           </div>
         </transition>
-        <Loader v-if="loading || loadingJobs" />
+        <Loader v-if="loading || loadingJobs || loadingInterviews" />
       </nav>
     </div>
 
@@ -167,15 +181,25 @@ export default {
   components: { Loader, Alert, SearchBox, VueAvatar },
   computed: {
     ...mapGetters([
+      "userInfo",
       "loading",
       "success",
       "error",
       "loadingJobs",
       "successJobs",
       "errorJobs",
+      "loadingInterviews",
+      "successInterviews",
+      "errorInterviews",
     ]),
   },
+  created() {
+    this.getUserByFirebase();
+  },
+
   methods: {
+    ...mapActions(["getUserByFirebase"]),
+
     logout() {
       firebase.auth().signOut();
       //localStorage.setItem("isLoggedIn", false);
@@ -230,6 +254,24 @@ export default {
       }
     },
     errorJobs: function (val) {
+      if (val) {
+        this.alertTitle = "Error";
+        this.typeOfAlert = "Danger";
+        this.alertMessage = val;
+        this.showAlert = true;
+        setTimeout(() => (this.showAlert = false), 5000);
+      }
+    },
+    successInterviews: function (val) {
+      if (val) {
+        this.alertTitle = "Success";
+        this.typeOfAlert = "Success";
+        this.alertMessage = val;
+        this.showAlert = true;
+        setTimeout(() => (this.showAlert = false), 5000);
+      }
+    },
+    errorInterviews: function (val) {
       if (val) {
         this.alertTitle = "Error";
         this.typeOfAlert = "Danger";
