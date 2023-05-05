@@ -51,6 +51,15 @@ export default {
     return {
       skillset: [],
       childCare: [],
+      educationSupportNanny: false,
+      laborDoula: false,
+      nannyEducatorTutor: false,
+      nannyHouseManager: false,
+      newbornCareSpecialist: false,
+      postPartumDoula: false,
+      traditionalNanny: false,
+      spotter: false,
+      travelingNanny: false,
       selectSkills: [
         { label: "Traditional Nanny", value: "traditionalNanny" },
         { label: "Nanny House Manager", value: "nannyHouseManager" },
@@ -64,17 +73,55 @@ export default {
       ],
     };
   },
+
   methods: {
     ...mapActions(["editUserProfile"]),
     changeUserProfileAccount() {
       this.skillset.forEach((skill) => {
-        this.childCare.push(skill);
+        if (skill == "educationSupportNanny") {
+          this.educationSupportNanny = true;
+        }
+        if (skill == "laborDoula") {
+          this.laborDoula = true;
+        }
+        if (skill == "nannyEducatorTutor") {
+          this.nannyEducatorTutor = true;
+        }
+        if (skill == "nannyHouseManager") {
+          this.nannyHouseManager = true;
+        }
+        if (skill == "newbornCareSpecialist") {
+          this.newbornCareSpecialist = true;
+        }
+        if (skill == "postPartumDoula") {
+          this.postPartumDoula = true;
+        }
+        if (skill == "spotter") {
+          this.spotter = true;
+        }
+        if (skill == "traditionalNanny") {
+          this.traditionalNanny = true;
+        }
+        if (skill == "travelingNanny") {
+          this.travelingNanny = true;
+        }
       });
       this.editUserProfile({
         careType: "childCare",
-        skillset: this.childCare,
+        skillset: {
+          childCare: {
+            educationSupportNanny: this.educationSupportNanny,
+            laborDoula: this.laborDoula,
+            nannyEducatorTutor: this.nannyEducatorTutor,
+            nannyHouseManager: this.nannyHouseManager,
+            newbornCareSpecialist: this.newbornCareSpecialist,
+            postPartumDoula: this.postPartumDoula,
+            spotter: this.spotter,
+            traditionalNanny: this.traditionalNanny,
+            travelingNanny: this.travelingNanny,
+          },
+        },
       });
-      console.log(this.childCare);
       router.push({ name: "CaregiverAccountSetupProcess" });
     },
   },

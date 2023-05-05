@@ -14,7 +14,7 @@
               Child Care
             </h5>
           </a>
-          <p class="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400">
+          <p class="mb-3 font-normal text-sm text-light dark:text-gray-400">
             Child care is quality care and supervision provided to children in a safe and
             nurturing environment. Child care providers promote children's development
             through fun and age-appropriate activities, while ensuring their safety
@@ -51,7 +51,7 @@
               Pet Care
             </h5>
           </a>
-          <p class="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400">
+          <p class="mb-3 font-normal text-sm text-light dark:text-gray-400">
             Pet care is the ultimate service to keep your furry friends healthy, happy,
             and loved. From grooming to medical care, pet care providers offer
             personalized assistance to ensure your pet's well-being and strengthen your
@@ -89,7 +89,7 @@
               Senior Care
             </h5>
           </a>
-          <p class="mb-3 font-normal text-sm text-gray-500 dark:text-gray-400">
+          <p class="mb-3 font-normal text-sm text-light dark:text-gray-400">
             Senior care is professional assistance and emotional support provided to
             elderly individuals to help with daily tasks, medical needs, and maintain
             their independence and dignity as they age.

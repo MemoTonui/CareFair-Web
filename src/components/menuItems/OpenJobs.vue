@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="col-span-3">
-        <div>
+        <div v-if="Object.keys(jobDetails).length !== 0">
           <job-details
             :careType="jobDetails.careType"
             :city="jobDetails.city"
@@ -26,6 +26,9 @@
             :jobTitle="jobDetails.title"
             :job_id="jobDetails._id"
           />
+        </div>
+        <div v-else class="flex justify-center items-center p-10 text-border text-md">
+          CLICK ON A JOB TO VIEW THE DETAILS
         </div>
       </div>
     </div>
@@ -61,13 +64,13 @@ export default {
       });
     },
   },
-  watch: {
+  /*watch: {
     jobs: function (val) {
       this.getJobById({
         jobId: val.id,
       });
     },
-  },
+  },*/
 };
 </script>
 

@@ -21,7 +21,7 @@
           <span class="text-primary h1">Professional </span>
           care for your loved ones.
         </h1>
-        <p class="max-w-md text-black md:text-left">
+        <p class="max-w-md text-light md:text-left">
           Take the first step towards providing your loved one with compassionate and
           professional care.
         </p>

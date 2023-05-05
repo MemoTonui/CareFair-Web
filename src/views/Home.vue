@@ -30,3 +30,4 @@ function saveName() {
   router.push("/about");
 }
 </script>
+<style></style>

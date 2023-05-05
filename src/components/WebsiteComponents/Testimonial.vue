@@ -16,7 +16,7 @@
         />
       </svg>
       <blockquote>
-        <p class="text-sm text-black dark:text-white">
+        <p class="text-sm text-light dark:text-white">
           {{ testimonial }}
         </p>
       </blockquote>
@@ -27,7 +27,7 @@
           alt="profile picture"
         />
         <div class="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
-          <cite class="pr-3 font-medium text-black dark:text-white">{{ name }}</cite>
+          <cite class="pr-3 font-medium text-light dark:text-white">{{ name }}</cite>
         </div>
       </figcaption>
     </figure>

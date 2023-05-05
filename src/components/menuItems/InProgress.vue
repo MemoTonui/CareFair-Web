@@ -14,7 +14,14 @@ export default {
   components: { InProgressTable },
   data() {
     return {
-      tableHead: ["Job Title", "Rates Per Hour", "location", "start date", "stop date"],
+      tableHead: [
+        "Job Title",
+        "Rates Per Hour",
+        "location",
+        "start date",
+        "stop date",
+        "Actions",
+      ],
     };
   },
   created() {

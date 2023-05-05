@@ -16,6 +16,7 @@
     "lightvue": "^1.5.1",
     "material-icons": "^1.13.2",
     "moment": "^2.29.4",
+    "qalendar": "^2.5.0",
     "vue": "^3.2.45",
     "vue-avatar": "^2.3.3",
     "vue-axios": "^3.5.2",

@@ -9,7 +9,7 @@
           <h5 class="text-secondary uppercase font-semibold my-2">
             {{ firstName }} {{ lastName }}
           </h5>
-          <p class="uppercase">{{ role }}</p>
+          <p class="uppercase">{{ careType }} {{ role }}</p>
         </div>
         <div class="my-3">
           <h5 class="text-secondary uppercase font-semibold my-2">BIO</h5>
@@ -39,13 +39,20 @@
         </div>
       </div>
       <div></div>
-      <div class="flex flex-col justify-end items-end">
-        <div class="cursor-pointer my-3">
-          <span
-            class="bg-primary bg-opacity-20 rounded-full m-1 material-icons-outlined p-2 text-primary"
-          >
-            calendar_today
-          </span>
+      <div class="flex flex-col justify-start items-end">
+        <div class="cursor-pointer my-3 flex">
+          <div>
+            <router-link :to="{ name: 'Calendar' }">
+              <span
+                class="bg-primary bg-opacity-20 rounded-full material-icons-outlined p-2 text-primary"
+              >
+                calendar_today
+              </span>
+            </router-link>
+          </div>
+          <div v-if="verified">
+            <img src="/src/assets/verification_badge.gif" class="h-10 p-1" />
+          </div>
           <!--span
             class="bg-pink bg-opacity-20 rounded-full m-1 material-icons-outlined p-2 text-pink"
           >
@@ -54,6 +61,14 @@
         </div>
         <div class="my-3">
           <Rating :value="rating" />
+        </div>
+        <div class="my-3">
+          <span
+            @click="createCheck()"
+            v-if="verified == false"
+            class="text-xs cursor-pointer text-left text-primary underline"
+            >Request Background Check</span
+          >
         </div>
         <div class="my-3">
           <router-link :to="{ name: 'CaregiverAccountSetupProcess' }">
@@ -72,12 +87,17 @@
 
 <script>
 import ActionButton from "./ActionButton.vue";
+import { mapActions, mapState, mapGetters } from "vuex";
 import Rating from "./Rating.vue";
 export default {
   components: { ActionButton, Rating },
   name: "ProfileSummaryPage",
   props: {
     role: {
+      type: String,
+      required: true,
+    },
+    careType: {
       type: String,
       required: true,
     },
@@ -114,6 +134,21 @@ export default {
     chargePerHour: {
       type: Number,
     },
+    verified: { type: Boolean },
+  },
+  methods: {
+    ...mapActions(["createBackgroundCheck"]),
+    createCheck() {
+      const userId = localStorage.getItem("id");
+      this.createBackgroundCheck({
+        user_paying: userId,
+        user_to_verify: userId,
+      });
+    },
+  },
+  created() {},
+  computed: {
+    ...mapGetters(["backgroundCheck"]),
   },
 };
 </script>

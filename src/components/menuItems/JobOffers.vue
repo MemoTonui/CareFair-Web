@@ -6,26 +6,33 @@
         <div class="max-h-screen overflow-y-auto p-2">
           <div v-for="job in jobOffers" :key="job._id">
             <job-card
-              :datePosted="job.date"
-              :jobDescription="job.description"
-              :jobTitle="job.title"
-              :city="job.city"
-              :country="job.country"
+              :datePosted="new Date(job.offerDate).toDateString()"
+              :jobDescription="job.jobPost.description"
+              :jobTitle="job.jobPost.title"
+              :city="job.jobPost.city"
+              :country="job.jobPost.country"
               @click="handleGetJobId(job._id)"
             />
           </div>
         </div>
       </div>
       <div class="col-span-3">
-        <div>
+        <div v-if="Object.keys(jobOfferDetails).length !== 0">
           <job-offer-details
             :careType="jobOfferDetails.careType"
-            :city="jobOfferDetails.city"
-            :country="jobOfferDetails.country"
-            :jobDescription="jobOfferDetails.description"
-            :jobTitle="jobOfferDetails.title"
-            :job_id="jobOfferDetails._id"
+            :city="jobOfferDetails.jobPost.city"
+            :country="jobOfferDetails.jobPost.country"
+            :jobDescription="jobOfferDetails.jobPost.description"
+            :jobTitle="jobOfferDetails.jobPost.title"
+            :jobId="jobOfferDetails.jobPost._id"
+            :contract_url="jobOfferDetails.contractUrl"
+            :rate="jobOfferDetails.payByHour"
+            :maxHours="jobOfferDetails.weeklyLimit"
+            :offerId="jobOfferDetails._id"
           />
+        </div>
+        <div v-else class="flex justify-center items-center p-10 text-border text-md">
+          CLICK ON A JOB TO VIEW THE DETAILS
         </div>
       </div>
     </div>
@@ -61,13 +68,13 @@ export default {
       });
     },
   },
-  watch: {
+  /* watch: {
     jobs: function (val) {
       this.getJobById({
         jobId: val.id,
       });
     },
-  },
+  },*/
 };
 </script>
 

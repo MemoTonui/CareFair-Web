@@ -9,14 +9,12 @@
       </div>
 
       <HeroSection />
-
       <ServicesSection />
-
       <Testimonials />
       <DownloadAdvert />
-
-      <Footer />
     </div>
+
+    <Footer />
   </div>
 </template>
 

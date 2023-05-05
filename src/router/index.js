@@ -41,6 +41,8 @@ const SwitchAccount = () =>
   import("/src/views/CaregiverPages/Settings.vue");
   const Payments = () =>
   import("/src/views/CaregiverPages/Payments.vue");
+  const Calendar = () =>
+  import("/src/views/CaregiverPages/Calendar.vue");
 
 
 const routes= [
@@ -113,6 +115,11 @@ const routes= [
       path: "/Settings",
       name: "Settings",
       component: Settings,
+    },
+    {
+      path: "/Calendar",
+      name: "Calendar",
+      component: Calendar,
     },
   ],
 },

@@ -144,7 +144,16 @@
             </div>
           </div>
         </transition>
-        <Loader v-if="loading || loadingJobs || loadingInterviews" />
+        <Loader
+          v-if="
+            loading ||
+            loadingJobs ||
+            loadingInterviews ||
+            loadingCalendarItems ||
+            loadingCard ||
+            loadingCheck
+          "
+        />
       </nav>
     </div>
 
@@ -191,6 +200,15 @@ export default {
       "loadingInterviews",
       "successInterviews",
       "errorInterviews",
+      "loadingCalendarItems",
+      "successCalendarItems",
+      "errorCalendarItems",
+      "loadingCard",
+      "errorCard",
+      "successCard",
+      "loadingCheck",
+      "errorCheck",
+      "successCheck",
     ]),
   },
   created() {
@@ -272,6 +290,60 @@ export default {
       }
     },
     errorInterviews: function (val) {
+      if (val) {
+        this.alertTitle = "Error";
+        this.typeOfAlert = "Danger";
+        this.alertMessage = val;
+        this.showAlert = true;
+        setTimeout(() => (this.showAlert = false), 5000);
+      }
+    },
+    successCalendarItems: function (val) {
+      if (val) {
+        this.alertTitle = "Success";
+        this.typeOfAlert = "Success";
+        this.alertMessage = val;
+        this.showAlert = true;
+        setTimeout(() => (this.showAlert = false), 5000);
+      }
+    },
+    errorCalendarItems: function (val) {
+      if (val) {
+        this.alertTitle = "Error";
+        this.typeOfAlert = "Danger";
+        this.alertMessage = val;
+        this.showAlert = true;
+        setTimeout(() => (this.showAlert = false), 5000);
+      }
+    },
+    successCard: function (val) {
+      if (val) {
+        this.alertTitle = "Success";
+        this.typeOfAlert = "Success";
+        this.alertMessage = val;
+        this.showAlert = true;
+        setTimeout(() => (this.showAlert = false), 5000);
+      }
+    },
+    errorCard: function (val) {
+      if (val) {
+        this.alertTitle = "Error";
+        this.typeOfAlert = "Danger";
+        this.alertMessage = val;
+        this.showAlert = true;
+        setTimeout(() => (this.showAlert = false), 5000);
+      }
+    },
+    successCheck: function (val) {
+      if (val) {
+        this.alertTitle = "Success";
+        this.typeOfAlert = "Success";
+        this.alertMessage = val;
+        this.showAlert = true;
+        setTimeout(() => (this.showAlert = false), 5000);
+      }
+    },
+    errorCheck: function (val) {
       if (val) {
         this.alertTitle = "Error";
         this.typeOfAlert = "Danger";

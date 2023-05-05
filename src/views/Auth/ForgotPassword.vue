@@ -45,7 +45,9 @@
       </div>
     </transition>
     <div class="flex justify-center items-center flex-wrap h-full g-6 text-black">
-      <div class="xl:ml-20 xl:w-6/12 lg:w-6/12 md:w-8/12 mb-12 md:mb-0 justify-center">
+      <div
+        class="xl:ml-20 xl:w-6/12 lg:w-6/12 md:w-8/12 mb-12 md:mb-0 flex items-center justify-center"
+      >
         <div class="md:p-12 md:mx-2">
           <div class="block bg-white shadow-lg rounded-lg py-10 md:py-10 md:px-10 px-3">
             <div class="">

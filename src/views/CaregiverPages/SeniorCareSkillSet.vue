@@ -51,6 +51,18 @@ export default {
     return {
       skillset: [],
       seniorCare: [],
+      adultDayCareCenters: false,
+      assistedLivingFacilities: false,
+      familyCaregiver: false,
+      hospiceCaregiver: false,
+      inHomeCaregiver: false,
+      independentCaregiver: false,
+      informalCaregiver: false,
+      nursingHome: false,
+      spotter: false,
+      privateDutyCaregiver: false,
+      professionalCaregiver: false,
+      virtualCaregiver: false,
       selectSkills: [
         { label: "In-Home Caregiver", value: "inHomeCaregiver" },
         { label: "Family Caregiver", value: "familyCaregiver" },
@@ -71,13 +83,62 @@ export default {
     ...mapActions(["editUserProfile"]),
     changeUserProfileAccount() {
       this.skillset.forEach((skill) => {
-        this.seniorCare.push(skill);
+        if (skill == "adultDayCareCenters") {
+          this.adultDayCareCenters = true;
+        }
+        if (skill == "assistedLivingFacilities") {
+          this.assistedLivingFacilities = true;
+        }
+        if (skill == "familyCaregiver") {
+          this.familyCaregiver = true;
+        }
+        if (skill == "hospiceCaregiver") {
+          this.hospiceCaregiver = true;
+        }
+        if (skill == "inHomeCaregiver") {
+          this.inHomeCaregiver = true;
+        }
+        if (skill == "independentCaregiver") {
+          this.postPartumDoula = true;
+        }
+        if (skill == "spotter") {
+          this.spotter = true;
+        }
+        if (skill == "informalCaregiver") {
+          this.informalCaregiver = true;
+        }
+        if (skill == "nursingHome") {
+          this.nursingHome = true;
+        }
+        if (skill == "virtualCaregiver") {
+          this.virtualCaregiver = true;
+        }
+        if (skill == "privateDutyCaregiver") {
+          this.privateDutyCaregiver = true;
+        }
+        if (skill == "professionalCaregiver") {
+          this.professionalCaregiver = true;
+        }
       });
       this.editUserProfile({
         careType: "seniorCare",
-        skillset: this.seniorCare,
+        skillset: {
+          seniorCare: {
+            adultDayCareCenters: this.adultDayCareCenters,
+            assistedLivingFacilities: this.assistedLivingFacilities,
+            familyCaregiver: this.familyCaregiver,
+            hospiceCaregiver: this.hospiceCaregiver,
+            inHomeCaregiver: this.inHomeCaregiver,
+            independentCaregiver: this.independentCaregiver,
+            spotter: this.spotter,
+            informalCaregiver: this.informalCaregiver,
+            nursingHome: this.nursingHome,
+            virtualCaregiver: this.virtualCaregiver,
+            professionalCaregiver: this.professionalCaregiver,
+            privateDutyCaregiver: this.privateDutyCaregiver,
+          },
+        },
       });
-      console.log(this.seniorCare);
       router.push({ name: "CaregiverAccountSetupProcess" });
     },
   },

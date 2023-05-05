@@ -12,7 +12,7 @@
           from anywhere using our <br />
           mobile app
         </h5>
-        <p class="my-5 text-base text-black sm:text-lg dark:text-gray-400">
+        <p class="my-5 text-base text-light sm:text-lg dark:text-gray-400">
           Available for Android and iOS
         </p>
         <div

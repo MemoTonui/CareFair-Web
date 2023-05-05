@@ -14,6 +14,8 @@
           :role="userInfo.role"
           :shortCaption="userInfo.shortCaption"
           :chargePerHour="userInfo.chargePerHour"
+          :careType="userInfo.careType"
+          :verified="userInfo.verified"
         />
       </div>
       <div class="text-sm">

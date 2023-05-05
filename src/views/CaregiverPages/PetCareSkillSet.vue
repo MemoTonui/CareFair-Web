@@ -53,6 +53,15 @@ export default {
     return {
       skillset: [],
       petCare: [],
+      dogWalking: false,
+      petSitting: false,
+      petBoardingorKernelAssistant: false,
+      dogGrooming: false,
+      petTraining: false,
+      veterinaryAcupuncurist: false,
+      dogorCatBreederAssistant: false,
+      veterinaryAssistant: false,
+      spotter: false,
       selectSkills: [
         { label: "Dog Walking", value: "dogWalking" },
         { label: "Pet Sitting", value: "petSitting" },
@@ -76,12 +85,49 @@ export default {
     ...mapActions(["editUserProfile"]),
     changeUserProfileAccount() {
       this.skillset.forEach((skill) => {
-        this.petCare.push(skill);
+        if (skill == "dogWalking") {
+          this.dogWalking = true;
+        }
+        if (skill == "dogGrooming") {
+          this.dogGrooming = true;
+        }
+        if (skill == "dogorCatBreederAssistant") {
+          this.dogorCatBreederAssistant = true;
+        }
+        if (skill == "petBoardingorKernelAssistant") {
+          this.petBoardingorKernelAssistant = true;
+        }
+        if (skill == "petSitting") {
+          this.petSitting = true;
+        }
+        if (skill == "petTraining") {
+          this.petTraining = true;
+        }
+        if (skill == "spotter") {
+          this.spotter = true;
+        }
+        if (skill == "veterinaryAcupuncurist") {
+          this.veterinaryAcupuncurist = true;
+        }
+        if (skill == "veterinaryAssistant") {
+          this.veterinaryAssistant = true;
+        }
       });
       this.editUserProfile({
         careType: "petCare",
-
-        skillset: this.petCare,
+        skillset: {
+          petCare: {
+            dogWalking: this.dogWalking,
+            dogGrooming: this.dogGrooming,
+            dogorCatBreederAssistant: this.dogorCatBreederAssistant,
+            petBoardingorKernelAssistant: this.petBoardingorKernelAssistant,
+            petSitting: this.petSitting,
+            petTraining: this.petTraining,
+            spotter: this.spotter,
+            veterinaryAcupuncurist: this.veterinaryAcupuncurist,
+            veterinaryAssistant: this.veterinaryAssistant,
+          },
+        },
       });
       console.log(this.petCare);
       router.push({ name: "CaregiverAccountSetupProcess" });

@@ -11,12 +11,13 @@
               :status="interview.confirmed"
               :time="new Date(interview.time).toLocaleTimeString()"
               timeLeft=""
+              @click="handleGetInterviewId(interview._id)"
             />
           </div>
         </div>
       </div>
       <div class="col-span-3">
-        <div v-if="interviewDetails.careReceiver">
+        <div v-if="Object.keys(interviewDetails).length !== 0">
           <up-coming-interview-details
             :bio="interviewDetails.careReceiver.about"
             :city="interviewDetails.careReceiver.city"

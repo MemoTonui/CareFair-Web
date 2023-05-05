@@ -18,39 +18,36 @@
         <div class="border-b border-border flex justify-between my-2 p-2">
           <div><p>Hourly Rate</p></div>
           <div>
-            <p>{{ rate }}</p>
+            <p>$ {{ rate }}</p>
           </div>
         </div>
+
         <div class="border-b border-border flex justify-between my-2 p-2">
-          <div><p>Market Place Fee</p></div>
+          <div><p>Max Amount of Hours(Weekly)</p></div>
           <div>
-            <p>{{ marketPlaceRate }}</p>
-          </div>
-        </div>
-        <div class="border-b border-border flex justify-between my-2 p-2">
-          <div><p>Max Amount of Hours</p></div>
-          <div>
-            <p>{{ maxHours }}</p>
-          </div>
-        </div>
-        <div class="border-b border-border flex justify-between my-2 p-2">
-          <div><p>Estimated weekly total</p></div>
-          <div>
-            <p>{{ weeklyTotal }}</p>
+            <p>{{ maxHours }} hours</p>
           </div>
         </div>
       </div>
     </div>
     <div>
-      <h5 class="font-semibold my-2">Contract Terms</h5>
-      <p>Please preview your contract terms before sending the offer</p>
-
-      <div class="flex justify-between mt-5">
-        <div>
-          <action-button text="Decline Job Offer" class="" />
+      <div class="mt-10">
+        <h5 class="font-semibold my-2">Contract Terms</h5>
+        <p>Please preview your contract terms before sending the offer</p>
+        <div class="my-3">
+          <a :href="contract_url" target="_blank" class="flex gap-2">
+            <span class="material-icons-outlined text-dark-pink"> picture_as_pdf </span>
+            <p>Contract Terms</p>
+          </a>
         </div>
+      </div>
+      <div class="flex justify-between mt-5">
+        <div></div>
         <div>
-          <action-button text="Accept Job Offer" />
+          <action-button
+            text="Accept Job Offer"
+            @click="handleAcceptJobOffer(offerId, jobId)"
+          />
         </div>
       </div>
     </div>
@@ -65,7 +62,7 @@ export default {
   components: { ActionButton },
   name: "JobDetails",
   props: {
-    job_id: {
+    jobId: {
       type: String,
       required: true,
     },
@@ -89,15 +86,32 @@ export default {
       type: String,
       required: true,
     },
+    rate: {
+      type: String,
+      required: true,
+    },
+    contract_url: {
+      type: String,
+      required: true,
+    },
+    maxHours: {
+      type: String,
+      required: true,
+    },
+    offerId: {
+      type: String,
+      required: true,
+    },
   },
 
   methods: {
-    ...mapActions(["applyForJob"]),
-    handleApplyForJob(id) {
+    ...mapActions(["acceptJobOffer"]),
+    handleAcceptJobOffer(offer_id, job_id) {
       const userId = localStorage.getItem("id");
-      this.applyForJob({
-        jobId: id,
-        applicants: userId,
+      this.acceptJobOffer({
+        offerId: offer_id,
+        jobId: job_id,
+        careGiver: userId,
       });
     },
   },

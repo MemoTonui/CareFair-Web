@@ -37,6 +37,16 @@ export const GET_COMPLETE_JOBS_REQUEST = "GET_COMPLETE_JOBS_REQUEST";
 export const GET_COMPLETE_JOBS_SUCCESS = "GET_COMPLETE_JOBS_SUCCESS";
 export const GET_COMPLETE_JOBS_FAIL = "GET_COMPLETE_JOBS_FAIL";
 
+/**ACCEPT JOB OFFER */
+export const ACCEPT_JOB_OFFER_REQUEST = "ACCEPT_JOB_OFFER_REQUEST";
+export const ACCEPT_JOB_OFFER_SUCCESS = "ACCEPT_JOB_OFFER_SUCCESS";
+export const ACCEPT_JOB_OFFER_FAIL = "ACCEPT_JOB_OFFER_FAIL";
+
+/**DECLINE JOB OFFER */
+export const DECLINE_JOB_OFFER_REQUEST = "DECLINE_JOB_OFFER_REQUEST";
+export const DECLINE_JOB_OFFER_SUCCESS = "DECLINE_JOB_OFFER_SUCCESS";
+export const DECLINE_JOB_OFFER_FAIL = "DECLINE_JOB_OFFER_FAIL";
+
 export default{
   state:()=>({
     loadingJobs:false,
@@ -129,7 +139,7 @@ export default{
       },
       [JOB_OFFERS_BY_ID_SUCCESS](state, payload) {
         state.loadingJobs = false;
-        state.jobOffers = payload;
+        state.jobOfferDetails = payload;
         state.successJobs = payload.status;
       },
       [JOB_OFFERS_BY_ID_FAIL](state, error) {
@@ -160,10 +170,37 @@ export default{
       },
       [GET_COMPLETE_JOBS_SUCCESS](state, payload) {
         state.loadingJobs = false;
-        state.jobInProgress  = payload;
+        state.jobsComplete  = payload;
         state.successJobs = payload.status;
       },
       [GET_COMPLETE_JOBS_FAIL](state, error) {
+        state.loadingJobs = false;
+        state.errorJobs = error;
+      },
+
+       /**ACCEPT_JOB_OFFER */
+       [ACCEPT_JOB_OFFER_REQUEST](state) {
+        state.loadingJobs = true;
+        state.errorJobs = "";
+      },
+      [ACCEPT_JOB_OFFER_SUCCESS](state, payload) {
+        state.loadingJobs = false;
+        state.successJobs = payload.status;
+      },
+      [ACCEPT_JOB_OFFER_FAIL](state, error) {
+        state.loadingJobs = false;
+        state.errorJobs = error;
+      },
+       /**DECLINE_JOB_OFFER */
+       [DECLINE_JOB_OFFER_REQUEST](state) {
+        state.loadingJobs = true;
+        state.errorJobs = "";
+      },
+      [DECLINE_JOB_OFFER_SUCCESS](state, payload) {
+        state.loadingJobs = false;
+        state.successJobs = payload.status;
+      },
+      [DECLINE_JOB_OFFER_FAIL](state, error) {
         state.loadingJobs = false;
         state.errorJobs = error;
       },
@@ -422,6 +459,46 @@ export default{
               }
             });
         },
+
+              //Accept Job Offer
+              async acceptJobOffer({ commit }, payload) {
+                commit(ACCEPT_JOB_OFFER_REQUEST);
+              
+                const userId = localStorage.getItem("id");
+              
+                var config = {
+                  method: "put",
+                  url: `${baseUrl}offers/acceptOffer/${payload.offerId}`,
+                  headers: {
+                    "Content-Type": "application/json",
+                    "x-requested-with": "XMLHttpRequest",
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                  },
+                  data: payload,
+                };
+                console.log("Accept Offer", config);
+              
+                axios(config)
+                  .then(function (response) {
+                    console.log("Accepted Offer", response.data);
+                    commit(ACCEPT_JOB_OFFER_SUCCESS, response.data.message);
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+              
+                    if (
+                      error.response.status == 401 ||
+                      error.response.data.message == "Unauthenticated."
+                    ) {
+                      router.replace({ name: "LogIn" });
+                    } else {
+                      commit(ACCEPT_JOB_OFFER_FAIL, error.response.data);
+                    }
+                  });
+              },
+
+
+              
 
   },
 }

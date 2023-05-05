@@ -18,7 +18,7 @@
           <div class="p-3 m-3 text-center">You do not have any records to show</div>
         </tr>
         <tr
-          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          class="bg-white border-b border-border dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
           v-else
           v-for="data in tableData"
           :key="data"
@@ -45,13 +45,13 @@
             scope="row"
             class="py-2 px-3 font-medium text-xs text-gray-900 whitespace-nowrap dark:text-white"
           >
-            {{ data.startDate }}
+            {{ new Date(data.startDate).toDateString() }}
           </td>
           <td
             scope="row"
             class="py-2 px-3 font-medium text-xs text-gray-900 whitespace-nowrap dark:text-white"
           >
-            {{ data.endDate }}
+            {{ new Date(data.endDate).toDateString() }}
           </td>
 
           <td
@@ -61,9 +61,9 @@
             <div>
               <button
                 @click="showWorkFlowFormModal = !showWorkFlowFormModal"
-                class="font-medium text-xs text-center m-2 px-2 py-1 text-gray-500 rounded-sm hover:bg-lime-500 hover:text-white"
+                class="font-medium text-xs text-center m-2 px-2 py-1 text-primary rounded-sm hover:bg-primary hover:text-white"
               >
-                Fill Form
+                Add Check-In
               </button>
             </div>
           </td>

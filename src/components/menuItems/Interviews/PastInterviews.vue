@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="col-span-3">
-        <div v-if="interviewDetails.careReceiver">
+        <div v-if="Object.keys(interviewDetails).length !== 0">
           <caregiver-interview-details-card
             :bio="interviewDetails.careReceiver.about"
             :city="interviewDetails.careReceiver.city"
