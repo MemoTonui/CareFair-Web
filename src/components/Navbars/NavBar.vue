@@ -38,7 +38,9 @@
             </router-link>
           </li>
           <li class="text-sm font-bold text-black hover:text-primary hover:underline">
-            <span class="material-icons-outlined"> search </span>
+            <router-link :to="{ name: 'SearchPage' }">
+              <span class="material-icons-outlined"> search </span>
+            </router-link>
           </li>
           <li class="text-sm font-bold text-black hover:text-primary hover:underline">
             <router-link :to="{ name: 'FAQs' }">

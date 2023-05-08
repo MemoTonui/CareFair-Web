@@ -7,10 +7,10 @@
       <div v-else>
         <NavBar />
       </div>
-
-      <HeroSection />
+   
+      <HeroSection />   
       <ServicesSection />
-      <Testimonials />
+      <Testimonials />         
       <DownloadAdvert />
     </div>
 

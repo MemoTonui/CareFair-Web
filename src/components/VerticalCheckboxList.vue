@@ -1,0 +1,69 @@
+<template>
+  <div class="flex flex-col items-start justify-center">
+    <label for="dropDown" class="form-label text-xs inline-block text-gray-700">{{
+      label
+    }}</label>
+    <div class="flex gap-3 my-1">
+      <CheckBox
+        v-for="option in options"
+        :disabled="disabled"
+        :checked="value.includes(option.value)"
+        @update:checked="check(option.value, $event)"
+        :fieldId="option.label"
+        :label="option.label"
+        :key="option"
+        class="text-xs"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import Checkbox from "./CheckBox.vue";
+
+export default {
+  emits: ["update:value"],
+  props: {
+    value: {
+      type: Array,
+      required: true,
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    label: {
+      type: String,
+      required: true,
+    },
+    options: {
+      type: Array,
+      required: true,
+      validator: (value) => {
+        const hasNameKey = value.every((option) => Object.keys(option).includes("label"));
+        const hasIdKey = value.every((option) => Object.keys(option).includes("value"));
+        return hasNameKey && hasIdKey;
+      },
+    },
+  },
+  setup(props, context) {
+    const check = (optionId, checked) => {
+      let updatedValue = [...props.value];
+      if (checked) {
+        updatedValue.push(optionId);
+      } else {
+        updatedValue.splice(updatedValue.indexOf(optionId), 1);
+      }
+      context.emit("update:value", updatedValue);
+    };
+
+    return {
+      check,
+    };
+  },
+  components: {
+    CheckBox: Checkbox,
+  },
+};
+</script>

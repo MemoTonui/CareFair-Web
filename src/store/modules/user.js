@@ -38,6 +38,10 @@ export const REMOVE_EDUCATION_REQUEST ="REMOVE_EDUCATION_REQUEST";
 export const REMOVE_EDUCATION_SUCCESS ="REMOVE_EDUCATION_SUCCESS";
 export const REMOVE_EDUCATION_FAIL ="REMOVE_EDUCATION_FAIL";
 
+export const GET_CAREGIVERS_REQUEST ="GET_CAREGIVERS_REQUEST";
+export const GET_CAREGIVERS_SUCCESS ="GET_CAREGIVERS_SUCCESS";
+export const GET_CAREGIVERS_FAIL ="GET_CAREGIVERS_FAIL";
+
 
 
 export default{
@@ -47,12 +51,14 @@ export default{
   error: "",
   userInfo: [],
   userIdInfo: [],
+  caregivers:[],
   isLoggedIn:false
 
   }),
   getters:{
     userInfo: (state) => state.userInfo,
     userIdInfo: (state) => state.userIdInfo,
+    caregivers: (state) => state.caregivers,
   success: (state) => state.success,
   loading: (state) => state.loading,
   error: (state) => state.error,
@@ -192,6 +198,22 @@ export default{
       state.success = payload.status;
     },
     [REMOVE_EDUCATION_FAIL](state, error) {
+      state.loading = false;
+      state.error = error;
+    },
+
+    
+     /** GET CAREGIVERS*/
+     [GET_CAREGIVERS_REQUEST](state) {
+      state.loading = true;
+      state.error = "";
+    },
+    [GET_CAREGIVERS_SUCCESS](state, payload) {
+      state.loading = false;
+      state.caregivers = payload;
+      state.success = payload.status;
+    },
+    [GET_CAREGIVERS_FAIL](state, error) {
       state.loading = false;
       state.error = error;
     },
@@ -522,6 +544,44 @@ async getUserById({ commit }, payload) {
         });
     },
 
+
+    
+//Get Caregivers
+async getCaregivers({ commit }, payload) {
+  commit(GET_CAREGIVERS_REQUEST);
+  var userId = localStorage.getItem("id");
+
+  var config = {
+    method: "get",
+    url: `${baseUrl}users/careGivers/${userId}`,
+    headers: {
+      "Content-Type": "application/json",
+      "x-requested-with": "XMLHttpRequest",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+    data: payload,
+  };
+  console.log("Get caregivers", config);
+
+  axios(config)
+    .then(function (response) {
+      console.log("Caregivers", response.data.message._id);
+      console.log(response.data)
+      commit(GET_CAREGIVERS_SUCCESS, response.data.message);
+      localStorage.setItem("id",response.data.message._id);
+    })
+    .catch(function (error) {
+      console.log(error);
+      if (
+        error.response.status == 401 ||
+        error.response.data.message == "Unauthenticated."
+      ) {
+        router.replace({ name: "LogIn" });
+      } else {
+        commit(GET_CAREGIVERS_FAIL, error.response.data);
+      }
+    });
+},
     
   },
 }

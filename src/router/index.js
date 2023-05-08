@@ -45,6 +45,13 @@ const SwitchAccount = () =>
   import("/src/views/CaregiverPages/Calendar.vue");
 
 
+  //Care receiver Page
+  const CareReceiverHome = () =>
+  import("/src/views/Home/CareReceiverHome.vue");
+  const SearchPage = () =>
+  import("/src/views/CareReceiverPages/SearchPage.vue");
+
+
 const routes= [
 //Caregiver Routes
 {
@@ -124,12 +131,35 @@ const routes= [
   ],
 },
 
+
+//Caregiver Routes
+{
+  path: "/CareReceiverHome",
+  name: "CareReceiverHome",
+  component: CareReceiverHome,
+  beforeEnter(to, from, next) {
+    const token = localStorage.getItem("token");
+      if (token) {
+        console.log(token)
+       next()
+      } else {
+        next("/Login");
+      }
+    },
+  children:[
+    {
+      path:'/Search',
+      name:'SearchPage',
+      component:SearchPage
+    },
+  ],
+},
   {
     path:'/',
     name:'MainWebPage',
     component:MainWebPage
   },
- 
+  
   {
     path:'/AccountSetup',
     name:'AccountSetup',
@@ -199,6 +229,8 @@ path: "/PasswordResetSuccess",
         }
       },
     },
+
+
 ]
 const router = createRouter({
   history :createWebHistory(),
