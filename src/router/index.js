@@ -50,7 +50,12 @@ const SwitchAccount = () =>
   import("/src/views/Home/CareReceiverHome.vue");
   const SearchPage = () =>
   import("/src/views/CareReceiverPages/SearchPage.vue");
-
+  const SwitchRole = () =>
+  import("/src/views/CareReceiverPages/SwitchRole.vue");
+  const HiringOptions = () =>
+  import("/src/views/CareReceiverPages/HiringOptions.vue");
+  const ContractTerms = () =>
+  import("/src/views/CareReceiverPages/ContractTerms.vue");
 
 const routes= [
 //Caregiver Routes
@@ -151,6 +156,21 @@ const routes= [
       path:'/Search',
       name:'SearchPage',
       component:SearchPage
+    },
+    {
+      path:'/SwitchRole',
+      name:'SwitchRole',
+      component:SwitchRole
+    },
+    {
+      path:'/HiringOptions',
+      name:'HiringOptions',
+      component:HiringOptions
+    },
+    {
+      path:'/ContractTerms',
+      name:'ContractTerms',
+      component:ContractTerms
     },
   ],
 },

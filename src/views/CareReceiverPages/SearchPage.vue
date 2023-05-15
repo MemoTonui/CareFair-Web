@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="container">
+    <div class="container" v-if="userInfo.role == 'careReceiver'">
       <div class="bg-primary bg-opacity-5 p-3 m-10 justify-center">
         <div class="grid col-span-1 md:grid-cols-3 gap-3">
           <TextBox
@@ -44,16 +44,18 @@
               label="Enter your Preferred Languages"
               placeholder="Preferred Languages"
               :tags="tags"
-              v-model="tags"
+              @on-tags-changed="handleChangeTag(tags)"
             />
           </div>
         </div>
         <div class="flex justify-between my-5">
           <div></div>
-          <div><action-button text="Apply Filter" /></div>
+          <div>
+            <action-button @click="handleFilterCaregivers()" text="Apply Filter" />
+          </div>
         </div>
       </div>
-      <div class="grid grid-cols-4 gap-5 container p-4 m-10">
+      <div class="grid grid-cols-4 gap-5 container p-10 my-10">
         <div class="col-span-1 max-h-screen overflow-y-auto p-2">
           <div v-for="user in caregivers" :key="user._id">
             <search-user-card
@@ -82,7 +84,9 @@
               :charges="userIdInfo.chargePerHour"
               :education="userIdInfo.education"
               :previousWorkExperience="userIdInfo.previousWorkExperience"
+              :caregiverId="userIdInfo._id"
               :rating="userIdInfo.rating"
+              :languages="userIdInfo.languages"
             />
           </div>
           <div
@@ -94,6 +98,7 @@
         </div>
       </div>
     </div>
+    <div v-else><jobs-page /></div>
   </main>
 </template>
 
@@ -108,6 +113,8 @@ import TagInput from "../../components/TagInput.vue";
 import ActionButton from "../../components/ActionButton.vue";
 import SearchUserCard from "../../components/cards/SearchUserCard.vue";
 import SearchUserDetails from "../../components/cards/SearchUserDetails.vue";
+import CreateInterview from "../../components/modals/CreateInterview.vue";
+import JobsPage from "../../components/JobsPage.vue";
 
 export default {
   components: {
@@ -120,6 +127,8 @@ export default {
     ActionButton,
     SearchUserCard,
     SearchUserDetails,
+    CreateInterview,
+    JobsPage,
   },
   data() {
     return {
@@ -145,20 +154,43 @@ export default {
     this.isLoggedIn = localStorage.getItem("isLoggedIn");
   },
   methods: {
-    ...mapActions(["getCaregivers", "getUserById"]),
+    ...mapActions([
+      "getCaregivers",
+      "getUserById",
+      "filterCaregivers",
+      "getUserByFirebase",
+    ]),
+    handleChangeTag(tags) {
+      this.tags = tags;
+    },
     handleGetUserById(userId) {
       this.getUserById({
         id: userId,
       });
     },
+    handleFilterCaregivers() {
+      this.filterCaregivers({
+        languages: this.tags,
+        minimumRate: this.minimumRate,
+        maximumRate: this.maximumRate,
+        minimumExperience: this.minimumExperience,
+        careType: this.careType,
+      });
+    },
   },
   computed: {
-    ...mapGetters(["caregivers", "userIdInfo"]),
+    ...mapGetters(["caregivers", "userIdInfo", "userInfo"]),
   },
   created() {
-    this.getCaregivers();
+    this.getCaregivers(), this.getUserByFirebase();
   },
 };
 </script>
 
-<style></style>
+<style>
+.v3ti .v3ti-tag {
+  background: #7a0049;
+  /*border: 1px solid #222222;*/
+  /*border-radius: 0;*/
+}
+</style>

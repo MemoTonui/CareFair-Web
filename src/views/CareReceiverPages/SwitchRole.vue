@@ -10,10 +10,10 @@
           >
             <div class="text-center">
               <h4 class="text-2xl font-bold text-black md:text-3xl mt-1 mb-4 pb-1">
-                Let’s Setup your Account!
+                Switch Role
               </h4>
 
-              <p class="text-sm">Who do you want to set up an account as?</p>
+              <p class="text-sm">Who do you want to access your account account as?</p>
             </div>
             <div class="md:flex gap-10 my-10 justify-between sm:grid-cols-1">
               <div class="" @click="handleChangeRole('careGiver')">
@@ -24,7 +24,6 @@
                   type="radio"
                   name="radio"
                   v-bind:value="'careGiver'"
-                  checked
                 />
                 <div
                   class="w-full bg-white hover:border hover:border-primary hover:border-t-4 hover:border-spacing-8 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 cursor-pointer"
@@ -38,7 +37,7 @@
 
                     <label
                       class="flex items-center flex-col justify-center cursor-pointer p-2"
-                      for="careGiver"
+                      for="caregiver"
                     >
                       <span class="text-md font-bold">Caregiver</span>
                       <span class="text-sm mt-2 text-center"
@@ -56,6 +55,7 @@
                   type="radio"
                   name="radio"
                   v-bind:value="'careReceiver'"
+                  checked
                 />
                 <div
                   class="w-full bg-white hover:border hover:border-primary hover:border-t-4 hover:border-spacing-8 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 cursor-pointer"
@@ -109,7 +109,7 @@ export default {
       this.editUserProfile({
         role: this.role,
       });
-      router.push({ name: "CareType" });
+      router.push({ name: "CaregiverProfile" });
       console.log(this.role);
     },
     handleChangeRole(selectedRole) {
@@ -126,6 +126,12 @@ export default {
 <style scoped>
 input:checked + label {
   border-color: #0093b8;
+  background: #0093b8;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+input[type="radio"]:checked + label {
+  border-color: #0093b8;
+  background: #0093b8;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 </style>

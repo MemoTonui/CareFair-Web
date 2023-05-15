@@ -102,6 +102,12 @@
                     class="absolute right-0 py-2 mt-2 bg-indigo-500 rounded-md shadow-xl w-44"
                   >
                     <router-link
+                      :to="{ name: 'SwitchRole' }"
+                      class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
+                    >
+                      Switch Role
+                    </router-link>
+                    <router-link
                       :to="{ name: 'Jobs' }"
                       class="block px-4 py-2 text-sm text-indigo-100 hover:text-primary hover:bg-primary hover:bg-opacity-10"
                     >

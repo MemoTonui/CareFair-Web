@@ -17,6 +17,11 @@ export const GET_INTERVIEW_BY_ID_REQUEST = "GET_INTERVIEW_BY_ID_REQUEST";
 export const GET_INTERVIEW_BY_ID_SUCCESS = "GET_INTERVIEW_BY_ID_SUCCESS";
 export const GET_INTERVIEW_BY_ID_FAIL = "GET_INTERVIEW_BY_ID_FAIL";
 
+/**CREATE INTERVIEW */
+export const CREATE_INTERVIEW_REQUEST = "CREATE_INTERVIEW_REQUEST";
+export const CREATE_INTERVIEW_SUCCESS = "CREATE_INTERVIEW_SUCCESS";
+export const CREATE_INTERVIEW_FAIL = "CREATE_INTERVIEW_FAIL";
+
 
 export default {
   state:()=>({
@@ -79,6 +84,20 @@ export default {
           state.successInterviews = payload.status;
         },
         [GET_INTERVIEW_BY_ID_FAIL](state, error) {
+          state.loadingInterviews = false;
+          state.errorInterviews = error;
+        },
+
+         /**CREATE INTERVIEW*/
+         [CREATE_INTERVIEW_REQUEST](state) {
+          state.loadingInterviews = true;
+          state.errorInterviews = "";
+        },
+        [CREATE_INTERVIEW_SUCCESS](state, payload) {
+          state.loadingInterviews = false;
+          state.successInterviews = payload.status;
+        },
+        [CREATE_INTERVIEW_FAIL](state, error) {
           state.loadingInterviews = false;
           state.errorInterviews = error;
         },
@@ -191,5 +210,41 @@ export default {
         }
       });
   },
+
+           //Create Interview
+           async createInterview({ commit }, payload) {
+            commit(CREATE_INTERVIEW_REQUEST);
+            //const jobId = localStorage.getItem("jobId")
+            var config = {
+              method: "post",
+              url: `${baseUrl}interviews`,
+              headers: {
+                "Content-Type": "application/json",
+                "x-requested-with": "XMLHttpRequest",
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+              data: payload,
+            };
+            console.log("Create Interview", config);
+          
+            axios(config)
+              .then(function (response) {
+                console.log("Interview", response.data);
+                commit(CREATE_INTERVIEW_SUCCESS, response.data.message);
+              })
+              .catch(function (error) {
+                console.log(error);
+          
+                if (
+                  error.response.status == 401 ||
+                  error.response.data.message == "Unauthenticated."
+                ) {
+                  router.replace({ name: "LogIn" });
+                } else {
+                  commit(CREATE_INTERVIEW_FAIL, error.response.data);
+                }
+              });
+          },
+
   }
 }

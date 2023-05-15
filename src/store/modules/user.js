@@ -42,6 +42,10 @@ export const GET_CAREGIVERS_REQUEST ="GET_CAREGIVERS_REQUEST";
 export const GET_CAREGIVERS_SUCCESS ="GET_CAREGIVERS_SUCCESS";
 export const GET_CAREGIVERS_FAIL ="GET_CAREGIVERS_FAIL";
 
+export const FILTER_CAREGIVERS_REQUEST ="FILTER_CAREGIVERS_REQUEST";
+export const FILTER_CAREGIVERS_SUCCESS ="FILTER_CAREGIVERS_SUCCESS";
+export const FILTER_CAREGIVERS_FAIL ="FILTER_CAREGIVERS_FAIL";
+
 
 
 export default{
@@ -217,6 +221,21 @@ export default{
       state.loading = false;
       state.error = error;
     },
+
+       /** FILTER CAREGIVERS*/
+     [FILTER_CAREGIVERS_REQUEST](state) {
+      state.loading = true;
+      state.error = "";
+    },
+    [FILTER_CAREGIVERS_SUCCESS](state, payload) {
+      state.loading = false;
+      state.caregivers = payload;
+      state.success = payload.status;
+    },
+    [FILTER_CAREGIVERS_FAIL](state, error) {
+      state.loading = false;
+      state.error = error;
+    },
     
   },
   actions :{
@@ -334,7 +353,6 @@ async getUserById({ commit }, payload) {
       console.log("Get user By ID", response.data.message._id);
       console.log(response.data)
       commit(GET_USER_BY_ID_SUCCESS, response.data.message);
-      localStorage.setItem("id",response.data.message._id);
     })
     .catch(function (error) {
       console.log(error);
@@ -568,7 +586,6 @@ async getCaregivers({ commit }, payload) {
       console.log("Caregivers", response.data.message._id);
       console.log(response.data)
       commit(GET_CAREGIVERS_SUCCESS, response.data.message);
-      localStorage.setItem("id",response.data.message._id);
     })
     .catch(function (error) {
       console.log(error);
@@ -582,6 +599,41 @@ async getCaregivers({ commit }, payload) {
       }
     });
 },
-    
+       
+//Filter Caregivers
+async filterCaregivers({ commit }, payload) {
+  commit(FILTER_CAREGIVERS_REQUEST);
+  var userId = localStorage.getItem("id");
+
+  var config = {
+    method: "get",
+    url: `${baseUrl}users/filterCareGivers/${userId}`,
+    headers: {
+      "Content-Type": "application/json",
+      "x-requested-with": "XMLHttpRequest",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+    data: payload,
+  };
+  console.log("Filter caregivers", config);
+
+  axios(config)
+    .then(function (response) {
+      console.log("Filtered Caregivers", response.data.message._id);
+      console.log(response.data)
+      commit(FILTER_CAREGIVERS_SUCCESS, response.data.message);
+    })
+    .catch(function (error) {
+      console.log(error);
+      if (
+        error.response.status == 401 ||
+        error.response.data.message == "Unauthenticated."
+      ) {
+        router.replace({ name: "LogIn" });
+      } else {
+        commit(FILTER_CAREGIVERS_FAIL, error.response.data);
+      }
+    });
+},
   },
 }

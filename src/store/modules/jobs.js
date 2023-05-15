@@ -47,6 +47,11 @@ export const DECLINE_JOB_OFFER_REQUEST = "DECLINE_JOB_OFFER_REQUEST";
 export const DECLINE_JOB_OFFER_SUCCESS = "DECLINE_JOB_OFFER_SUCCESS";
 export const DECLINE_JOB_OFFER_FAIL = "DECLINE_JOB_OFFER_FAIL";
 
+/**FILTER JOBS */
+export const FILTER_JOBS_REQUEST = "FILTER_JOBS_REQUEST";
+export const FILTER_JOBS_SUCCESS = "FILTER_JOBS_SUCCESS";
+export const FILTER_JOBS_FAIL = "FILTER_JOBS_FAIL";
+
 export default{
   state:()=>({
     loadingJobs:false,
@@ -201,6 +206,21 @@ export default{
         state.successJobs = payload.status;
       },
       [DECLINE_JOB_OFFER_FAIL](state, error) {
+        state.loadingJobs = false;
+        state.errorJobs = error;
+      },
+
+       /**FILTER JOBS */
+       [FILTER_JOBS_REQUEST](state) {
+        state.loadingJobs = true;
+        state.errorJobs = "";
+      },
+      [FILTER_JOBS_SUCCESS](state, payload) {
+        state.loadingJobs = false;
+        state.jobs = payload;
+        state.successJobs = payload.status;
+      },
+      [FILTER_JOBS_FAIL](state, error) {
         state.loadingJobs = false;
         state.errorJobs = error;
       },
@@ -497,7 +517,42 @@ export default{
                   });
               },
 
+      
+//Filter Caregivers
+async filterJobs({ commit }, payload) {
+  commit(FILTER_JOBS_REQUEST);
+  var userId = localStorage.getItem("id");
 
+  var config = {
+    method: "get",
+    url: `${baseUrl}jobs/filterJobs/${userId}`,
+    headers: {
+      "Content-Type": "application/json",
+      "x-requested-with": "XMLHttpRequest",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+    data: payload,
+  };
+  console.log("Filter jobs", config);
+
+  axios(config)
+    .then(function (response) {
+      console.log("Filtered Jobs", response.data.message._id);
+      console.log(response.data)
+      commit(FILTER_JOBS_SUCCESS, response.data.message);
+    })
+    .catch(function (error) {
+      console.log(error);
+      if (
+        error.response.status == 401 ||
+        error.response.data.message == "Unauthenticated."
+      ) {
+        router.replace({ name: "LogIn" });
+      } else {
+        commit(FILTER_JOBS_FAIL, error.response.data);
+      }
+    });
+},
               
 
   },
