@@ -128,7 +128,7 @@
 <script>
 import { mapActions, mapState, mapGetters } from "vuex";
 
-import TextBox from "/src/components/TextBox.vue";
+import TextBox from "/src/components/TextBox2.vue";
 import Password from "/src/components/Password.vue";
 import CheckBox from "/src/components/CheckBox.vue";
 import ActionButton from "/src/components/ActionButton.vue";

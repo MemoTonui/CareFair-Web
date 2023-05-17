@@ -253,13 +253,11 @@ export default {
   },
   watch: {
     success: function (val) {
-      if (val) {
-        this.alertTitle = "Success";
-        this.typeOfAlert = "Success";
-        this.alertMessage = val;
-        this.showAlert = true;
-        setTimeout(() => (this.showAlert = false), 5000);
-      }
+      this.alertTitle = "Success";
+      this.typeOfAlert = "Success";
+      this.alertMessage = val;
+      this.showAlert = true;
+      setTimeout(() => (this.showAlert = false), 5000);
     },
     error: function (val) {
       if (val) {
@@ -271,13 +269,11 @@ export default {
       }
     },
     successJobs: function (val) {
-      if (val) {
-        this.alertTitle = "Success";
-        this.typeOfAlert = "Success";
-        this.alertMessage = val;
-        this.showAlert = true;
-        setTimeout(() => (this.showAlert = false), 5000);
-      }
+      this.alertTitle = "Success";
+      this.typeOfAlert = "Success";
+      this.alertMessage = "Loaded Successfully";
+      this.showAlert = true;
+      setTimeout(() => (this.showAlert = false), 5000);
     },
     errorJobs: function (val) {
       if (val) {
@@ -289,13 +285,11 @@ export default {
       }
     },
     successInterviews: function (val) {
-      if (val) {
-        this.alertTitle = "Success";
-        this.typeOfAlert = "Success";
-        this.alertMessage = val;
-        this.showAlert = true;
-        setTimeout(() => (this.showAlert = false), 5000);
-      }
+      this.alertTitle = "Success";
+      this.typeOfAlert = "Success";
+      this.alertMessage = val;
+      this.showAlert = true;
+      setTimeout(() => (this.showAlert = false), 5000);
     },
     errorInterviews: function (val) {
       if (val) {
@@ -307,13 +301,11 @@ export default {
       }
     },
     successCalendarItems: function (val) {
-      if (val) {
-        this.alertTitle = "Success";
-        this.typeOfAlert = "Success";
-        this.alertMessage = val;
-        this.showAlert = true;
-        setTimeout(() => (this.showAlert = false), 5000);
-      }
+      this.alertTitle = "Success";
+      this.typeOfAlert = "Success";
+      this.alertMessage = val;
+      this.showAlert = true;
+      setTimeout(() => (this.showAlert = false), 5000);
     },
     errorCalendarItems: function (val) {
       if (val) {
@@ -325,13 +317,11 @@ export default {
       }
     },
     successCard: function (val) {
-      if (val) {
-        this.alertTitle = "Success";
-        this.typeOfAlert = "Success";
-        this.alertMessage = val;
-        this.showAlert = true;
-        setTimeout(() => (this.showAlert = false), 5000);
-      }
+      this.alertTitle = "Success";
+      this.typeOfAlert = "Success";
+      this.alertMessage = val;
+      this.showAlert = true;
+      setTimeout(() => (this.showAlert = false), 5000);
     },
     errorCard: function (val) {
       if (val) {
@@ -343,13 +333,11 @@ export default {
       }
     },
     successCheck: function (val) {
-      if (val) {
-        this.alertTitle = "Success";
-        this.typeOfAlert = "Success";
-        this.alertMessage = val;
-        this.showAlert = true;
-        setTimeout(() => (this.showAlert = false), 5000);
-      }
+      this.alertTitle = "Success";
+      this.typeOfAlert = "Success";
+      this.alertMessage = val;
+      this.showAlert = true;
+      setTimeout(() => (this.showAlert = false), 5000);
     },
     errorCheck: function (val) {
       if (val) {

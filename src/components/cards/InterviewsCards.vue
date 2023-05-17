@@ -4,7 +4,7 @@
   >
     <div class="text sm flex justify-between mb-2">
       <div>
-        <p class="font-semibold">{{ name }}</p>
+        <p class="font-semibold" v-if="firstName">{{ firstName }} {{ lastName }}</p>
       </div>
       <div class="text-light">
         <p>{{ timeLeft }}</p>
@@ -15,11 +15,13 @@
     </div>
     <div class="flex justify-between gap-2 text-xs">
       <div class="my-2">
-        <p v-if="cancelled" class="text-pink bg-pink bg-opacity-20 p-1">Cancelled</p>
+        <p v-if="cancelled == true" class="text-pink bg-pink bg-opacity-20 p-1">
+          Cancelled
+        </p>
         <p v-else class="text-secondary bg-opacity-20 bg-secondary p-1">Not Cancelled</p>
       </div>
       <div class="my-2">
-        <p v-if="confirmed" class="text-secondary bg-opacity-20 bg-secondary p-1">
+        <p v-if="confirmed == true" class="text-secondary bg-opacity-20 bg-secondary p-1">
           Confirmed
         </p>
         <p v-else class="text-pink bg-pink bg-opacity-20 p-1">Not Confirmed</p>
@@ -32,11 +34,14 @@
 export default {
   name: "InterviewsCard",
   props: {
-    name: {
+    firstName: {
       type: String,
       required: true,
     },
-
+    lastName: {
+      type: String,
+      required: true,
+    },
     timeLeft: {
       type: String,
       required: true,
@@ -51,6 +56,14 @@ export default {
     },
     status: {
       type: String,
+      required: true,
+    },
+    confirmed: {
+      type: Boolean,
+      required: true,
+    },
+    cancelled: {
+      type: Boolean,
       required: true,
     },
   },

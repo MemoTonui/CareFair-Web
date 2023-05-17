@@ -6,7 +6,11 @@
       <div class="mb-10">
         <h1 class="font-semibold text-3xl">Good Morning, Jane Doe</h1>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+
+      <div
+        class="grid grid-cols-2 md:grid-cols-4 gap-5"
+        v-if="userInfo.role == 'careGiver'"
+      >
         <dashboard-cards
           :number-of-data="customers.numberOfData"
           :name-of-data="customers.name"
@@ -62,6 +66,8 @@ import CompletedJobs from "../../components/menuItems/CompletedJobs.vue";
 import InProgress from "../../components/menuItems/InProgress.vue";
 import JobOffers from "../../components/menuItems/JobOffers.vue";
 import OpenJobs from "../../components/menuItems/OpenJobs.vue";
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "Jobs",
   components: { DashboardCards, CompletedJobs, OpenJobs, InProgress, JobOffers },
@@ -90,6 +96,25 @@ export default {
         numberOfData: "$ 38",
       },
     };
+  },
+  created() {
+    this.getUserByFirebase();
+    this.handleMenuItem();
+  },
+  computed: {
+    ...mapGetters(["userInfo"]),
+  },
+  methods: {
+    ...mapActions(["getUserByFirebase"]),
+    handleMenuItem() {
+      if (this.userInfo.role == "careGiver") {
+        this.menuItems = ["OpenJobs", "JobOffers", "InProgress", "CompletedJobs"];
+        this.activeTab = "OpenJobs";
+      } else {
+        this.menuItems = ["OpenJobs", "InProgress", "CompletedJobs"];
+        this.activeTab = "OpenJobs";
+      }
+    },
   },
 };
 </script>

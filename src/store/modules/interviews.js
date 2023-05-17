@@ -22,6 +22,16 @@ export const CREATE_INTERVIEW_REQUEST = "CREATE_INTERVIEW_REQUEST";
 export const CREATE_INTERVIEW_SUCCESS = "CREATE_INTERVIEW_SUCCESS";
 export const CREATE_INTERVIEW_FAIL = "CREATE_INTERVIEW_FAIL";
 
+/**GET INTERVIEWS */
+export const GET_INTERVIEWS_REQUEST = "GET_INTERVIEWS_REQUEST";
+export const GET_INTERVIEWS_SUCCESS = "GET_INTERVIEWS_SUCCESS";
+export const GET_INTERVIEWS_FAIL = "GET_INTERVIEWS_FAIL";
+
+/**UPDATE INTERVIEWS */
+export const UPDATE_INTERVIEW_REQUEST = "UPDATE_INTERVIEW_REQUEST";
+export const UPDATE_INTERVIEW_SUCCESS = "UPDATE_INTERVIEW_SUCCESS";
+export const UPDATE_INTERVIEW_FAIL = "UPDATE_INTERVIEW_FAIL";
+
 
 export default {
   state:()=>({
@@ -95,12 +105,29 @@ export default {
         },
         [CREATE_INTERVIEW_SUCCESS](state, payload) {
           state.loadingInterviews = false;
+          
           state.successInterviews = payload.status;
         },
         [CREATE_INTERVIEW_FAIL](state, error) {
           state.loadingInterviews = false;
           state.errorInterviews = error;
         },
+
+         /**UPDATE INTERVIEW*/
+         [UPDATE_INTERVIEW_REQUEST](state) {
+          state.loadingInterviews = true;
+          state.errorInterviews = "";
+        },
+        [UPDATE_INTERVIEW_SUCCESS](state, payload) {
+          state.loadingInterviews = false;
+          state.interviewDetails = payload;
+          state.successInterviews = payload.status;
+        },
+        [UPDATE_INTERVIEW_FAIL](state, error) {
+          state.loadingInterviews = false;
+          state.errorInterviews = error;
+        },
+
   },
 
   actions:{
@@ -111,7 +138,7 @@ export default {
 
   var config = {
     method: "get",
-    url: `${baseUrl}interviews/userInterviews/past/${userId}`,
+    url: `${baseUrl}interviews/userInterviews/${userId}`,
     headers: {
       "Content-Type": "application/json",
       "x-requested-with": "XMLHttpRequest",
@@ -245,6 +272,41 @@ export default {
                 }
               });
           },
+
+ //Update Interview
+ async updateInterview({ commit }, payload) {
+  commit(UPDATE_INTERVIEW_REQUEST);
+  //const jobId = localStorage.getItem("jobId")
+  var config = {
+    method: "put",
+    url: `${baseUrl}interviews/${payload.interviewId}`,
+    headers: {
+      "Content-Type": "application/json",
+      "x-requested-with": "XMLHttpRequest",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+    data: payload,
+  };
+  console.log("Update Interview", config);
+
+  axios(config)
+    .then(function (response) {
+      console.log("Interview", response.data);
+      commit(UPDATE_INTERVIEW_SUCCESS, response.data.message);
+    })
+    .catch(function (error) {
+      console.log(error);
+
+      if (
+        error.response.status == 401 ||
+        error.response.data.message == "Unauthenticated."
+      ) {
+        router.replace({ name: "LogIn" });
+      } else {
+        commit(UPDATE_INTERVIEW_FAIL, error.response.data);
+      }
+    });
+},
 
   }
 }

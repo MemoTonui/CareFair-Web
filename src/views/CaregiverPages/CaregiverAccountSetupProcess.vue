@@ -45,9 +45,11 @@
                   >
                   <br /><br />
                 </span>
-                <a class="text-sm text-primary underline cursor-pointer"
-                  >Click here to view your profile</a
-                >
+                <router-link :to="{ name: 'CaregiverProfile' }">
+                  <a class="text-sm text-primary underline cursor-pointer"
+                    >Click here to view your profile</a
+                  >
+                </router-link>
               </div>
             </div>
           </div>

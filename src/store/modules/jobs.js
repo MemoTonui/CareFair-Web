@@ -7,6 +7,11 @@ export const GET_ALL_JOBS_REQUEST = "GET_ALL_JOBS_REQUEST";
 export const GET_ALL_JOBS_SUCCESS = "GET_ALL_JOBS_SUCCESS";
 export const GET_ALL_JOBS_FAIL = "GET_ALL_JOBS_FAIL";
 
+/**GET USER'S JoBS */
+export const GET_USER_JOBS_REQUEST = "GET_USER_JOBS_REQUEST";
+export const GET_USER_JOBS_SUCCESS = "GET_USER_JOBS_SUCCESS";
+export const GET_USER_JOBS_FAIL = "GET_USER_JOBS_FAIL";
+
 /**GET JOBS BY ID */
 export const GET_JOB_BY_ID_REQUEST = "GET_JOB_BY_ID_REQUEST";
 export const GET_JOB_BY_ID_SUCCESS = "GET_JOB_BY_ID_SUCCESS";
@@ -52,6 +57,21 @@ export const FILTER_JOBS_REQUEST = "FILTER_JOBS_REQUEST";
 export const FILTER_JOBS_SUCCESS = "FILTER_JOBS_SUCCESS";
 export const FILTER_JOBS_FAIL = "FILTER_JOBS_FAIL";
 
+/** DELETE JOBS */
+export const DELETE_JOB_REQUEST = "DELETE_JOB_REQUEST";
+export const DELETE_JOB_SUCCESS = "DELETE_JOB_SUCCESS";
+export const DELETE_JOB_FAIL = "DELETE_JOB_FAIL";
+
+/** CREATE A JOB */
+export const CREATE_JOB_REQUEST = "CREATE_JOB_REQUEST";
+export const CREATE_JOB_SUCCESS = "CREATE_JOB_SUCCESS";
+export const CREATE_JOB_FAIL = "CREATE_JOB_FAIL";
+
+/** EDIT A JOB */
+export const EDIT_JOB_REQUEST = "EDIT_JOB_REQUEST";
+export const EDIT_JOB_SUCCESS = "EDIT_JOB_SUCCESS";
+export const EDIT_JOB_FAIL = "EDIT_JOB_FAIL";
+
 export default{
   state:()=>({
     loadingJobs:false,
@@ -59,10 +79,12 @@ export default{
     successJobs:"",
     jobs:[],
     jobDetails:{},
+    createdJob:{},
     jobOffers :[],
     jobOfferDetails:{},
     jobInProgress:[],
-    jobsComplete:[]
+    jobsComplete:[],
+    userJobs:[]
   }),
   getters :{
     loadingJobs: (state) => state.loadingJobs,
@@ -73,7 +95,9 @@ export default{
     jobDetails : (state) => state.jobDetails,
     jobOfferDetails : (state) => state.jobOfferDetails,
     jobInProgress:(state) => state.jobInProgress,
-    jobsComplete:(state) => state.jobsComplete
+    jobsComplete:(state) => state.jobsComplete,
+    userJobs:(state) => state.userJobs,
+    createdJob:(state) => state.createdJob
 
   },
   mutations:{
@@ -88,6 +112,21 @@ export default{
       state.successJobs = payload.status;
     },
     [GET_ALL_JOBS_FAIL](state, error) {
+      state.loadingJobs = false;
+      state.errorJobs = error;
+    },
+
+     /**GET USER'S JOBS */
+     [GET_USER_JOBS_REQUEST](state) {
+      state.loadingJobs = true;
+      state.errorJobs = "";
+    },
+    [GET_USER_JOBS_SUCCESS](state, payload) {
+      state.loadingJobs = false;
+      state.userJobs = payload;
+      state.successJobs = payload.status;
+    },
+    [GET_USER_JOBS_FAIL](state, error) {
       state.loadingJobs = false;
       state.errorJobs = error;
     },
@@ -224,6 +263,50 @@ export default{
         state.loadingJobs = false;
         state.errorJobs = error;
       },
+
+      /**DELETE JOB */
+      [DELETE_JOB_REQUEST](state) {
+        state.loadingJobs = true;
+        state.errorJobs = "";
+      },
+      [DELETE_JOB_SUCCESS](state, payload) {
+        state.loadingJobs = false;
+        state.successJobs = payload.status;
+      },
+      [DELETE_JOB_FAIL](state, error) {
+        state.loadingJobs = false;
+        state.errorJobs = error;
+      },
+
+       /**CREATE JOB */
+       [CREATE_JOB_REQUEST](state) {
+        state.loadingJobs = true;
+        state.errorJobs = "";
+      },
+      [CREATE_JOB_SUCCESS](state, payload) {
+        state.loadingJobs = false;
+        state.createdJob = payload;
+        state.successJobs = payload.status;
+      },
+      [CREATE_JOB_FAIL](state, error) {
+        state.loadingJobs = false;
+        state.errorJobs = error;
+      },
+
+      /**EDIT JOB */
+      [EDIT_JOB_REQUEST](state) {
+        state.loadingJobs = true;
+        state.errorJobs = "";
+      },
+      [EDIT_JOB_SUCCESS](state, payload) {
+        state.loadingJobs = false;
+        state.createdJob = payload;
+        state.successJobs = payload.status;
+      },
+      [EDIT_JOB_FAIL](state, error) {
+        state.loadingJobs = false;
+        state.errorJobs = error;
+      },
   },
   actions:{
     //Get All Jobs
@@ -260,6 +343,44 @@ export default{
       }
     });
 },
+
+
+ //Get User's Jobs
+ async getUserJobs({ commit }, payload) {
+  commit(GET_USER_JOBS_REQUEST);
+  const userId = localStorage.getItem("id")
+
+  var config = {
+    method: "get",
+    url: `${baseUrl}jobs/userJobs/${userId}`,
+    headers: {
+      "Content-Type": "application/json",
+      "x-requested-with": "XMLHttpRequest",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+    data: payload,
+  };
+  console.log("Get User Jobs", config);
+
+  axios(config)
+    .then(function (response) {
+      console.log("User Jobs", response.data);
+      commit(GET_USER_JOBS_SUCCESS, response.data.message);
+    })
+    .catch(function (error) {
+      console.log(error);
+
+      if (
+        error.response.status == 401 ||
+        error.response.data.message == "Unauthenticated."
+      ) {
+        router.replace({ name: "LogIn" });
+      } else {
+        commit(GET_USER_JOBS_FAIL, error.response.data);
+      }
+    });
+},
+
    //Get Job By Id
    async getJobById({ commit }, payload) {
     commit(GET_JOB_BY_ID_REQUEST);
@@ -553,7 +674,98 @@ async filterJobs({ commit }, payload) {
       }
     });
 },
+
+
+      
+//Delete Job
+async deleteJob({ commit,dispatch }, payload) {
+  commit(DELETE_JOB_REQUEST);
+  var userId = localStorage.getItem("id");
+
+  var config = {
+    method: "get",
+    url: `${baseUrl}jobs/${payload.jobId}`,
+    headers: {
+      "Content-Type": "application/json",
+      "x-requested-with": "XMLHttpRequest",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+    data: payload,
+  };
+  console.log("Delete Job", config);
+
+  axios(config)
+    .then(function (response) {
+      dispatch("getUserJobs");
+      console.log("Deleted Jobs", response.data.message);
+      console.log(response.data)
+      commit(DELETE_JOB_SUCCESS, response.data.message);
+    })
+    .catch(function (error) {
+      console.log(error);
+      if (
+        error.response.status == 401 ||
+        error.response.data.message == "Unauthenticated."
+      ) {
+        router.replace({ name: "LogIn" });
+      } else {
+        commit(DELETE_JOB_FAIL, error.response.data);
+      }
+    });
+},
               
 
+//Create Job
+async createJob({ commit }, payload) {
+  commit(CREATE_JOB_REQUEST);
+
+  var config = {
+    method: "post",
+    url: `${baseUrl}jobs`,
+    headers: {
+      "Content-Type": "application/json",
+      "x-requested-with": "XMLHttpRequest",
+    },
+    data: payload,
+  };
+  console.log("Create New Job", config);
+
+  axios(config)
+    .then(function (response) {
+      console.log("JOB", response.data);
+      commit(CREATE_JOB_SUCCESS, response.data);
+      router.replace({ name: "LogIn" });
+    })
+    .catch(function (error) {
+      console.log(error);
+      commit(CREATE_JOB_FAIL, error.response.data);
+    });
+},
+//Edit Job
+async editJob({ commit }, payload) {
+  commit(EDIT_JOB_REQUEST);
+
+  var config = {
+    method: "put",
+    url: `${baseUrl}jobs/${payload.jobId}`,
+    headers: {
+      "Content-Type": "application/json",
+      "x-requested-with": "XMLHttpRequest",
+    },
+    data: payload,
+  };
+  console.log("Edit Job", config);
+
+  axios(config)
+    .then(function (response) {
+      console.log("JOB", response.data);
+      commit(EDIT_JOB_SUCCESS, response.data);
+      router.replace({ name: "LogIn" });
+    })
+    .catch(function (error) {
+      console.log(error);
+      commit(EDIT_JOB_FAIL, error.response.data);
+    });
+},
   },
 }

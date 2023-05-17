@@ -40,6 +40,22 @@
         <p>{{ time }}</p>
       </div>
     </div>
+    <div class="flex justify-between mt-10">
+      <div v-if="cancelStatus == false || confirmStatus == true">
+        <action-button
+          @click="handleCancelInterview(interview_id, cancelStatus)"
+          text="Cancel Interview"
+        />
+      </div>
+      <div v-if="userInfo.role == 'careGiver'">
+        <div v-if="confirmStatus == false">
+          <action-button
+            @click="handleConfirmInterview(interview_id, confirmStatus)"
+            text="Confirm Interview"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -95,16 +111,61 @@ export default {
       type: String,
       required: true,
     },
+    cancelStatus: {
+      type: Boolean,
+      required: true,
+    },
+    confirmStatus: {
+      type: Boolean,
+      required: true,
+    },
   },
-
+  created() {
+    this.getUserByFirebase();
+  },
+  computed: {
+    ...mapGetters(["userInfo"]),
+  },
   methods: {
-    ...mapActions(["applyForJob"]),
+    ...mapActions(["applyForJob", "getUserByFirebase", "updateInterview"]),
     handleApplyForJob(id) {
       const userId = localStorage.getItem("id");
       this.applyForJob({
         jobId: id,
         applicants: userId,
       });
+    },
+
+    handleConfirmInterview(interview_id, status) {
+      const userId = localStorage.getItem("id");
+      if (status == true) {
+        this.updateInterview({
+          interviewId: interview_id,
+          confirmed: false,
+        });
+      }
+      if (status == false) {
+        this.updateInterview({
+          interviewId: interview_id,
+          confirmed: true,
+        });
+      }
+    },
+
+    handleCancelInterview(interview_id, status) {
+      const userId = localStorage.getItem("id");
+      if (status == true) {
+        this.updateInterview({
+          interviewId: interview_id,
+          cancelled: false,
+        });
+      }
+      if (status == false) {
+        this.updateInterview({
+          interviewId: interview_id,
+          cancelled: true,
+        });
+      }
     },
   },
 };
