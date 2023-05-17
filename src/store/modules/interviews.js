@@ -206,7 +206,7 @@ export default {
           //Get Interview By Id
    async getInterviewById({ commit }, payload) {
     commit(GET_INTERVIEW_BY_ID_REQUEST);
-    //const jobId = localStorage.getItem("jobId")
+    const jobId = localStorage.getItem("jobId")
     var config = {
       method: "get",
       url: `${baseUrl}interviews/${payload.interviewId}`,
