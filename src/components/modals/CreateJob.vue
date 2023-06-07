@@ -160,6 +160,8 @@ export default {
       region: "",
     };
   },
+
+  //Shows the modal
   setup(props) {
     const showModal = ref(false);
 
