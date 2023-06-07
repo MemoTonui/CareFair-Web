@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "serve dist",
-    "build": "vite build",
+    "start": "node --max_old_space_size=2560 node_modules/.bin/serve dist",
+    "build": "node --max_old_space_size=2560 node_modules/.bin/vite build",
     "preview": "vite preview"
   },
   "dependencies": {
