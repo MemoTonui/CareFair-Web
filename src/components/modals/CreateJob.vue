@@ -147,6 +147,7 @@ export default {
   name: "CreateJobModal",
   props,
   components: { TextBox, ActionButton, TextArea, TagInput },
+  //Declare Variables
   data() {
     return {
       id: "",
