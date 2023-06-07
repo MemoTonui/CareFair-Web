@@ -45,20 +45,18 @@
                   label="Job Description"
                   v-model="jobDescription"
                 />
-                <div class="">
-                  <TextBox
-                    type="number"
-                    placeholder="Enter Minimum Rate"
-                    label="Minimum Rate"
-                    v-model="minimumRate"
-                  />
-                  <TextBox
-                    type="number"
-                    placeholder="Enter Maximum Rate"
-                    label="Maximum Rate"
-                    v-model="maximumRate"
-                  />
-                </div>
+                <TextBox
+                  type="number"
+                  placeholder="Enter Minimum Rate"
+                  label="Minimum Rate"
+                  v-model="minimumRate"
+                />
+                <TextBox
+                  type="number"
+                  placeholder="Enter Maximum Rate"
+                  label="Maximum Rate"
+                  v-model="maximumRate"
+                />
                 <TextBox
                   type="number"
                   placeholder="Enter minimum required years of experience"

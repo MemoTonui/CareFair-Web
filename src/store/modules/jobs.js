@@ -79,7 +79,6 @@ export default{
     successJobs:"",
     jobs:[],
     jobDetails:{},
-    createdJob:{},
     jobOffers :[],
     jobOfferDetails:{},
     jobInProgress:[],
@@ -97,7 +96,6 @@ export default{
     jobInProgress:(state) => state.jobInProgress,
     jobsComplete:(state) => state.jobsComplete,
     userJobs:(state) => state.userJobs,
-    createdJob:(state) => state.createdJob
 
   },
   mutations:{
@@ -285,7 +283,6 @@ export default{
       },
       [CREATE_JOB_SUCCESS](state, payload) {
         state.loadingJobs = false;
-        state.createdJob = payload;
         state.successJobs = payload.status;
       },
       [CREATE_JOB_FAIL](state, error) {
@@ -300,7 +297,6 @@ export default{
       },
       [EDIT_JOB_SUCCESS](state, payload) {
         state.loadingJobs = false;
-        state.createdJob = payload;
         state.successJobs = payload.status;
       },
       [EDIT_JOB_FAIL](state, error) {
@@ -725,6 +721,8 @@ async createJob({ commit }, payload) {
     headers: {
       "Content-Type": "application/json",
       "x-requested-with": "XMLHttpRequest",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+
     },
     data: payload,
   };
@@ -734,11 +732,11 @@ async createJob({ commit }, payload) {
     .then(function (response) {
       console.log("JOB", response.data);
       commit(CREATE_JOB_SUCCESS, response.data);
-      router.replace({ name: "LogIn" });
+      router.push({ name: "ContractTerms" });
     })
     .catch(function (error) {
       console.log(error);
-      commit(CREATE_JOB_FAIL, error.response.data);
+      commit(CREATE_JOB_FAIL, error.response);
     });
 },
 //Edit Job

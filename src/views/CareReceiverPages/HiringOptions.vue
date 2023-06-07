@@ -56,27 +56,79 @@
                     <span class="text-md font-medium">Create New Job</span>
                     <div v-if="option == 'new_job'">
                       <div class="mt-5">
-                        <text-box-2
-                          :v-model="jobTitle"
+                        <text-box
+                          v-model="jobTitle"
                           label="Title"
                           placeholder="Enter the title of the job"
                           type="text"
                         />
                       </div>
                       <div>
-                        <text-area-2
-                          :v-model="jobDescription"
+                        <text-area
+                          v-model="jobDescription"
                           label="Description"
                           placeholder="Enter the job description"
                           type="text"
                         />
                       </div>
+                      <TextBox
+                        type="number"
+                        placeholder="Enter Minimum Rate"
+                        label="Minimum Rate"
+                        v-model="minimumRate"
+                      />
+                      <TextBox
+                        type="number"
+                        placeholder="Enter Maximum Rate"
+                        label="Maximum Rate"
+                        v-model="maximumRate"
+                      />
+                      <TextBox
+                        type="number"
+                        placeholder="Enter minimum required years of experience"
+                        label="Minimum Required Years of Experience:"
+                        v-model="minimumExperience"
+                      />
+                      <div class="">
+                        <div class="mb-2">
+                          <label
+                            for="textBox"
+                            class="form-label text-xs inline-block my-2 text-black"
+                            >Country</label
+                          >
+                          <country-select
+                            class="form-control block w-full px-5 py-2 text-xs font-normal text-black bg-white bg-clip-padding border border-solid border-border rounded-sm transition ease-in-out m-0 focus:text-primary focus:bg-white focus:border-blue-600 focus:outline-none"
+                            v-model="country"
+                            :country="country"
+                            topCountry="US"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            for="textBox"
+                            class="form-label text-xs inline-block my-2 text-black"
+                            >Region</label
+                          >
+                          <region-select
+                            class="form-control block w-full px-5 py-2 text-xs font-normal text-black bg-white bg-clip-padding border border-solid border-border rounded-sm transition ease-in-out m-0 focus:text-primary focus:bg-white focus:border-blue-600 focus:outline-none"
+                            v-model="region"
+                            :country="country"
+                            :region="region"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <TagInput
+                          label="Enter your Preferred Languages"
+                          placeholder="Preferred Languages"
+                          :tags="tags"
+                          @on-tags-changed="handleChangeTag(tags)"
+                        />
+                      </div>
                       <div class="flex justify-between mt-5">
                         <div></div>
                         <div>
-                          <router-link :to="{ name: 'ContractTerms' }"
-                            ><ActionButton text="Proceed"
-                          /></router-link>
+                          <ActionButton text="Proceed" @click.prevent="handleCreateJob" />
                         </div>
                       </div>
                     </div>
@@ -97,35 +149,43 @@ import router from "/src/router";
 import ActionButton from "../../components/ActionButton.vue";
 import AccountCard from "/src/components/cards/AccountCard.vue";
 import Dropdown from "../../components/Dropdown.vue";
-import TextBox2 from "../../components/TextBox2.vue";
-import TextArea2 from "../../components/TextArea2.vue";
+import TextBox from "../../components/TextBox2.vue";
+import TextArea from "../../components/TextArea2.vue";
+import TagInput from "../../components/TagInput.vue";
+
 export default {
-  components: { AccountCard, ActionButton, Dropdown, TextBox2, TextArea2 },
+  components: { AccountCard, ActionButton, Dropdown, TextBox, TextArea, TagInput },
   data() {
     return {
       option: "",
       jobTitle: "",
+      jobDescription: "",
+      minimumRate: 0,
+      maximumRate: 0,
+      minimumExperience: "",
+      tags: ["English"],
+      country: "",
+      region: "",
     };
   },
   methods: {
-    ...mapActions(["editUserProfile", "getUserByFirebase"]),
-    changeUserProfileAccount() {
-      this.editUserProfile({
-        role: this.role,
+    ...mapActions(["createJob"]),
+    handleCreateJob() {
+      this.createJob({
+        title: this.jobTitle,
+        description: this.jobDescription,
+        minimumRate: this.minimumRate,
+        maximumRate: this.maximumRate,
+        minimumExperience: this.minimumExperience,
+        languages: this.tags,
+        country: this.country,
+        city: this.region,
+        jobOwner: localStorage.getItem("id"),
       });
-      router.push({ name: "CaregiverProfile" });
-      console.log(this.role);
-    },
-    handleChangeRole(selectedRole) {
-      this.role = selectedRole;
-      console.log(this.role);
     },
   },
   computed: {
-    ...mapGetters(["userInfo"]),
-  },
-  mounted() {
-    this.getUserByFirebase();
+    ...mapGetters(["createdJob"]),
   },
 };
 </script>
