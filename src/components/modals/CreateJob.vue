@@ -184,6 +184,8 @@ export default {
   },
   updated() {
     if (this.state == "Edit") {
+      //node --max_old_space_size=2560 node_modules/.bin/
+
       this.id = this.currentQualityAssuranceForm.id;
       this.name = this.currentQualityAssuranceForm.name;
       this.description = this.currentQualityAssuranceForm.description;
@@ -245,5 +247,4 @@ export default {
   },
 };
 </script>
-
 <style></style>
